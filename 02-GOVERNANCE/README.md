@@ -1,31 +1,51 @@
 # 02-GOVERNANCE
 
+**Status:** CANONICAL  
+**Stability:** Slow  
+**Owner:** GovernanceBody
+
+---
+
 ## Purpose
 
-This directory contains governance bodies, roles, policies, rules, and decision frameworks that operationalize the constitutional authority. It defines who decides what and how decisions are made.
+This directory contains governance bodies, policies, rules, and decision-making frameworks that define how the RADIUS1 Kernel is governed. It operationalizes the constitutional authority established in `00-CONSTITUTION/` into actionable governance mechanisms.
 
-## What Belongs Here
+## Contents
 
-- Governance body charters and definitions
-- Role definitions and assignments
-- Policy documents and directives
-- Rule definitions and regulations
-- Decision records and governance logs
-- Authority delegations and jurisdictional mappings
+| Subdirectory | Purpose |
+|-------------|---------|
+| `Bodies/` | Chartered governance bodies with defined authority, membership, and scope |
+| `Policies/` | Governing principles that guide decision-making and set behavioral boundaries |
+| `Rules/` | Binding constraints on behavior, structure, or process |
+| `Authorizations/` | Granted permissions and authorizations |
+| `Exceptions/` | Documented deviations from rules, standards, or policies |
+| `Amendments/` | Formal change proposals to governance instruments |
+| `Sanctions/` | Punitive or corrective measures for violations |
+| `Precedents/` | Prior decisions that guide future similar cases |
+| `Appeals/` | Formal reconsideration requests |
+| `Vetoes/` | Recorded vetoes and their justifications |
+| `Disputes/` | Documented conflicts and their resolutions |
+| `Recusals/` | Documented withdrawals due to conflicts |
 
-## What Is Forbidden Here
+## Governance Chain
 
-- The Constitution itself (belongs in `00-CONSTITUTION/`)
-- Entity ontology definitions (belong in `01-META-MODEL/`)
-- Technical standards (belong in `03-STANDARDS/`)
-- Engineering patterns (belong in `04-PATTERNS/`)
-- Evidence or audit artifacts (belong in `05-EVIDENCE/`)
-- Implementation code or tools (belong in `09-TOOLS/`)
+```
+Constitution → Charter → GovernanceBody → Role → Actor → Session → Task
+```
 
-## Relation With the Rest of the Repository
+## Key Entities
 
-- Derives authority from `00-CONSTITUTION/`
-- Operates within the entity model defined in `01-META-MODEL/`
-- Creates and enforces standards in `03-STANDARDS/`
-- Produces evidence recorded in `05-EVIDENCE/`
-- Defines workflows executed in `07-WORKFLOW/`
+- **GovernanceBody** (Tier 6) — Organized group with decision-making authority
+- **Policy** (Tier 6) — Governing principles for decision-making
+- **Rule** (Tier 6) — Binding constraints on behavior
+- **Exception** (Tier 17) — Permitted deviations from rules
+- **Waiver** (Tier 17) — Formal exemptions from requirements
+- **Amendment** (Tier 18) — Formal changes to governance instruments
+- **Sanction** (Tier 18) — Corrective measures for violations
+- **Precedent** (Tier 18) — Prior decisions guiding future cases
+- **Appeal** (Tier 18) — Requests for reconsideration
+- **Veto** (Tier 18) — Rejection authority over decisions
+
+---
+
+*All governance changes require human approval with governance body ratification per the amendment procedure in the Constitution.*

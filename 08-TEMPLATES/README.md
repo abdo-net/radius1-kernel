@@ -1,27 +1,35 @@
 # 08-TEMPLATES
 
+**Status:** CANONICAL  
+**Stability:** Moderate  
+**Owner:** GovernanceBody
+
+---
+
 ## Purpose
 
-This directory contains reusable templates for documents, specifications, reports, and other artifacts produced within the Radius1 Kernel.
+This directory contains standardized templates for documents, specifications, governance artifacts, and other recurring content types used within the RADIUS1 Kernel. Templates ensure consistency, completeness, and compliance with established standards.
 
-## What Belongs Here
+## Contents
 
-- Document templates for specifications, reports, and proposals
-- Checklists and review templates
-- Decision record templates
-- Plan and milestone templates
-- Template versioning and lifecycle records
+| Template Type | Description |
+|--------------|-------------|
+| **Document Templates** | Standard formats for specifications, designs, and technical documents |
+| **Governance Templates** | Templates for policies, rules, charters, and decisions |
+| **Review Templates** | Structured formats for reviews, audits, and assessments |
+| **Report Templates** | Standard layouts for status reports, findings, and transparency reports |
+| **Contract Templates** | Standard contract formats and clauses |
+| **Process Templates** | Templates for defining new processes and workflows |
 
-## What Is Forbidden Here
+## Template Format
 
-- Completed documents or filled templates (these are artifacts, not templates)
-- Governance instruments or entity definitions
-- Standards, patterns, or evidence
-- Implementation code
+Each template includes:
+1. **Metadata** — Template name, version, owner, approval status
+2. **Purpose** — What this template is for
+3. **Sections** — Required and optional sections with guidance
+4. **Examples** — Filled examples where helpful
+5. **Validation Criteria** — What makes a completed template valid
 
-## Relation With the Rest of the Repository
+---
 
-- Instantiate patterns from `04-PATTERNS/`
-- Conform to standards in `03-STANDARDS/`
-- Used by workflows in `07-WORKFLOW/`
-- Filled templates become artifacts tracked in `05-EVIDENCE/`
+*Templates are version-controlled. Changes to approved templates require governance body approval.*

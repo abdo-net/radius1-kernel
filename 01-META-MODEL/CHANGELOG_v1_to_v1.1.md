@@ -144,9 +144,11 @@ The following were classified as architectural proposals, not engineering defect
 
 ## References
 
-- **Source:** `RMM_v1.1.md` (RMM v1)
-- **Future Proposals:** `RMM_FUTURE_PROPOSALS.md`
-- **Validation Report:** `VALIDATION_REPORT.md`
+- **Source:** `/mnt/agents/upload/RMM-FINAL-Complete.md` (RMM v1)
+- **Review 1:** `/mnt/agents/upload/RMM-v1-Engineering-Review.md`
+- **Review 2:** `/mnt/agents/upload/RMM_v1_Engineering_Review.md`
+- **Future Proposals:** `/mnt/agents/output/RMM_FUTURE_PROPOSALS.md`
+- **Validation Report:** `/mnt/agents/output/VALIDATION_REPORT.md`
 
 ---
 

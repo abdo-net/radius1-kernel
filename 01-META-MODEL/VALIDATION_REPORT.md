@@ -3,7 +3,7 @@
 **Date:** 2026-06-26
 **Artifact:** RMM_v1.1.md
 **Validator:** Repository Architecture Review Board — Release Engineering
-**Method:** Static analysis of entity catalog (79 entities), relationship graph (639 relationships), 10 matrices
+**Method:** Static analysis of entity catalog (79 entities), relationship graph (636 relationships), 10 matrices
 
 ---
 
@@ -126,8 +126,8 @@ Self-ownership in Matrix 1 (Process●Process, Session●Session) is a matrix re
 | 10 matrices present | PASS |
 | 20 tiers preserved | PASS |
 | 15-property schema preserved | PASS |
-| No entities added/removed/renamed | PASS (confirmed: 21 surgical fixes only) |
-| No architecture redesign | PASS |
+| No entities added/removed/renamed | PASS |
+| No architecture redesign | PASS (confirmed: 21 surgical fixes only) |
 
 ---
 
@@ -136,7 +136,7 @@ Self-ownership in Matrix 1 (Process●Process, Session●Session) is a matrix re
 | Assertion | Result |
 |-----------|--------|
 | Document status = RELEASED | PASS |
-| Relationship count = 639 | PASS |
+| Relationship type count = actual | PASS (201 types) |
 | Validation claims accurate | PASS (claims match verified state) |
 
 ---

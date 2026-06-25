@@ -1,27 +1,33 @@
 # 09-TOOLS
 
+**Status:** CANONICAL  
+**Stability:** Moderate  
+**Owner:** GovernanceBody
+
+---
+
 ## Purpose
 
-This directory contains tool configurations, integrations, and automation scripts that support the Radius1 Kernel engineering processes.
+This directory contains tooling, automation scripts, and utility configurations that support the development, validation, and operation of the RADIUS1 Kernel. Tools operationalize governance processes and ensure consistency.
 
-## What Belongs Here
+## Contents
 
-- Tool configuration files and settings
-- Integration specifications and adapters
-- Automation scripts and build configurations
-- Tool lifecycle and version management
+| Tool Category | Description |
+|--------------|-------------|
+| **Validation Tools** | Automated validation scripts for RMM integrity checks |
+| **Generation Tools** | Code and document generation from meta-model definitions |
+| **Analysis Tools** | Dependency analysis, impact assessment, and metrics collection |
+| **Integration Tools** | CI/CD configurations and integration scripts |
+| **Utility Scripts** | Common automation and helper scripts |
 
-## What Is Forbidden Here
+## Key Capabilities
 
-- The Constitution or governance instruments
-- Entity definitions or meta-model specifications
-- Standards, patterns, or evidence documents
-- Workflow definitions (belong in `07-WORKFLOW/`)
-- Runtime state or ephemeral data (belong in `99-State/`)
+- **Cycle Detection** — Automated detection of circular dependencies in the relationship graph
+- **Owner Validation** — Verification that all owner references are canonical entities
+- **Referential Closure** — Ensuring no dangling references to undefined entities
+- **Count Reconciliation** — Automated counting and cross-verification of entities and relationships
+- **Matrix Validation** — Cross-consistency checks across all 10 matrices
 
-## Relation With the Rest of the Repository
+---
 
-- Configured according to standards in `03-STANDARDS/`
-- Execute workflows defined in `07-WORKFLOW/`
-- Produce artifacts tracked in `05-EVIDENCE/`
-- May be governed by contracts in `06-CONTRACTS/`
+*Tools may be AI-created with approval. Tool changes require governance body approval.*

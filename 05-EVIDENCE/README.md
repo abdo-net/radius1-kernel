@@ -1,29 +1,41 @@
 # 05-EVIDENCE
 
+**Status:** CANONICAL  
+**Stability:** Static after Validation  
+**Owner:** Process
+
+---
+
 ## Purpose
 
-This directory contains evidence records, audit trails, compliance documentation, and verification artifacts that provide factual support for claims, decisions, and compliance status within the Radius1 Kernel.
+This directory serves as the evidence vault for the RADIUS1 Kernel. It contains factual support for claims, assertions, findings, and conclusions — including audit trails, certifications, reviews, transparency reports, and other verifiable artifacts.
 
-## What Belongs Here
+## Contents
 
-- Evidence records supporting decisions and findings
-- Audit trails and accountability records
-- Compliance documentation and certification artifacts
-- Verification and validation results
-- Measurements, metrics, and assessment reports
+| Subdirectory | Purpose |
+|-------------|---------|
+| `Audits/` | Independent compliance inspection records |
+| `Reviews/` | Formal examination records |
+| `Certifications/` | Verified compliance attestations |
+| `TransparencyReports/` | Periodic public governance disclosures |
 
-## What Is Forbidden Here
+## Key Entities
 
-- The Constitution or governance instruments
-- Entity definitions or meta-model specifications
-- Standards or patterns
-- Contracts or binding agreements (belong in `06-CONTRACTS/`)
-- Implementation code or tools
+- **Evidence** (Tier 10) — Factual support for claims and conclusions
+- **Finding** (Tier 10) — Discovered facts from investigation or analysis
+- **Conclusion** (Tier 10) — Final judgment synthesized from findings
+- **Audit** (Tier 15) — Independent systematic inspections
+- **Review** (Tier 15) — Formal examinations
+- **AuditTrail** (Tier 15) — Complete chronological records of actions and changes
+- **Certification** (Tier 12) — Formal compliance attestations
+- **TransparencyReport** (Tier 19) — Periodic public governance disclosures
 
-## Relation With the Rest of the Repository
+## Evidence Lifecycle
 
-- Supports decisions made in `02-GOVERNANCE/`
-- Validates compliance with `03-STANDARDS/`
-- Verifies claims in `04-PATTERNS/`
-- Provides input to contracts in `06-CONTRACTS/`
-- May be produced by workflows in `07-WORKFLOW/`
+```
+Gathered → Validated → Linked → Referenced → Challenged → Reaffirmed/Withdrawn → Archived
+```
+
+---
+
+*Evidence may not be fabricated and may not support contradictory claims. Evidence is immutable after validation. Changes require new evidence, not modification of existing evidence.*

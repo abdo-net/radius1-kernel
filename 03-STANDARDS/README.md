@@ -1,29 +1,40 @@
 # 03-STANDARDS
 
+**Status:** CANONICAL  
+**Stability:** Slow  
+**Owner:** GovernanceBody
+
+---
+
 ## Purpose
 
-This directory contains mandatory and advisory standards that prescribe requirements, specifications, and criteria for engineering, design, security, and operations within the Radius1 Kernel.
+This directory contains mandatory standards, guidelines, and compliance baselines that entities within the RADIUS1 Kernel must meet. Standards ensure consistency, interoperability, and quality across all components of the system.
 
-## What Belongs Here
+## Contents
 
-- Mandatory standards with compliance requirements
-- Advisory guidelines and recommended practices
-- Constraint definitions and invariant specifications
-- Compliance baselines and measurement frameworks
-- Standard revision and deprecation records
+| Subdirectory | Purpose |
+|-------------|---------|
+| `Standards/` | Mandatory requirements, specifications, and criteria |
+| `Guidelines/` | Recommended practices and advisory guidance |
 
-## What Is Forbidden Here
+## Key Entities
 
-- The Constitution or governance instruments (belong in `00-CONSTITUTION/` and `02-GOVERNANCE/`)
-- Entity definitions (belong in `01-META-MODEL/`)
-- Engineering patterns (belong in `04-PATTERNS/`)
-- Evidence of compliance (belong in `05-EVIDENCE/`)
-- Contracts or binding agreements (belong in `06-CONTRACTS/`)
+- **Standard** (Tier 7) — Mandatory requirements ensuring consistency and quality
+- **Guideline** (Tier 7) — Recommended practices (advisory, not enforceable)
+- **Constraint** (Tier 7) — Structural or behavioral limitations for architectural integrity
+- **Invariant** (Tier 7) — Conditions that must always hold true (unviolable)
 
-## Relation With the Rest of the Repository
+## Standards Hierarchy
 
-- Enforced by `02-GOVERNANCE/` bodies
-- Applied to entities defined in `01-META-MODEL/`
-- Referenced by patterns in `04-PATTERNS/`
-- Compliance verified through `05-EVIDENCE/`
-- Form the basis of contracts in `06-CONTRACTS/`
+```
+Constitution → Policy → Rule → Standard → Guideline
+```
+
+- **Standards** are enforceable and testable. Non-compliance may trigger sanctions.
+- **Guidelines** are advisory. They recommend best practices but cannot be enforced by sanctions.
+- **Constraints** impose structural or behavioral limitations at the architecture level.
+- **Invariants** declare unviolable truths that govern the architecture.
+
+---
+
+*Standards may not conflict with the Constitution and may not be enforced while in Draft status. Changes require governance body approval.*

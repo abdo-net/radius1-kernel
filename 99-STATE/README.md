@@ -1,29 +1,37 @@
 # 99-STATE
 
+**Status:** CANONICAL  
+**Stability:** Fast  
+**Owner:** Session
+
+---
+
 ## Purpose
 
-This directory contains runtime state, ephemeral data, session records, and operational snapshots that capture the current or historical operational condition of the Radius1 Kernel.
+This directory contains runtime state, session management, and operational context for the RADIUS1 Kernel. It captures the dynamic, temporal aspects of the system that change during operation.
 
-## What Belongs Here
+## Contents
 
-- Session records and state captures
-- Runtime configuration snapshots
-- Operational metrics and measurements
-- Temporary state data and checkpoint records
-- Historical state archives
+| Subdirectory | Purpose |
+|-------------|---------|
+| `Context/` | Situational frames for entity interpretation and access |
+| `View/` | Perspective-specific representations of the kernel structure |
+| `Sessions/` | Active and historical session records |
 
-## What Is Forbidden Here
+## Key Entities
 
-- Permanent specifications or standards
-- Governance instruments or policy documents
-- Evidence or audit artifacts (belong in `05-EVIDENCE/`)
-- Implementation code or tool configurations (belong in `09-TOOLS/`)
-- Anything intended to be immutable or canonical
+- **Session** (Tier 8) — Bounded period of engagement during which actors perform work
+- **Context** (Tier 9) — Situational frame for entity interpretation and execution
+- **Environment** (Tier 9) — Complete operational surroundings for process execution
+- **Participant** (Tier 8) — Binding of Actor to Session with role assignments
+- **View** (Tier 20) — Perspective-specific representation of kernel structure
 
-## Relation With the Rest of the Repository
+## State Lifecycle
 
-- Captures runtime instances of entities defined in `01-META-MODEL/`
-- Reflects the current operational state governed by `02-GOVERNANCE/`
-- May be analyzed using tools in `09-TOOLS/`
-- Snapshots may become evidence in `05-EVIDENCE/`
-- All content in this directory is ephemeral and subject to expiration
+```
+Created → Active → Modified → Saved → Discarded
+```
+
+---
+
+*State is fast-moving and session-scoped. State entities may not persist beyond the situation they represent and may not override frozen invariants. This directory is the runtime workspace; persistent truths belong in their canonical source-of-truth locations.*

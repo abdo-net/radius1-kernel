@@ -1,29 +1,38 @@
 # 07-WORKFLOW
 
+**Status:** CANONICAL  
+**Stability:** Slow  
+**Owner:** GovernanceBody
+
+---
+
 ## Purpose
 
-This directory contains defined processes, workflows, and operational procedures that specify how work is executed within the Radius1 Kernel.
+This directory contains processes, workflows, task definitions, and operational procedures that define how work is performed within the RADIUS1 Kernel. It operationalizes the abstract concepts of Process and Workflow into executable procedures.
 
-## What Belongs Here
+## Contents
 
-- Process definitions and workflow specifications
-- Task templates and assignment procedures
-- Milestone definitions and checkpoint criteria
-- Plan templates and execution procedures
-- Workflow lifecycle records
+| Subdirectory | Purpose |
+|-------------|---------|
+| `Processes/` | Defined sequences of operations and decisions |
+| `Workflows/` | Structured, repeatable patterns of activities |
+| `Procedures/` | Step-by-step operational instructions |
+| `Playbooks/` | Runbooks for common operational scenarios |
 
-## What Is Forbidden Here
+## Key Entities
 
-- The Constitution or governance instruments
-- Entity definitions (belong in `01-META-MODEL/`)
-- Standards or patterns (belong in `03-STANDARDS/` and `04-PATTERNS/`)
-- Evidence or audit artifacts (belong in `05-EVIDENCE/`)
-- Implementation code or tool configurations
+- **Process** (Tier 5) — Defined sequence of operations transforming inputs to outputs
+- **Workflow** (Tier 5) — Structured, repeatable pattern of activities and transitions
+- **Task** (Tier 5) — Unit of work performed by an actor within a session
+- **Milestone** (Tier 5) — Significant achievement points or checkpoints
+- **Plan** (Tier 5) — Prescribed course of action with objectives and resources
 
-## Relation With the Rest of the Repository
+## Workflow Lifecycle
 
-- Governed by policies in `02-GOVERNANCE/`
-- Operates on entities defined in `01-META-MODEL/`
-- Must conform to standards in `03-STANDARDS/`
-- Produces artifacts tracked in `05-EVIDENCE/`
-- May reference patterns in `04-PATTERNS/`
+```
+Designed → Reviewed → Approved → Active → Evolving → Deprecated → Retired
+```
+
+---
+
+*Workflow changes require governance body approval. Operational changes to active workflows follow the amendment procedure.*

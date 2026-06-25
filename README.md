@@ -1,39 +1,47 @@
-# Radius1 Kernel
+# RADIUS1 Kernel
 
-## Repository Purpose
-
-The Radius1 Kernel is the engineering operating system that governs Radius1 and every future SaaS project built under its authority. It is the single source of truth for how software is designed, built, validated, and maintained.
-
-This repository contains the canonical specifications, standards, patterns, evidence, contracts, workflows, templates, tools, and state records that define the Radius1 engineering discipline.
+The **RADIUS1 Kernel** is the foundational repository meta-model and governance framework for the RADIUS1 engineering system. It defines the canonical ontology, structural organization, and governance principles that govern all entities within the system.
 
 ## Repository Structure
 
 | Directory | Purpose |
 |-----------|---------|
-| `00-CONSTITUTION/` | Supreme governance instrument. Defines fundamental principles, authority structures, and amendment procedures. Overrides all other documents. |
-| `01-META-MODEL/` | Repository Meta Model (RMM). The universal ontology of the Kernel. Defines every entity, relationship, and property. |
-| `02-GOVERNANCE/` | Governance bodies, roles, policies, rules, and decision frameworks. |
-| `03-STANDARDS/` | Mandatory and advisory standards for engineering, design, security, and operations. |
-| `04-PATTERNS/` | Reusable engineering patterns, architectural patterns, and design patterns. |
-| `05-EVIDENCE/` | Evidence records, audit trails, compliance documentation, and verification artifacts. |
-| `06-CONTRACTS/` | Binding agreements between entities: interfaces, commitments, SLAs, and dependencies. |
-| `07-WORKFLOW/` | Defined processes, workflows, and operational procedures. |
-| `08-TEMPLATES/` | Reusable templates for documents, specifications, reports, and other artifacts. |
-| `09-TOOLS/` | Tool configurations, integrations, and automation scripts. |
-| `99-STATE/` | Runtime state, ephemeral data, session records, and operational snapshots. |
-
-## Document Hierarchy
-
-1. `00-CONSTITUTION/CONSTITUTION.md` — Supreme authority
-2. `01-META-MODEL/RMM_v1.1.md` — Universal ontology
-3. Everything else derives validity from the above two
+| `00-CONSTITUTION/` | Supreme governance instrument — constitutional authority, charters, and foundational principles |
+| `01-META-MODEL/` | Repository Meta Model (RMM) — the canonical entity catalog, relationship graphs, and matrices |
+| `02-GOVERNANCE/` | Governance bodies, policies, rules, and decision-making frameworks |
+| `03-STANDARDS/` | Mandatory standards, guidelines, and compliance baselines |
+| `04-PATTERNS/` | Reusable architectural, design, and process patterns |
+| `05-EVIDENCE/` | Evidence vault — audit trails, findings, certifications, and transparency reports |
+| `06-CONTRACTS/` | Formal contracts, agreements, and binding obligations between entities |
+| `07-WORKFLOW/` | Processes, workflows, task definitions, and operational procedures |
+| `08-TEMPLATES/` | Standardized templates for documents, specifications, and governance artifacts |
+| `09-TOOLS/` | Tooling, automation scripts, and utility configurations |
+| `99-STATE/` | Runtime state, session management, and operational context |
 
 ## Current Release
 
-| Artifact | Version | Status |
-|----------|---------|--------|
-| Repository Meta Model | 1.1 | Frozen |
+- **RMM Version:** v1.1 (RELEASED)
+- **Status:** FROZEN
+- **Classification:** CANONICAL
+- **Release Date:** 2026-06-26
 
-## Repository Lifecycle
+## Key Documents
 
-This repository is designed for a 10+ year lifespan. Documents are versioned, immutable once frozen, and amended only through the constitutional amendment procedure defined in `00-CONSTITUTION/`.
+- [`01-META-MODEL/RMM_v1.1.md`](01-META-MODEL/RMM_v1.1.md) — Complete RMM specification (79 entities, 639 relationships, 10 matrices)
+- [`01-META-MODEL/CHANGELOG_v1_to_v1.1.md`](01-META-MODEL/CHANGELOG_v1_to_v1.1.md) — Engineering corrections from v1 to v1.1
+- [`01-META-MODEL/VALIDATION_REPORT.md`](01-META-MODEL/VALIDATION_REPORT.md) — v1.1 validation results (PASS)
+- [`01-META-MODEL/RMM_FUTURE_PROPOSALS.md`](01-META-MODEL/RMM_FUTURE_PROPOSALS.md) — 56 deferred architectural proposals
+
+## Statistics
+
+| Metric | Value |
+|--------|-------|
+| Canonical Entities | 79 |
+| Relationships | 639 |
+| Matrices | 10 |
+| Entity Tiers | 20 |
+| Properties per Entity | 15 |
+
+---
+
+*This repository is governed by the RADIUS1 Constitution. All changes require appropriate authorization per the governance framework.*

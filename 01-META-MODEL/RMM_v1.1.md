@@ -8,2751 +8,1993 @@ Status: RELEASED
 Classification: CANONICAL
 
 STATISTICS
-- Total Sections: 48
-- Total Words: ~23,500
-- Total Lines: ~3,800
-- Matrices Defined: 10
-- Entities per Matrix: 79
-- Total Data Rows: 790
-- Diagrams Referenced: 25+
+- Total Canonical Entities: 79
+- Total Relationships: 639
+- Total Matrices: 10
+- Total Data Rows Across Matrices: 790
+- Estimated Total Cells: 4,950 (all filled)
+- Entity Tiers: 20
+- Properties Per Entity: 15 (all defined)
 
+ORIGIN
+Raw entities discovered: ~335 across 4 domains
+- System & Structure: 40
+- Process & Execution: 128
+- Artifact & Evidence: 60
+- Governance & Lifecycle: 107
+
+Deduplication: ~256 entities eliminated
+Merges: 30+ cross-domain entity merges
+Final canonical set: 79 entities
+
+VALIDATION (v1.1)
+[x] Every entity has all 15 properties
+[x] Every relationship is explicit (639 total)
+[x] Every ownership references a canonical entity (v1.1: 19 non-canonical owners normalized)
+[x] No circular authority in governance chain
+[x] No undefined concepts in entity catalog (v1.1: dangling references removed from Allowed Relationships)
+[x] No duplicated entities
+[~] Source-of-Truth paths reflect repository structure (by design, non-normative)
+[~] Technology-independent at conceptual layer; storage paths are deployment-specific
+
+================================================================================
 TABLE OF CONTENTS
 ================================================================================
 
-1. EXECUTIVE OVERVIEW ............................................ Section 1
-   1.1 What is the RMM? ......................................... 1.1
-   1.2 Why the RMM Exists ....................................... 1.2
-   1.3 How to Read This Document ................................ 1.3
-   1.4 RMM in the Context of System Prompts ..................... 1.4
-
-2. ARCHITECTURAL FOUNDATIONS ..................................... Section 2
-   2.1 The Five Laws of Kernel Architecture ..................... 2.1
-   2.2 The Layer Stack .......................................... 2.2
-   2.3 Communication Topology ................................... 2.3
-   2.4 The Three Governance Models .............................. 2.4
-
-3. THE ENTITY TAXONOMY ........................................... Section 3
-   3.1 Entity Naming Convention ................................. 3.1
-   3.2 The Master Entity List (79 Entities) ..................... 3.2
-   3.3 Entity Categories ........................................ 3.3
-   3.4 Entity Relationships ..................................... 3.4
-
-4. THE MATRIX SYSTEM ............................................. Section 4
-   4.1 What is a Matrix? ........................................ 4.1
-   4.2 Matrix Naming Convention ................................. 4.2
-   4.3 The 10 Core Matrices ..................................... 4.3
-   4.4 Matrix Cross-References .................................. 4.4
-
-5. MATRIX DEEP DIVES ............................................. Section 5
-   5.1 GOVERNANCE Matrix ........................................ 5.1
-   5.2 DATA Matrix .............................................. 5.2
-   5.3 PROMPT Matrix ............................................ 5.3
-   5.4 INTERFACE Matrix ......................................... 5.4
-   5.5 CONTEXT Matrix ........................................... 5.5
-   5.6 FUNCTION Matrix .......................................... 5.6
-   5.7 DEPENDENCY Matrix ........................................ 5.7
-   5.8 MEMORY Matrix ............................................ 5.8
-   5.9 VALIDATION Matrix ........................................ 5.9
-   5.10 EXECUTION Matrix ........................................ 5.10
-
-6. CROSS-MATRIX RELATIONSHIPS .................................... Section 6
-   6.1 Relationship Types ....................................... 6.1
-   6.2 Entity-to-Entity Mapping ................................. 6.2
-   6.3 Matrix-to-Matrix Dependencies ............................ 6.3
-   6.4 The Relationship Index ................................... 6.4
-
-7. IMPLEMENTATION GUIDE .......................................... Section 7
-   7.1 How to Initialize a Kernel ............................... 7.1
-   7.2 The Boot Sequence ........................................ 7.2
-   7.3 Runtime Entity Resolution ................................ 7.3
-   7.4 Error Handling ........................................... 7.4
-   7.5 Performance Considerations ............................... 7.5
-
-8. GOVERNANCE & COMPLIANCE ...................................... Section 8
-   8.1 Version Control Policy ................................... 8.1
-   8.2 Change Management ........................................ 8.2
-   8.3 Audit Trail Requirements ................................. 8.3
-   8.4 Security Classifications ................................. 8.4
-
-9. ADVANCED TOPICS .............................................. Section 9
-   9.1 Custom Matrix Extensions ................................. 9.1
-   9.2 Multi-Kernel Federation .................................. 9.2
-   9.3 Temporal Versioning ...................................... 9.3
-   9.4 Disaster Recovery ........................................ 9.4
-
-10. APPENDICES .................................................. Section 10
-    10.1 Appendix A: Quick Reference Cards ....................... 10.1
-    10.2 Appendix B: Glossary of Terms ........................... 10.2
-    10.3 Appendix C: Cheat Sheet ................................. 10.3
-    10.4 Appendix D: Migration Guide ............................. 10.4
-
-================================================================================
-SECTION 1: EXECUTIVE OVERVIEW
-================================================================================
-
-1.1 What is the RMM?
-================================================================================
-
-The Repository Meta Model (RMM) is the formal specification that defines how
-a RADIUS1 Kernel organizes, describes, and governs every entity within a
-repository. It is the "DNA" of the kernel — a complete, unambiguous blueprint
-that enables:
-
-1. Automated Reasoning: The kernel can read its own structure and make
-   decisions about what to do, what to create, and what to validate.
-
-2. Cross-Agent Communication: When multiple agents (human or AI) interact
-   with the repository, they share a common vocabulary and structural
-   understanding.
-
-3. Self-Documentation: The repository describes itself. Every file, every
-   function, every prompt has a formal definition that can be queried.
-
-4. Compliance & Governance: Changes to the repository are traceable,
-   auditable, and validated against a known schema.
-
-The RMM is NOT:
-- A code generator (though it enables generation)
-- A runtime system (though it defines runtime behavior)
-- A user interface (though it describes interfaces)
-- A database (though it structures data)
-
-The RMM IS:
-- A formal ontology for repository entities
-- A contract between the kernel and its users
-- A navigable map of the entire repository ecosystem
-- A governance framework for change management
-
-Analogy: If a repository is a city, the RMM is the combination of:
-- The city map (navigation)
-- The zoning laws (governance)
-- The building codes (standards)
-- The utility grid (infrastructure)
-- The public records (documentation)
-
-Without the RMM, the kernel operates on assumptions and conventions.
-With the RMM, the kernel operates on explicit, verifiable definitions.
-
-1.2 Why the RMM Exists
-================================================================================
-
-The RMM was created to solve five fundamental problems:
-
-PROBLEM 1: Semantic Drift
-----------------------------
-Without a formal model, different agents interpret the same repository
-structure differently. One agent thinks "src/" means source code. Another
-thinks it means "source materials." Over time, these divergent
-interpretations create confusion, bugs, and rework.
-
-The RMM Solution: Every directory, file, and entity has a canonical
- definition with a unique identifier (Entity ID). There is no ambiguity.
-
-PROBLEM 2: Implicit Knowledge
-----------------------------
-In most repositories, critical knowledge exists only in the heads of
-the developers. When they leave, the knowledge leaves with them. The
-repository becomes a "black box" that new contributors struggle to
-understand.
-
-The RMM Solution: All knowledge is explicit. Every entity has a documented
-purpose, inputs, outputs, and relationships. The repository is self-describing.
-
-PROBLEM 3: Inconsistent Governance
-----------------------------------
-Different parts of a repository often evolve under different rules.
-Some areas have strict review processes. Others allow direct commits.
-Some require tests. Others don't. This inconsistency creates quality
-issues and security vulnerabilities.
-
-The RMM Solution: The GOVERNANCE matrix defines uniform policies that
-apply to all entities. No exceptions without explicit, documented overrides.
-
-PROBLEM 4: Unclear Dependencies
--------------------------------
-When modifying one part of a system, it's often unclear what other parts
-will be affected. Developers make changes that break seemingly unrelated
-features because the dependency graph exists only implicitly.
-
-The RMM Solution: The DEPENDENCY matrix maps every relationship between
-entities. Before any change, the kernel can trace its impact across the
-entire repository.
-
-PROBLEM 5: No Change Impact Analysis
-------------------------------------
-When a change is proposed, there's no systematic way to determine what
-will break, what needs updating, and who needs to be notified. Reviewers
-must rely on intuition and memory.
-
-The RMM Solution: The VALIDATION matrix defines acceptance criteria for
-every entity. The EXECUTION matrix defines how changes are tested and
-deployed. Combined with the DEPENDENCY matrix, the kernel can provide
-a precise impact analysis for any proposed change.
-
-1.3 How to Read This Document
-================================================================================
-
-This document is structured for multiple reading modes:
-
-MODE 1: The Executive Scan (15 minutes)
-----------------------------------------
-Read: Sections 1, 2, and 10 only.
-You'll understand: What the RMM is, why it matters, and how to look up
-details when you need them.
-
-MODE 2: The Implementer Walkthrough (60 minutes)
--------------------------------------------------
-Read: Sections 1, 2, 3, 4, 7, and 10.
-You'll understand: How to set up a kernel, define entities, create
-matrices, and operate the system.
-
-MODE 3: The Deep Dive (Full document)
---------------------------------------
-Read: Everything.
-You'll understand: Every nuance, edge case, and design decision in the RMM.
-
-Document Conventions:
----------------------
-- Section headers are surrounded by === lines for visual scanning
-- Subsections use --- underlines
-- Code blocks use triple backticks with language identifiers
-- Matrices use pipe-delimited tables with standardized headers
-- Entity IDs are shown in CODE font: GOV-01, DAT-42, etc.
-- Cross-references use → arrows: GOV-01 → DAT-42
-- Important notes use NOTE: prefix
-- Warnings use WARNING: prefix
-
-Color Coding (in visual representations):
--------------------------------------------
-- Blue: Governance entities (GOV-*)
-- Green: Data entities (DAT-*)
-- Yellow: Prompt entities (PRM-*)
-- Orange: Interface entities (INT-*)
-- Purple: Context entities (CTX-*)
-- Red: Function entities (FNC-*)
-- Gray: Dependency entities (DEP-*)
-- Cyan: Memory entities (MEM-*)
-- Magenta: Validation entities (VAL-*)
-- Teal: Execution entities (EXE-*)
-
-1.4 RMM in the Context of System Prompts
-================================================================================
-
-The RMM is designed to be consumed by large language models (LLMs) through
-system prompts. When an LLM is given the RMM as context, it gains:
-
-1. Structural Awareness: The LLM knows the exact layout of the repository,
-   what files exist, and where they are located.
-
-2. Semantic Understanding: The LLM knows what each entity means, what it
-   does, and how it relates to other entities.
-
-3. Governance Knowledge: The LLM knows the rules that govern the repository
-   and can enforce them during code generation and modification.
-
-4. Contextual Memory: The LLM can reference the MEMORY matrix to maintain
-   state across sessions and understand historical decisions.
-
-The RMM is typically embedded in system prompts using the following pattern:
-
-SYSTEM PROMPT STRUCTURE
------------------------
-```
-[Role Definition]
-You are the RADIUS1 Kernel Agent for the {repository_name} repository.
-
-[RMM Injection]
-The following is the Repository Meta Model (RMM) that defines the
-structure, governance, and behavior of this repository:
-
-{RMM_CONTENT}
-
-[Operational Instructions]
-Using the RMM above, {task_description}.
-```
-
-The RMM content is typically:
-- The full RMM for small repositories (< 100 entities)
-- A subset of relevant matrices for large repositories
-- A compressed "RMM摘要" (summary) for very large repositories
-
-Token Budget Considerations:
------------------------------
-- Full RMM (this document): ~18,000 tokens
-- Core matrices only: ~8,000 tokens
-- Single matrix: ~1,500 tokens
-- RMM摘要: ~500 tokens
-
-When the full RMM exceeds the available context window, use the priority
-order: GOVERNANCE > DATA > PROMPT > INTERFACE > CONTEXT > FUNCTION >
-DEPENDENCY > MEMORY > VALIDATION > EXECUTION.
-
-================================================================================
-SECTION 2: ARCHITECTURAL FOUNDATIONS
-================================================================================
-
-2.1 The Five Laws of Kernel Architecture
-================================================================================
-
-The RMM is built on five foundational laws that govern all kernel behavior.
-These laws are inviolable — no implementation, extension, or override can
-break them without breaking the kernel itself.
-
-LAW 1: THE LAW OF EXPLICITNESS
---------------------------------
-"Nothing is implied. Everything is declared."
-
-Every entity in the repository must have an explicit definition in the RMM.
-There are no "default" entities, no "implicit" relationships, and no
-"obvious" meanings. If it exists in the repository, it exists in the RMM.
-If it exists in the RMM, it has a declared purpose, type, and set of
-relationships.
-
-Violation Example: A directory exists that is not defined in the DATA matrix.
-Consequence: The kernel will not recognize it, will not govern it, and
-any agent interacting with it will have no semantic guidance.
-
-Enforcement: The VALIDATION matrix (VAL-03) defines a completeness check
-that scans the repository for undefined entities.
-
-LAW 2: THE LAW OF UNIQUE IDENTITY
------------------------------------
-"Every entity has one name, and every name has one entity."
-
-Entity IDs are globally unique within a kernel. GOV-01 refers to exactly
-one entity, and that entity has exactly one ID. No aliases, no synonyms,
-no overloads. This ensures unambiguous references in all contexts.
-
-Violation Example: Two different prompt templates both claim to be PRM-05.
-Consequence: Agents cannot determine which template to use. The kernel
-will raise a validation error.
-
-Enforcement: The DATA matrix (DAT-01) is the master registry. All other
-matrices reference it. The VALIDATION matrix (VAL-01) enforces uniqueness.
-
-LAW 3: THE LAW OF TRACEABILITY
---------------------------------
-"Every change leaves a trail. Every trail leads to a reason."
-
-All modifications to the RMM and the repository it governs must be
-documented with: who made the change, when, why, and what was affected.
-This applies to both automated and manual changes.
-
-Violation Example: An entity is modified without a corresponding audit log entry.
-Consequence: The change cannot be reviewed, cannot be rolled back, and
-its impact cannot be assessed.
-
-Enforcement: The GOVERNANCE matrix (GOV-06) defines audit requirements.
-The EXECUTION matrix (EXE-04) defines how changes are logged.
-
-LAW 4: THE LAW OF COMPLETENESS
---------------------------------
-"A matrix is either complete or it is invalid."
-
-Every matrix must contain all entities defined in its scope. A matrix
-with missing rows, missing columns, or missing cells is invalid. The
-kernel will not operate with an incomplete matrix.
-
-Violation Example: The DATA matrix has 79 rows but the PROMPT matrix only
-has 78 (one entity is missing its prompt definition).
-Consequence: The kernel will halt on validation and refuse to process
-requests involving the missing entity.
-
-Enforcement: The VALIDATION matrix (VAL-02) defines completeness criteria.
-The EXECUTION matrix (EXE-01) defines the validation boot sequence.
-
-LAW 5: THE LAW OF MINIMAL SURPRISE
-------------------------------------
-"Entities behave as documented. Documentation describes behavior."
-
-The behavior of an entity must match its RMM definition. If the RMM says
-a function validates input, then the function validates input. If the
-RMM says a prompt uses a certain template, then it uses that template.
-Divergence between documentation and implementation is a bug.
-
-Violation Example: The RMM defines PRM-12 as using template "detailed",
-but the actual prompt file uses template "summary".
-Consequence: Agents will generate incorrect content based on the RMM
-specification. The implementation is out of compliance.
-
-Enforcement: The VALIDATION matrix (VAL-04) defines conformance tests.
-The EXECUTION matrix (EXE-03) defines how compliance is verified.
-
-2.2 The Layer Stack
-================================================================================
-
-The RMM organizes the repository into five conceptual layers. Every entity
-belongs to exactly one layer. The layers form a dependency hierarchy:
-upper layers depend on lower layers, but lower layers are independent of
-upper layers.
-
-LAYER 0: FOUNDATION
---------------------
-Entities: GOV-01 through GOV-15 (15 entities)
-Purpose: Define the rules, policies, and governance framework.
-Dependents: All other layers
-Dependencies: None (self-bootstrapping)
-
-The Foundation layer contains the kernel's constitution. It defines who
-can do what, how decisions are made, and what standards must be followed.
-Without this layer, the kernel has no authority and no rules.
-
-Key Entities:
-- GOV-01: Kernel Constitution — The root governance document
-- GOV-02: Access Control Policy — Who can read/write what
-- GOV-03: Change Management Policy — How changes are proposed and approved
-- GOV-04: Naming Convention — Rules for entity IDs and names
-- GOV-05: Version Control Policy — How versions are managed
-
-LAYER 1: DATA
---------------
-Entities: DAT-01 through DAT-15 (15 entities)
-Purpose: Define the structure, schema, and storage of all data.
-Dependents: Layers 2, 3, 4
-Dependencies: Layer 0
-
-The Data layer defines what information the repository holds and how it
-is organized. This includes file structures, database schemas, configuration
-formats, and data models. Every piece of data in the repository has a
-corresponding entity in this layer.
-
-Key Entities:
-- DAT-01: Entity Registry — The master list of all entities
-- DAT-02: File Structure — Directory layout and file naming
-- DAT-03: Schema Registry — Data format specifications
-- DAT-04: Configuration Store — Runtime configuration
-- DAT-05: Asset Registry — Binary and media assets
-
-LAYER 2: INTELLIGENCE
-----------------------
-Entities: PRM-01 through PRM-15, CTX-01 through CTX-15 (30 entities)
-Purpose: Define prompts, context, and AI behavior.
-Dependents: Layers 3, 4
-Dependencies: Layers 0, 1
-
-The Intelligence layer defines how AI agents interact with the repository.
-It includes prompt templates, context definitions, conversation patterns,
-and reasoning frameworks. This layer is what makes the repository "AI-native."
-
-Key Entities:
-- PRM-01: System Prompt Template — Base template for kernel agents
-- PRM-02: Task Prompt Template — Template for specific tasks
-- PRM-03: Validation Prompt Template — Template for validation tasks
-- CTX-01: Session Context — Per-session state
-- CTX-02: User Context — User-specific information
-- CTX-03: Repository Context — Repository-wide state
-
-LAYER 3: INTERFACE
--------------------
-Entities: INT-01 through INT-15 (15 entities)
-Purpose: Define APIs, UIs, and external interaction points.
-Dependents: Layer 4
-Dependencies: Layers 0, 1, 2
-
-The Interface layer defines how external systems interact with the kernel.
-It includes API specifications, UI component definitions, webhook schemas,
-and integration points. This layer is the "surface" of the repository.
-
-Key Entities:
-- INT-01: API Specification — REST/GraphQL API definitions
-- INT-02: UI Component Registry — UI element definitions
-- INT-03: Webhook Schema — Event notification formats
-- INT-04: CLI Specification — Command-line interface
-- INT-05: Integration Point — External system connectors
-
-LAYER 4: EXECUTION
--------------------
-Entities: FNC-01 through FNC-15, EXE-01 through EXE-15, VAL-01 through VAL-15,
-         MEM-01 through MEM-15, DEP-01 through DEP-15 (75 entities)
-Purpose: Define functions, execution flows, validation, memory, and dependencies.
-Dependents: None (top layer)
-Dependencies: Layers 0, 1, 2, 3
-
-The Execution layer defines what the kernel actually does. It includes
-function definitions, execution workflows, validation rules, memory
-management, and dependency tracking. This is the "engine" of the kernel.
-
-Key Entities:
-- FNC-01: Entity Resolver — Maps IDs to actual resources
-- FNC-02: Validator — Checks compliance with RMM
-- FNC-03: Prompt Builder — Assembles prompts from templates
-- EXE-01: Boot Sequence — Startup procedure
-- EXE-02: Task Runner — Executes tasks
-- VAL-01: Uniqueness Checker — Validates entity ID uniqueness
-- MEM-01: Session Store — Per-session memory
-- DEP-01: Dependency Resolver — Tracks entity relationships
-
-2.3 Communication Topology
-================================================================================
-
-The kernel uses a hub-and-spoke communication model. The RMM itself is
-the hub — all communication flows through it.
-
-                    +-------------------+
-                    |      RMM Hub      |
-                    |  (The 10 Matrices) |
-                    +---------+---------+
-                              |
-          +-------------------+-------------------+
-          |                   |                   |
-    +-----v-----+      +-----v-----+      +-----v-----+
-    |  Human    |      |   AI Agent |      |  External |
-    |  Users    |      |   (LLM)    |      |  Systems  |
-    +-----------+      +-----------+      +-----------+
-
-Communication Patterns:
------------------------
-
-PATTERN 1: Human → RMM → Repository
-The human asks a question or gives a command. The RMM provides context
-to interpret the request. The repository is modified based on RMM rules.
-
-Example: "Create a new entity for user authentication."
-Flow: Human asks → RMM provides entity template (DAT-01) → New entity is
-created with proper ID, naming, and relationships.
-
-PATTERN 2: AI Agent → RMM → Repository
-The AI agent needs to perform a task. It reads the RMM to understand
-the repository structure, then acts according to RMM-defined rules.
-
-Example: "Generate a migration script."
-Flow: AI reads DEPENDENCY matrix (DEP-*) → Identifies affected entities →
-Generates script that respects all relationships.
-
-PATTERN 3: External System → RMM → Repository
-An external system sends a webhook or API call. The RMM defines how
-the request is parsed, validated, and processed.
-
-Example: "GitHub webhook: pull request opened."
-Flow: Webhook arrives → RMM maps to INT-03 (Webhook Schema) → Validation
-matrix (VAL-*) checks the PR → Execution matrix (EXE-*) processes it.
-
-PATTERN 4: Repository → RMM → Any
-An event occurs within the repository (file changed, test failed, etc.).
-The RMM interprets the event and routes it to the appropriate handler.
-
-Example: "File modified in src/core/."
-Flow: File system event → RMM identifies entity (DAT-02) → Dependency
-matrix (DEP-*) finds affected entities → Notifications sent.
-
-2.4 The Three Governance Models
-================================================================================
-
-The RMM supports three governance models. A repository must choose exactly
-one at initialization time. The choice is recorded in GOV-01 and cannot be
-changed without a full migration (see Appendix D).
-
-MODEL A: CENTRALIZED (Default)
--------------------------------
-Description: A single authority (human or AI) makes all decisions. Changes
-are proposed, reviewed, and approved by this central authority.
-
-Use Cases:
-- Small teams (1-5 people)
-- Personal projects
-- Rapid prototyping
-- Early-stage startups
-
-Entities:
-- GOV-01A: Central Authority — The single decision-maker
-- GOV-02A: Proposal Queue — List of pending changes
-- GOV-03A: Approval Workflow — Single-step approval process
-
-Advantages: Fast, simple, low overhead
-Disadvantages: Single point of failure, bottleneck at scale
-
-MODEL B: DISTRIBUTED
----------------------
-Description: Multiple authorities share decision-making. Changes require
-approval from a subset of authorities based on the change type and scope.
-
-Use Cases:
-- Medium teams (5-20 people)
-- Multi-stakeholder projects
-- Open source with maintainers
-- Enterprise departments
-
-Entities:
-- GOV-01B: Authority Council — List of decision-makers with roles
-- GOV-02B: Proposal Routing — Rules for who reviews what
-- GOV-03B: Consensus Mechanism — How agreement is reached
-- GOV-04B: Veto Power — Who can block changes and why
-
-Advantages: Balanced, resilient, scalable
-Disadvantages: Complex, potential for gridlock
-
-MODEL C: AUTONOMOUS
---------------------
-Description: The kernel itself makes decisions based on predefined rules.
-Human oversight is minimal and reserved for exceptional cases.
-
-Use Cases:
-- Fully automated systems
-- AI-native development
-- High-velocity CI/CD pipelines
-- Microservice ecosystems
-
-Entities:
-- GOV-01C: Policy Engine — Rules for autonomous decisions
-- GOV-02C: Confidence Threshold — Minimum certainty for auto-approval
-- GOV-03C: Escalation Triggers — When to involve humans
-- GOV-04C: Override Protocol — How humans can override decisions
-- GOV-05C: Learning System — How the kernel improves its decisions
-
-Advantages: Fastest, scales infinitely, consistent
-Disadvantages: Requires careful rule design, limited flexibility
-
-================================================================================
-SECTION 3: THE ENTITY TAXONOMY
-================================================================================
-
-3.1 Entity Naming Convention
-================================================================================
-
-Every entity in the RMM follows a strict naming convention. This convention
-ensures uniqueness, readability, and machine-parseability.
-
-ENTITY ID FORMAT
-----------------
-```
-{CATEGORY}-{SEQUENCE_NUMBER}
-```
-
-Category Prefixes:
-- GOV: Governance
-- DAT: Data
-- PRM: Prompt
-- INT: Interface
-- CTX: Context
-- FNC: Function
-- DEP: Dependency
-- MEM: Memory
-- VAL: Validation
-- EXE: Execution
-
-Sequence Numbers:
-- Always 2 digits: 01, 02, ... 99
-- Zero-padded for sorting: 01 comes before 02
-- Sequential within category: no gaps in the canonical RMM
-- Gaps allowed in extended/custom matrices
-
-Valid Examples:
-- GOV-01, GOV-15, DAT-42, PRM-07, INT-99
-
-Invalid Examples:
-- GOV-1 (not zero-padded)
-- gov-01 (lowercase)
-- GOV_01 (wrong separator)
-- GOV-001 (too many digits)
-- 01-GOV (wrong order)
-
-ENTITY NAME FORMAT
-------------------
-```
-{Descriptive Name} ({Entity ID})
-```
-
-Examples:
-- "Kernel Constitution (GOV-01)"
-- "Entity Registry (DAT-01)"
-- "System Prompt Template (PRM-01)"
-
-FILE NAMING
-------------
-Entity files use the entity ID as the base name:
-```
-{entity_id}.{extension}
-```
-
-Examples:
-- GOV-01.md
-- DAT-01.json
-- PRM-01.txt
-- FNC-01.py
-
-DIRECTORY NAMING
-----------------
-Directories use the category prefix:
-```
-{category_prefix}/
-```
-
-Examples:
-- GOV/
-- DAT/
-- PRM/
-- INT/
-
-FULL PATH EXAMPLE
------------------
-```
-repository/
-  GOV/
-    GOV-01.md          # Kernel Constitution
-    GOV-02.md          # Access Control Policy
-  DAT/
-    DAT-01.json        # Entity Registry
-    DAT-02.yaml        # File Structure
-  PRM/
-    PRM-01.txt         # System Prompt Template
-    PRM-02.txt         # Task Prompt Template
-```
-
-3.2 The Master Entity List (79 Entities)
-================================================================================
-
-The canonical RMM defines 79 core entities, distributed across 10 categories.
-This list is the complete registry. Every matrix in Section 5 references
-these entities.
-
-GOVERNANCE ENTITIES (15)
-------------------------
-ID        Name                              Description
---------- --------------------------------- ----------------------------------
-GOV-01    Kernel Constitution               Root governance document
-GOV-02    Access Control Policy             Read/write permissions
-GOV-03    Change Management Policy          Change proposal & approval
-GOV-04    Naming Convention                 Entity naming rules
-GOV-05    Version Control Policy            Version management rules
-GOV-06    Audit Policy                      Logging & audit requirements
-GOV-07    Security Policy                   Security classifications
-GOV-08    Compliance Framework              Regulatory compliance
-GOV-09    Disaster Recovery Policy          Backup & recovery procedures
-GOV-10    Communication Policy              Communication protocols
-GOV-11    Documentation Policy              Documentation standards
-GOV-12    Review Policy                     Code review requirements
-GOV-13    Release Policy                    Release management
-GOV-14    Dependency Policy                 Dependency management rules
-GOV-15    Extension Policy                  How to extend the RMM
-
-DATA ENTITIES (15)
-------------------
-ID        Name                              Description
---------- --------------------------------- ----------------------------------
-DAT-01    Entity Registry                   Master list of all entities
-DAT-02    File Structure                    Directory layout & naming
-DAT-03    Schema Registry                   Data format specifications
-DAT-04    Configuration Store               Runtime configuration
-DAT-05    Asset Registry                    Binary & media assets
-DAT-06    Metadata Store                    Entity metadata
-DAT-07    Index Registry                    Search & lookup indexes
-DAT-08    Backup Store                      Backup & snapshot storage
-DAT-09    Log Store                         System & audit logs
-DAT-10    Cache Store                       Temporary data storage
-DAT-11    Migration Registry                Schema migration tracking
-DAT-12    Template Registry                 Reusable templates
-DAT-13    State Store                       Current system state
-DAT-14    History Store                     Historical state records
-DAT-15    Archive Store                     Long-term archival storage
-
-PROMPT ENTITIES (15)
---------------------
-ID        Name                              Description
---------- --------------------------------- ----------------------------------
-PRM-01    System Prompt Template            Base template for kernel agents
-PRM-02    Task Prompt Template              Template for specific tasks
-PRM-03    Validation Prompt Template        Template for validation tasks
-PRM-04    Generation Prompt Template        Template for content generation
-PRM-05    Review Prompt Template            Template for code review
-PRM-06    Analysis Prompt Template          Template for analysis tasks
-PRM-07    Migration Prompt Template         Template for migration tasks
-PRM-08    Documentation Prompt Template     Template for documentation
-PRM-09    Test Prompt Template              Template for test generation
-PRM-10    Debug Prompt Template             Template for debugging
-PRM-11    Optimization Prompt Template      Template for optimization
-PRM-12    Summary Prompt Template           Template for summarization
-PRM-13    Comparison Prompt Template        Template for comparison tasks
-PRM-14    Integration Prompt Template       Template for integration tasks
-PRM-15    Fallback Prompt Template          Default when no specific template
-
-INTERFACE ENTITIES (15)
------------------------
-ID        Name                              Description
---------- --------------------------------- ----------------------------------
-INT-01    API Specification                 REST/GraphQL API definitions
-INT-02    UI Component Registry             UI element definitions
-INT-03    Webhook Schema                    Event notification formats
-INT-04    CLI Specification                 Command-line interface
-INT-05    Integration Point                 External system connectors
-INT-06    Event Schema                      Internal event formats
-INT-07    Query Interface                   Data query specifications
-INT-08    Report Interface                  Report generation specs
-INT-09    Import Interface                  Data import specifications
-INT-10    Export Interface                  Data export specifications
-INT-11    Notification Interface            Alert & notification specs
-INT-12    Authentication Interface          Auth & authorization specs
-INT-13    Session Interface                 Session management specs
-INT-14    Streaming Interface               Real-time data stream specs
-INT-15    Batch Interface                   Batch processing specs
-
-CONTEXT ENTITIES (15)
----------------------
-ID        Name                              Description
---------- --------------------------------- ----------------------------------
-CTX-01    Session Context                   Per-session state
-CTX-02    User Context                      User-specific information
-CTX-03    Repository Context                Repository-wide state
-CTX-04    Task Context                      Current task state
-CTX-05    Conversation Context              Chat/conversation history
-CTX-06    Error Context                     Error state & recovery info
-CTX-07    Performance Context               Performance metrics & state
-CTX-08    Security Context                  Security state & credentials
-CTX-09    Deployment Context                Deployment environment info
-CTX-10    Feature Context                   Feature flag & toggle state
-CTX-11    Analytics Context                 Analytics & tracking state
-CTX-12    Integration Context               External integration state
-CTX-13    Notification Context              Notification queue & state
-CTX-14    Cache Context                     Cache state & invalidation
-CTX-15    Temporal Context                  Time-based state & scheduling
-
-FUNCTION ENTITIES (15)
-----------------------
-ID        Name                              Description
---------- --------------------------------- ----------------------------------
-FNC-01    Entity Resolver                   Maps IDs to actual resources
-FNC-02    Validator                         Checks RMM compliance
-FNC-03    Prompt Builder                    Assembles prompts from templates
-FNC-04    Context Manager                   Manages context lifecycle
-FNC-05    Interface Adapter                 Adapts interfaces for different systems
-FNC-06    Data Transformer                  Transforms data between formats
-FNC-07    Dependency Analyzer               Analyzes entity relationships
-FNC-08    Memory Manager                    Manages memory storage & retrieval
-FNC-09    Execution Engine                  Runs tasks & workflows
-FNC-10    Event Handler                     Processes system events
-FNC-11    Logger                            Creates & manages log entries
-FNC-12    Scheduler                         Manages task scheduling
-FNC-13    Notifier                          Sends notifications
-FNC-14    Search Engine                     Indexes & searches entities
-FNC-15    Cache Manager                     Manages cache operations
-
-DEPENDENCY ENTITIES (15)
-------------------------
-ID        Name                              Description
---------- --------------------------------- ----------------------------------
-DEP-01    Dependency Resolver               Tracks entity relationships
-DEP-02    Impact Analyzer                   Analyzes change impact
-DEP-03    Dependency Graph                  Visual/graph representation
-DEP-04    Version Lock                      Locks dependency versions
-DEP-05    Dependency Checker                Validates dependency health
-DEP-06    Circular Detector                 Detects circular dependencies
-DEP-07    Update Planner                    Plans dependency updates
-DEP-08    Conflict Resolver                 Resolves dependency conflicts
-DEP-09    Dependency Reporter               Generates dependency reports
-DEP-10    Import Mapper                     Maps imports to entities
-DEP-11    Export Mapper                     Maps exports to entities
-DEP-12    Dependency Historian              Tracks dependency history
-DEP-13    Dependency Predictor              Predicts future issues
-DEP-14    Dependency Auditor                Audits dependency compliance
-DEP-15    Dependency Migrator               Handles dependency migrations
-
-MEMORY ENTITIES (15)
---------------------
-ID        Name                              Description
---------- --------------------------------- ----------------------------------
-MEM-01    Session Store                     Per-session memory
-MEM-02    User Profile Store                User preference storage
-MEM-03    Repository State                  Repository-wide memory
-MEM-04    Conversation Store                Chat history storage
-MEM-05    Decision Log                      Records of decisions made
-MEM-06    Learning Store                    Learned patterns & rules
-MEM-07    Cache Store                       Temporary memory cache
-MEM-08    Context Store                     Context snapshots
-MEM-09    Event Store                       Event history
-MEM-10    Task Store                        Task history & results
-MEM-11    Error Store                       Error history & patterns
-MEM-12    Feedback Store                    User feedback storage
-MEM-13    Preference Store                  System preferences
-MEM-14    Snapshot Store                    Point-in-time snapshots
-MEM-15    Archive Store                     Long-term memory archive
-
-VALIDATION ENTITIES (15)
-------------------------
-ID        Name                              Description
---------- --------------------------------- ----------------------------------
-VAL-01    Uniqueness Checker                Validates entity ID uniqueness
-VAL-02    Completeness Checker              Validates matrix completeness
-VAL-03    Existence Checker                 Validates entity existence
-VAL-04    Conformance Checker               Validates doc-implementation match
-VAL-05    Schema Validator                  Validates data against schema
-VAL-06    Syntax Checker                    Validates syntax correctness
-VAL-07    Semantic Checker                  Validates semantic correctness
-VAL-08    Security Checker                  Validates security compliance
-VAL-09    Performance Checker               Validates performance criteria
-VAL-10    Dependency Checker                Validates dependency health
-VAL-11    Accessibility Checker             Validates accessibility standards
-VAL-12    Compatibility Checker             Validates cross-version compat
-VAL-13    Consistency Checker               Validates cross-entity consistency
-VAL-14    Regression Checker                Validates against regressions
-VAL-15    Policy Checker                    Validates governance compliance
-
-EXECUTION ENTITIES (15)
------------------------
-ID        Name                              Description
---------- --------------------------------- ----------------------------------
-EXE-01    Boot Sequence                     Startup procedure
-EXE-02    Task Runner                       Executes tasks
-EXE-03    Workflow Engine                   Manages execution workflows
-EXE-04    Change Processor                  Processes repository changes
-EXE-05    Event Processor                   Processes system events
-EXE-06    Schedule Processor                Processes scheduled tasks
-EXE-07    Request Processor                 Processes incoming requests
-EXE-08    Batch Processor                   Processes batch operations
-EXE-09    Pipeline Engine                   Manages CI/CD pipelines
-EXE-10    Deployment Engine                 Manages deployments
-EXE-11    Rollback Engine                   Handles rollbacks
-EXE-12    Migration Engine                  Manages migrations
-EXE-13    Notification Engine               Manages notifications
-EXE-14    Reporting Engine                  Generates reports
-EXE-15    Maintenance Engine                System maintenance tasks
-
-3.3 Entity Categories
-================================================================================
-
-Each entity belongs to exactly one of seven categories. Categories are
-used for grouping, filtering, and permission control.
-
-CATEGORY 1: DEFINITIONAL (DEF)
--------------------------------
-Entities that define what things are.
-Includes: GOV-*, DAT-*, PRM-*
-Purpose: Establish the vocabulary and structure of the repository.
-
-Properties:
-- Change frequency: Low (definitions change rarely)
-- Review requirement: High (changes need careful review)
-- Impact radius: Wide (changes affect many dependents)
-
-CATEGORY 2: OPERATIONAL (OPR)
-------------------------------
-Entities that define how things work.
-Includes: FNC-*, EXE-*, VAL-*
-Purpose: Establish the behavior and execution model of the kernel.
-
-Properties:
-- Change frequency: Medium (behavior evolves with requirements)
-- Review requirement: High (operational changes can break things)
-- Impact radius: Medium (changes affect execution paths)
-
-CATEGORY 3: CONTEXTUAL (CTX)
------------------------------
-Entities that track state and context.
-Includes: CTX-*, MEM-*
-Purpose: Maintain awareness of current and historical state.
-
-Properties:
-- Change frequency: High (state changes constantly)
-- Review requirement: Low (state changes are automatic)
-- Impact radius: Narrow (state is localized)
-
-CATEGORY 4: STRUCTURAL (STR)
------------------------------
-Entities that define connections and relationships.
-Includes: INT-*, DEP-*
-Purpose: Map how entities connect to each other and to the outside world.
-
-Properties:
-- Change frequency: Medium (structure evolves with architecture)
-- Review requirement: Medium (structural changes need planning)
-- Impact radius: Wide (structural changes affect connectivity)
-
-CATEGORY 5: GOVERNANCE (GOV)
------------------------------
-Entities that define rules and policies.
-Includes: GOV-*
-Purpose: Establish authority, compliance, and control.
-
-Properties:
-- Change frequency: Very Low (governance is stable)
-- Review requirement: Very High (governance changes are fundamental)
-- Impact radius: Universal (governance affects everything)
-
-CATEGORY 6: DATA (DAT)
------------------------
-Entities that define information storage.
-Includes: DAT-*
-Purpose: Structure how information is stored and accessed.
-
-Properties:
-- Change frequency: Low-Medium (schemas evolve carefully)
-- Review requirement: High (data changes affect integrity)
-- Impact radius: Wide (data is consumed everywhere)
-
-CATEGORY 7: INTERFACE (INT)
-----------------------------
-Entities that define external interaction.
-Includes: INT-*
-Purpose: Specify how the repository communicates with the outside world.
-
-Properties:
-- Change frequency: Medium (interfaces evolve with consumers)
-- Review requirement: Medium (interface changes affect consumers)
-- Impact radius: Medium-Wide (interfaces have external dependents)
-
-3.4 Entity Relationships
-================================================================================
-
-Entities in the RMM are not isolated. They form a rich web of relationships
-that the kernel can traverse for impact analysis, navigation, and validation.
-
-RELATIONSHIP TYPES
-------------------
-
-1. DEPENDS_ON (→)
-   Entity A cannot function without Entity B.
-   Example: FNC-01 (Entity Resolver) DEPENDS_ON DAT-01 (Entity Registry)
-
-2. REFERENCES (→)
-   Entity A mentions or uses Entity B but can function without it.
-   Example: PRM-01 (System Prompt) REFERENCES GOV-01 (Constitution)
-
-3. GOVERNS (—)
-   Entity A defines rules that apply to Entity B.
-   Example: GOV-04 (Naming Convention) GOVERNS DAT-01 (Entity Registry)
-
-4. CONTAINS (⊃)
-   Entity A logically contains Entity B.
-   Example: DAT-02 (File Structure) CONTAINS DAT-01 (Entity Registry)
-
-5. PRODUCES (⇒)
-   Entity A generates or outputs Entity B.
-   Example: FNC-03 (Prompt Builder) PRODUCES PRM-02 (Task Prompt)
-
-6. CONSUMES (∈)
-   Entity A reads or uses Entity B as input.
-   Example: FNC-02 (Validator) CONSUMES VAL-01 (Uniqueness Checker)
-
-7. EXTENDS (↗)
-   Entity A adds functionality to Entity B.
-   Example: GOV-15 (Extension Policy) EXTENDS GOV-01 (Constitution)
-
-8. OBSOLETES (✕)
-   Entity A replaces Entity B, which should no longer be used.
-   Example: VAL-12 (Compatibility Checker) may OBSOLETE older versions
-
-RELATIONSHIP CARDINALITY
-------------------------
-Relationships can be:
-- 1:1 — One entity relates to exactly one other
-- 1:N — One entity relates to many others
-- N:1 — Many entities relate to one
-- N:M — Many entities relate to many
-
-RELATIONSHIP DIRECTION
-----------------------
-Relationships are directed (except GOVERNS, which is bidirectional in
-intent but directed in implementation). A → B does not imply B → A.
-
-RELATIONSHIP EXAMPLE
---------------------
-Consider the relationship between PRM-01 (System Prompt Template) and
-other entities:
-
-PRM-01 → REFERENCES → GOV-01 (uses the constitution for context)
-PRM-01 → CONSUMES → DAT-01 (reads the entity registry)
-PRM-01 → DEPENDS_ON → FNC-03 (needs the prompt builder)
-PRM-01 → GOVERNS → CTX-01 (defines session context format)
-PRM-01 → PRODUCES → CTX-02 (generates user context)
-
-This web of relationships means that changing PRM-01 could affect:
-- GOV-01 (if the constitution reference changes)
-- DAT-01 (if the entity consumption pattern changes)
-- FNC-03 (if the builder interface changes)
-- CTX-01 (if the session format changes)
-- CTX-02 (if the output format changes)
-
-Before modifying PRM-01, the kernel would trace these relationships and
-warn about the potential impact.
-
-================================================================================
-SECTION 4: THE MATRIX SYSTEM
-================================================================================
-
-4.1 What is a Matrix?
-================================================================================
-
-A matrix is a tabular representation of a specific aspect of the RMM.
-Each matrix has:
-- A unique name (e.g., GOVERNANCE, DATA, PROMPT)
-- A fixed set of columns (the "attributes" of the aspect)
-- One row per entity (79 rows in the canonical RMM)
-- A standardized format for machine parsing
-
-Matrices serve three purposes:
-1. HUMAN READABILITY: Humans can scan a matrix to quickly understand
-   a specific aspect of all entities.
-2. MACHINE PARSABILITY: Automated tools can read matrices to perform
-   validation, generation, and analysis.
-3. COMPLETENESS ENFORCEMENT: The matrix format makes it obvious when
-   information is missing (empty cells, missing rows).
-
-MATRIX FORMAT
--------------
-Matrices use a pipe-delimited table format:
-
-```
-| Entity ID | Attribute 1 | Attribute 2 | ... | Attribute N |
-|-----------|-------------|-------------|-----|-------------|
-| GOV-01    | value1      | value2      | ... | valueN      |
-| GOV-02    | value1      | value2      | ... | valueN      |
-```
-
-Rules:
-- The header row defines the columns
-- The separator row (|---|) follows the header
-- Every entity gets one row
-- No empty cells (use "N/A" or "-" if not applicable)
-- No merged cells
-- No nested tables within cells
-
-4.2 Matrix Naming Convention
-================================================================================
-
-Matrices follow a strict naming convention:
-
-MATRIX ID FORMAT
-----------------
-```
-{MATRIX_NAME}_MATRIX
-```
-
-Standard Matrix Names:
-- GOVERNANCE_MATRIX — Governance rules and policies
-- DATA_MATRIX — Data structure and storage
-- PROMPT_MATRIX — Prompt templates and usage
-- INTERFACE_MATRIX — API and UI definitions
-- CONTEXT_MATRIX — Context types and management
-- FUNCTION_MATRIX — Function definitions and behavior
-- DEPENDENCY_MATRIX — Entity relationships
-- MEMORY_MATRIX — Memory storage and retrieval
-- VALIDATION_MATRIX — Validation rules and criteria
-- EXECUTION_MATRIX — Execution flows and workflows
-
-Matrix IDs are used in cross-references:
-- "See GOVERNANCE_MATRIX for details" → Reference to the governance matrix
-- "DAT-01 in DATA_MATRIX" → Specific cell reference
-
-4.3 The 10 Core Matrices
-================================================================================
-
-The canonical RMM defines 10 core matrices. Each matrix covers one aspect
-of the repository. Together, they provide a complete 360-degree view.
-
-MATRIX 1: GOVERNANCE_MATRIX (Section 5.1)
-------------------------------------------
-Columns: Entity ID, Policy Name, Scope, Authority, Enforcement, Review Cycle
-Purpose: Defines who can do what, how decisions are made, and how rules
-are enforced.
-
-MATRIX 2: DATA_MATRIX (Section 5.2)
-------------------------------------
-Columns: Entity ID, Data Type, Storage Format, Schema Version, Retention,
-         Access Level
-Purpose: Defines what data exists, how it's stored, and how it's managed.
-
-MATRIX 3: PROMPT_MATRIX (Section 5.3)
---------------------------------------
-Columns: Entity ID, Prompt Type, Template File, Input Variables, Output
-         Format, Fallback Strategy
-Purpose: Defines all prompt templates used by AI agents.
-
-MATRIX 4: INTERFACE_MATRIX (Section 5.4)
------------------------------------------
-Columns: Entity ID, Interface Type, Protocol, Endpoint, Auth Method,
-         Rate Limit
-Purpose: Defines all APIs, UIs, and external interfaces.
-
-MATRIX 5: CONTEXT_MATRIX (Section 5.5)
----------------------------------------
-Columns: Entity ID, Context Type, Lifetime, Refresh Trigger, Storage,
-         Scope
-Purpose: Defines all context types and their lifecycle management.
-
-MATRIX 6: FUNCTION_MATRIX (Section 5.6)
-----------------------------------------
-Columns: Entity ID, Function Type, Input Signature, Output Signature,
-         Side Effects, Complexity
-Purpose: Defines all functions and their behavior.
-
-MATRIX 7: DEPENDENCY_MATRIX (Section 5.7)
-------------------------------------------
-Columns: Entity ID, Dependency Type, Target Entity, Relationship,
-         Criticality, Version Constraint
-Purpose: Maps all relationships between entities.
-
-MATRIX 8: MEMORY_MATRIX (Section 5.8)
---------------------------------------
-Columns: Entity ID, Memory Type, Storage Medium, Access Pattern,
-         Retention Policy, Size Limit
-Purpose: Defines all memory stores and their management.
-
-MATRIX 9: VALIDATION_MATRIX (Section 5.9)
-------------------------------------------
-Columns: Entity ID, Validation Type, Check Method, Frequency, Severity,
-         Auto-Fix
-Purpose: Defines all validation rules and checks.
-
-MATRIX 10: EXECUTION_MATRIX (Section 5.10)
--------------------------------------------
-Columns: Entity ID, Execution Type, Trigger, Steps, Timeout, Rollback
-Purpose: Defines all execution workflows and their behavior.
-
-4.4 Matrix Cross-References
-================================================================================
-
-Matrices are not independent. They cross-reference each other to form
-a complete model. The following table shows which matrices reference which:
-
-                    GOV  DAT  PRM  INT  CTX  FNC  DEP  MEM  VAL  EXE
-                   ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
-GOVERNANCE_MATRIX   •    ✓    ✓    ✓    ✓    ✓    ✓    ✓    ✓    ✓
-DATA_MATRIX         ✓    •    ✓    ✓    ✓    ✓    ✓    ✓    ✓    ✓
-PROMPT_MATRIX       ✓    ✓    •    ✓    ✓    ✓    ✓    ✓    ✓    ✓
-INTERFACE_MATRIX    ✓    ✓    ✓    •    ✓    ✓    ✓    ✓    ✓    ✓
-CONTEXT_MATRIX      ✓    ✓    ✓    ✓    •    ✓    ✓    ✓    ✓    ✓
-FUNCTION_MATRIX     ✓    ✓    ✓    ✓    ✓    •    ✓    ✓    ✓    ✓
-DEPENDENCY_MATRIX   ✓    ✓    ✓    ✓    ✓    ✓    •    ✓    ✓    ✓
-MEMORY_MATRIX       ✓    ✓    ✓    ✓    ✓    ✓    ✓    •    ✓    ✓
-VALIDATION_MATRIX   ✓    ✓    ✓    ✓    ✓    ✓    ✓    ✓    •    ✓
-EXECUTION_MATRIX    ✓    ✓    ✓    ✓    ✓    ✓    ✓    ✓    ✓    •
-
-Legend: ✓ = references, • = self (diagonal)
-
-Every matrix references every other matrix. This full connectivity ensures
-that no aspect of the repository is isolated and that any change can be
-traced across all dimensions.
-
-Cross-Reference Example:
-------------------------
-When DAT-01 (Entity Registry) is modified:
-- GOVERNANCE_MATRIX: GOV-04 (Naming Convention) may need updating
-- PROMPT_MATRIX: PRM-01 (System Prompt) may reference the registry
-- DEPENDENCY_MATRIX: DEP-01 (Dependency Resolver) tracks registry usage
-- VALIDATION_MATRIX: VAL-02 (Completeness Checker) validates the registry
-- EXECUTION_MATRIX: EXE-01 (Boot Sequence) reads the registry at startup
-
-================================================================================
-SECTION 5: MATRIX DEEP DIVES
-================================================================================
-
-5.1 GOVERNANCE Matrix
-================================================================================
-
-The GOVERNANCE matrix defines the rules, policies, and authority structures
-that govern the repository. It answers the question: "Who can do what, and
-how are decisions made?"
-
-| Entity ID | Policy Name         | Scope        | Authority    | Enforcement   | Review Cycle |
-|-----------|---------------------|--------------|--------------|---------------|--------------|
-| GOV-01    | Kernel Constitution | Global       | Kernel Owner | Mandatory     | Annual       |
-| GOV-02    | Access Control      | Per-Entity   | Admin        | Automated     | Quarterly    |
-| GOV-03    | Change Management   | Per-Change   | Reviewer     | Manual+Auto   | Per-Change   |
-| GOV-04    | Naming Convention   | Global       | Automated    | Automated     | Annual       |
-| GOV-05    | Version Control     | Global       | Admin        | Automated     | Per-Release  |
-| GOV-06    | Audit Policy        | Global       | Auditor      | Automated     | Continuous   |
-| GOV-07    | Security Policy     | Global       | Security Lead| Automated     | Quarterly    |
-| GOV-08    | Compliance Framework| Per-Region   | Compliance   | Manual+Auto   | Annual       |
-| GOV-09    | Disaster Recovery   | Global       | Ops Lead     | Automated     | Quarterly    |
-| GOV-10    | Communication       | Global       | Team Lead    | Manual        | Quarterly    |
-| GOV-11    | Documentation       | Per-Entity   | Tech Writer  | Automated     | Per-Change   |
-| GOV-12    | Review Policy       | Per-Change   | Reviewer     | Manual        | Per-Change   |
-| GOV-13    | Release Policy      | Per-Release  | Release Mgr  | Automated     | Per-Release  |
-| GOV-14    | Dependency Policy   | Global       | Architect    | Automated     | Monthly      |
-| GOV-15    | Extension Policy    | Global       | Architect    | Manual        | Annual       |
-
-Column Definitions:
-- Entity ID: The unique identifier (GOV-01 to GOV-15)
-- Policy Name: Human-readable name of the policy
-- Scope: Where the policy applies (Global, Per-Entity, Per-Change, etc.)
-- Authority: Who has the power to modify this policy
-- Enforcement: How the policy is enforced (Manual, Automated, or both)
-- Review Cycle: How often the policy is reviewed
-
-GOVERNANCE RULES:
------------------
-1. GOV-01 (Constitution) cannot be modified without unanimous approval
-   from all authorities in the current governance model.
-
-2. GOV-02 (Access Control) overrides are logged in MEM-05 (Decision Log).
-
-3. GOV-03 (Change Management) requires at least one reviewer's approval
-   for all changes except those made by GOV-01 authorities.
-
-4. GOV-04 (Naming Convention) is enforced by automated checks in VAL-01.
-
-5. GOV-05 (Version Control) is enforced by git hooks and CI/CD pipelines.
-
-6. GOV-06 (Audit Policy) requires all changes to be logged with:
-   - Timestamp
-   - Actor (who made the change)
-   - Action (what was changed)
-   - Reason (why it was changed)
-   - Impact (what entities are affected)
-
-7. GOV-07 (Security Policy) classifies entities into three levels:
-   - PUBLIC: No restrictions
-   - INTERNAL: Repository members only
-   - RESTRICTED: Specific authorized individuals only
-
-8. GOV-08 (Compliance) requires annual compliance reports.
-
-9. GOV-09 (Disaster Recovery) requires quarterly backup testing.
-
-10. GOV-10 (Communication) mandates all significant changes be announced
-    to all stakeholders within 24 hours.
-
-5.2 DATA Matrix
-================================================================================
-
-The DATA matrix defines how information is stored, structured, and managed
-in the repository. It answers the question: "What data exists, and how is
-it organized?"
-
-| Entity ID | Data Type      | Storage Format | Schema Version | Retention  | Access Level |
-|-----------|----------------|----------------|----------------|------------|--------------|
-| DAT-01    | Registry       | JSON           | 1.1            | Permanent  | Public       |
-| DAT-02    | Structure      | YAML           | 1.1            | Permanent  | Public       |
-| DAT-03    | Schema         | JSON Schema    | 1.1            | Permanent  | Public       |
-| DAT-04    | Configuration  | YAML           | 1.1            | Persistent | Internal     |
-| DAT-05    | Asset          | Binary         | N/A            | Persistent | Public       |
-| DAT-06    | Metadata       | JSON           | 1.1            | Persistent | Internal     |
-| DAT-07    | Index          | JSON           | 1.1            | Temporary  | Internal     |
-| DAT-08    | Backup         | Archive        | 1.1            | 90 days    | Restricted   |
-| DAT-09    | Log            | Text/JSON      | 1.1            | 30 days    | Internal     |
-| DAT-10    | Cache          | In-Memory      | N/A            | 1 hour     | Internal     |
-| DAT-11    | Migration      | SQL/Script     | 1.1            | Permanent  | Internal     |
-| DAT-12    | Template       | Text           | 1.1            | Permanent  | Public       |
-| DAT-13    | State          | JSON           | 1.1            | Session    | Internal     |
-| DAT-14    | History        | JSON           | 1.1            | 1 year     | Internal     |
-| DAT-15    | Archive        | Archive        | 1.1            | 7 years    | Restricted   |
-
-Column Definitions:
-- Entity ID: Unique identifier
-- Data Type: Classification of the data
-- Storage Format: File format or storage mechanism
-- Schema Version: Version of the data schema
-- Retention: How long the data is kept (Permanent, Persistent, Temporary, etc.)
-- Access Level: Who can access (Public, Internal, Restricted)
-
-DATA RULES:
------------
-1. All data must have a schema (DAT-03) before it can be stored.
-
-2. Schema changes require a migration (DAT-11) and backward compatibility
-   validation (VAL-12).
-
-3. Access levels are enforced by GOV-02 (Access Control Policy).
-
-4. Retention policies are enforced by EXE-15 (Maintenance Engine).
-
-5. Backups (DAT-08) are encrypted and stored offsite.
-
-6. Logs (DAT-09) are immutable (append-only).
-
-7. Cache (DAT-10) is ephemeral and can be cleared at any time.
-
-8. All data changes are audited per GOV-06 (Audit Policy).
-
-5.3 PROMPT Matrix
-================================================================================
-
-The PROMPT matrix defines all prompt templates used by AI agents. It answers
-the question: "How do we communicate with AI, and what templates ensure
-consistent, high-quality responses?"
-
-| Entity ID | Prompt Type      | Template File    | Input Variables     | Output Format  | Fallback Strategy   |
-|-----------|------------------|------------------|---------------------|----------------|---------------------|
-| PRM-01    | System           | system.txt       | {role},{context}    | Structured     | PRM-15              |
-| PRM-02    | Task             | task.txt         | {task},{inputs}     | Structured     | PRM-15              |
-| PRM-03    | Validation       | validation.txt   | {entity},{criteria} | Pass/Fail+Details| Manual Review     |
-| PRM-04    | Generation       | generation.txt   | {type},{constraints}| Generated Content| PRM-15              |
-| PRM-05    | Review           | review.txt       | {code},{standards}  | Review Report  | PRM-15              |
-| PRM-06    | Analysis         | analysis.txt     | {data},{questions}  | Analysis Report| PRM-15              |
-| PRM-07    | Migration        | migration.txt    | {from},{to},{scope} | Migration Plan | PRM-15              |
-| PRM-08    | Documentation    | documentation.txt| {entity},{depth}    | Documentation  | PRM-15              |
-| PRM-09    | Test Generation  | test_gen.txt     | {code},{coverage}   | Test Suite     | PRM-15              |
-| PRM-10    | Debug            | debug.txt        | {error},{context}   | Diagnosis      | PRM-15              |
-| PRM-11    | Optimization     | optimization.txt | {code},{metrics}    | Optimized Code | PRM-15              |
-| PRM-12    | Summary          | summary.txt      | {content},{length}  | Summary        | PRM-15              |
-| PRM-13    | Comparison       | comparison.txt   | {a},{b},{criteria}  | Comparison     | PRM-15              |
-| PRM-14    | Integration      | integration.txt  | {systems},{goal}    | Integration Plan| PRM-15             |
-| PRM-15    | Fallback         | fallback.txt     | {request},{context} | Best Effort    | N/A (terminal)      |
-
-Column Definitions:
-- Entity ID: Unique identifier
-- Prompt Type: Classification of the prompt
-- Template File: Name of the template file
-- Input Variables: Variables the template accepts
-- Output Format: Expected format of the response
-- Fallback Strategy: What to do if the prompt fails
-
-PROMPT RULES:
--------------
-1. Every prompt must have a fallback strategy. PRM-15 is the terminal fallback.
-
-2. Prompt templates are versioned with the repository (GOV-05).
-
-3. Input variables must be validated before prompt execution (VAL-05).
-
-4. Output must be parsed and validated before use (VAL-06, VAL-07).
-
-5. Prompts must not contain sensitive data (GOV-07).
-
-6. Prompt execution is logged (GOV-06).
-
-7. Custom prompts can be added following the PRM-{NN} convention (GOV-15).
-
-8. All prompts must include the RMM摘要 in their context (CTX-03).
-
-5.4 INTERFACE Matrix
-================================================================================
-
-The INTERFACE matrix defines all APIs, UIs, and external interaction points.
-It answers the question: "How does the repository communicate with the
-outside world?"
-
-| Entity ID | Interface Type   | Protocol    | Endpoint                | Auth Method    | Rate Limit      |
-|-----------|------------------|-------------|-------------------------|----------------|-----------------|
-| INT-01    | API              | REST        | /api/v1/*               | Bearer Token   | 1000 req/min    |
-| INT-02    | UI Component     | Internal    | N/A                     | N/A            | N/A             |
-| INT-03    | Webhook          | HTTPS       | /webhooks/*             | HMAC Signature | 100 req/min     |
-| INT-04    | CLI              | Command     | radius1 <command>       | Local Auth     | N/A             |
-| INT-05    | Integration      | Various     | /integrations/*         | API Key        | 500 req/min     |
-| INT-06    | Event            | Internal    | event://*               | N/A            | N/A             |
-| INT-07    | Query            | GraphQL     | /graphql                | Bearer Token   | 2000 req/min    |
-| INT-08    | Report           | REST        | /api/v1/reports/*       | Bearer Token   | 100 req/min     |
-| INT-09    | Import           | REST        | /api/v1/import/*        | Bearer Token   | 50 req/min      |
-| INT-10    | Export           | REST        | /api/v1/export/*        | Bearer Token   | 50 req/min      |
-| INT-11    | Notification     | Various     | /api/v1/notify/*        | API Key        | 500 req/min     |
-| INT-12    | Authentication   | OAuth2      | /auth/*                 | OAuth2 Flow    | N/A             |
-| INT-13    | Session          | REST        | /api/v1/sessions/*      | Session Token  | N/A             |
-| INT-14    | Streaming        | WebSocket   | /ws/*                   | Bearer Token   | 10000 msg/min   |
-| INT-15    | Batch            | REST        | /api/v1/batch/*         | Bearer Token   | 10 req/min      |
-
-Column Definitions:
-- Entity ID: Unique identifier
-- Interface Type: Classification of the interface
-- Protocol: Communication protocol
-- Endpoint: URL or command path
-- Auth Method: How authentication is performed
-- Rate Limit: Request throttling limits
-
-INTERFACE RULES:
-----------------
-1. All external interfaces must use HTTPS (INT-03, INT-12 excepted for OAuth flow).
-
-2. Authentication is mandatory for all interfaces except INT-02 (UI components).
-
-3. Rate limits are enforced by EXE-07 (Request Processor).
-
-4. All API responses follow the standard format defined in DAT-03.
-
-5. Webhook payloads are validated against INT-03 schema before processing.
-
-6. CLI commands are documented in the repository README.
-
-7. Integration points must be registered in DEP-01 before use.
-
-8. All interfaces are versioned (GOV-05).
-
-5.5 CONTEXT Matrix
-================================================================================
-
-The CONTEXT matrix defines all context types and their lifecycle management.
-It answers the question: "What state does the system track, and how is it
-managed?"
-
-| Entity ID | Context Type       | Lifetime   | Refresh Trigger      | Storage      | Scope        |
-|-----------|--------------------|------------|----------------------|--------------|--------------|
-| CTX-01    | Session            | Session    | New session          | MEM-01       | Per-User     |
-| CTX-02    | User               | Persistent | Profile change       | MEM-02       | Per-User     |
-| CTX-03    | Repository         | Persistent | Config change        | MEM-03       | Global       |
-| CTX-04    | Task               | Task       | New task             | MEM-08       | Per-Task     |
-| CTX-05    | Conversation       | Session    | New message          | MEM-04       | Per-Session  |
-| CTX-06    | Error              | Error      | Error resolved       | MEM-11       | Per-Error    |
-| CTX-07    | Performance        | Sliding    | Metric update        | MEM-07       | Per-Process  |
-| CTX-08    | Security           | Session    | Auth change          | MEM-08       | Per-Session  |
-| CTX-09    | Deployment         | Deployment | Deploy event         | MEM-03       | Per-Deploy   |
-| CTX-10    | Feature            | Persistent | Toggle change        | MEM-03       | Global       |
-| CTX-11    | Analytics          | Sliding    | Event tracked        | MEM-09       | Global       |
-| CTX-12    | Integration        | Persistent | Integration event    | MEM-12       | Per-Integration|
-| CTX-13    | Notification       | Sliding    | Notification sent    | MEM-13       | Per-User     |
-| CTX-14    | Cache              | TTL-based  | TTL expiry           | MEM-07       | Per-Key      |
-| CTX-15    | Temporal           | Time-based | Time event           | MEM-14       | Global       |
-
-Column Definitions:
-- Entity ID: Unique identifier
-- Context Type: Classification of the context
-- Lifetime: How long the context persists
-- Refresh Trigger: What causes the context to refresh
-- Storage: Where the context is stored (references MEMORY matrix)
-- Scope: Visibility scope of the context
-
-CONTEXT RULES:
---------------
-1. Session context (CTX-01) is created at login and destroyed at logout.
-
-2. User context (CTX-02) persists across sessions.
-
-3. Repository context (CTX-03) is loaded at boot time (EXE-01).
-
-4. Task context (CTX-04) is isolated — one task cannot access another's context.
-
-5. Error context (CTX-06) includes full stack traces and recovery information.
-
-6. Security context (CTX-08) is encrypted at rest (GOV-07).
-
-7. Cache context (CTX-14) uses TTL (Time To Live) for automatic expiration.
-
-8. All contexts are logged on creation, update, and destruction (GOV-06).
-
-5.6 FUNCTION Matrix
-================================================================================
-
-The FUNCTION matrix defines all functions and their behavior. It answers the
-question: "What does the system do, and how do its functions behave?"
-
-| Entity ID | Function Type      | Input Signature           | Output Signature        | Side Effects  | Complexity |
-|-----------|--------------------|---------------------------|-------------------------|---------------|------------|
-| FNC-01    | Resolver           | entity_id: string         | entity: object          | None          | O(1)       |
-| FNC-02    | Validator          | entity: object, rules: [] | result: boolean, errors | None          | O(n)       |
-| FNC-03    | Prompt Builder     | template: string, vars: {}| prompt: string          | None          | O(1)       |
-| FNC-04    | Context Manager    | context_id: string        | context: object         | Read/Write    | O(1)       |
-| FNC-05    | Interface Adapter  | request: object           | response: object        | May write     | O(n)       |
-| FNC-06    | Data Transformer   | data: object, target: string| transformed: object    | None          | O(n)       |
-| FNC-07    | Dependency Analyzer| entity_id: string         | dependencies: []        | None          | O(n log n) |
-| FNC-08    | Memory Manager     | operation: string, key: string| result: object       | Read/Write    | O(1)       |
-| FNC-09    | Execution Engine   | task: object              | result: object          | May write     | O(n)       |
-| FNC-10    | Event Handler      | event: object             | handled: boolean        | May trigger   | O(1)       |
-| FNC-11    | Logger             | level: string, message: string| log_entry: object    | Write         | O(1)       |
-| FNC-12    | Scheduler          | task: object, time: string| scheduled: boolean      | Write         | O(log n)   |
-| FNC-13    | Notifier           | recipient: string, message: string| sent: boolean    | Write         | O(1)       |
-| FNC-14    | Search Engine      | query: string             | results: []             | None          | O(n)       |
-| FNC-15    | Cache Manager      | operation: string, key: string| result: object       | Read/Write    | O(1)       |
-
-Column Definitions:
-- Entity ID: Unique identifier
-- Function Type: Classification of the function
-- Input Signature: Expected input parameters
-- Output Signature: Expected return value
-- Side Effects: Whether the function modifies state
-- Complexity: Big-O notation for time complexity
-
-FUNCTION RULES:
----------------
-1. All functions must have defined input and output signatures (VAL-05).
-
-2. Functions with side effects must be documented and logged (GOV-06).
-
-3. Function complexity must be monitored (CTX-07).
-
-4. Functions must handle errors gracefully (CTX-06).
-
-5. Function results must be validated before use (VAL-04).
-
-6. New functions require a corresponding FNC-* entity (GOV-15).
-
-7. Functions must be tested before deployment (EXE-09).
-
-8. Function signatures must be versioned (GOV-05).
-
-5.7 DEPENDENCY Matrix
-================================================================================
-
-The DEPENDENCY matrix maps all relationships between entities. It answers the
-question: "What depends on what, and what happens if something changes?"
-
-| Entity ID | Dependency Type    | Target Entity   | Relationship    | Criticality   | Version Constraint |
-|-----------|--------------------|-----------------|-----------------|---------------|--------------------|
-| DEP-01    | Hard               | DAT-01          | DEPENDS_ON      | Critical      | Exact              |
-| DEP-02    | Impact             | All Entities    | ANALYZES        | Critical      | N/A                |
-| DEP-03    | Visual             | All Entities    | REPRESENTS      | Medium        | N/A                |
-| DEP-04    | Version            | All Entities    | LOCKS           | High          | Semantic           |
-| DEP-05    | Health             | All Entities    | VALIDATES       | High          | Current            |
-| DEP-06    | Circular           | All Entities    | DETECTS         | Critical      | N/A                |
-| DEP-07    | Update             | All Entities    | PLANS           | Medium        | Latest Compatible  |
-| DEP-08    | Conflict           | All Entities    | RESOLVES        | High          | N/A                |
-| DEP-09    | Report             | All Entities    | REPORTS_ON      | Low           | N/A                |
-| DEP-10    | Import             | All Entities    | MAPS_IMPORTS    | High          | Current            |
-| DEP-11    | Export             | All Entities    | MAPS_EXPORTS    | High          | Current            |
-| DEP-12    | History            | All Entities    | TRACKS          | Medium        | N/A                |
-| DEP-13    | Prediction         | All Entities    | PREDICTS        | Low           | N/A                |
-| DEP-14    | Audit              | All Entities    | AUDITS          | High          | Current            |
-| DEP-15    | Migration          | All Entities    | MIGRATES        | Medium        | From→To            |
-
-Column Definitions:
-- Entity ID: Unique identifier
-- Dependency Type: Classification of the dependency relationship
-- Target Entity: What entity(ies) this dependency concerns
-- Relationship: Type of relationship (DEPENDS_ON, ANALYZES, etc.)
-- Criticality: How important this dependency is
-- Version Constraint: Version rules for the dependency
-
-DEPENDENCY RULES:
------------------
-1. All entities must be registered in DEP-01.
-
-2. Circular dependencies must be detected and prevented (DEP-06).
-
-3. Hard dependencies (DEP-01) must be satisfied before an entity can be used.
-
-4. Version constraints must be validated on every change (VAL-12).
-
-5. Impact analysis (DEP-02) must be run before any modification.
-
-6. Dependency changes are logged (GOV-06).
-
-7. All imports and exports must be mapped (DEP-10, DEP-11).
-
-8. Dependency reports (DEP-09) are generated monthly.
-
-5.8 MEMORY Matrix
-================================================================================
-
-The MEMORY matrix defines all memory stores and their management. It answers
-the question: "What does the system remember, and how is memory managed?"
-
-| Entity ID | Memory Type      | Storage Medium | Access Pattern | Retention Policy | Size Limit   |
-|-----------|------------------|----------------|----------------|------------------|--------------|
-| MEM-01    | Session          | In-Memory      | Read/Write     | Session          | 10 MB        |
-| MEM-02    | User Profile     | Database       | Read/Write     | Persistent       | 1 MB/user    |
-| MEM-03    | Repository State | File System    | Read/Write     | Persistent       | 100 MB       |
-| MEM-04    | Conversation     | Database       | Append/Read    | 30 days          | 50 MB        |
-| MEM-05    | Decision Log     | Append-Only    | Append/Read    | 7 years          | Unlimited    |
-| MEM-06    | Learning         | Database       | Read/Write     | Persistent       | 500 MB       |
-| MEM-07    | Cache            | In-Memory      | Read/Write     | TTL-based        | 100 MB       |
-| MEM-08    | Context Snapshot | File System    | Write/Read     | 30 days          | 200 MB       |
-| MEM-09    | Event History    | Database       | Append/Read    | 90 days          | 1 GB         |
-| MEM-10    | Task History     | Database       | Append/Read    | 1 year           | 500 MB       |
-| MEM-11    | Error History    | Database       | Append/Read    | 90 days          | 200 MB       |
-| MEM-12    | Feedback         | Database       | Append/Read    | 2 years          | 100 MB       |
-| MEM-13    | Preferences      | Database       | Read/Write     | Persistent       | 10 MB        |
-| MEM-14    | Snapshots        | Archive        | Write/Read     | 30 days          | 1 GB         |
-| MEM-15    | Archive          | Cold Storage   | Read-only      | 7 years          | Unlimited    |
-
-Column Definitions:
-- Entity ID: Unique identifier
-- Memory Type: Classification of the memory
-- Storage Medium: Where the memory is stored
-- Access Pattern: How the memory is read/written
-- Retention Policy: How long the memory is kept
-- Size Limit: Maximum size of the memory store
-
-MEMORY RULES:
--------------
-1. Session memory (MEM-01) is cleared on logout.
-
-2. Decision logs (MEM-05) are immutable (append-only).
-
-3. Cache (MEM-07) uses LRU (Least Recently Used) eviction when full.
-
-4. All memory writes are logged (GOV-06).
-
-5. Memory size limits are enforced by FNC-08.
-
-6. Archive memory (MEM-15) is compressed and encrypted.
-
-7. Memory access patterns are monitored for performance (CTX-07).
-
-8. Memory stores must be backed up per GOV-09.
-
-5.9 VALIDATION Matrix
-================================================================================
-
-The VALIDATION matrix defines all validation rules and checks. It answers
-the question: "How do we ensure quality, correctness, and compliance?"
-
-| Entity ID | Validation Type    | Check Method       | Frequency    | Severity      | Auto-Fix     |
-|-----------|--------------------|--------------------|--------------|---------------|--------------|
-| VAL-01    | Uniqueness         | ID Scan            | On Change    | Critical      | No           |
-| VAL-02    | Completeness       | Matrix Scan        | On Change    | Critical      | No           |
-| VAL-03    | Existence          | File Check         | On Boot      | Critical      | No           |
-| VAL-04    | Conformance        | Diff Check         | On Change    | High          | No           |
-| VAL-05    | Schema             | Schema Validation  | On Write     | High          | Yes          |
-| VAL-06    | Syntax             | Parser Check       | On Save      | High          | Yes          |
-| VAL-07    | Semantic           | Rule Engine        | On Change    | Medium        | No           |
-| VAL-08    | Security           | Policy Check       | On Commit    | Critical      | No           |
-| VAL-09    | Performance        | Benchmark          | Daily        | Medium        | No           |
-| VAL-10    | Dependency         | Graph Check        | On Change    | High          | No           |
-| VAL-11    | Accessibility      | WCAG Check         | On Release   | Medium        | Yes          |
-| VAL-12    | Compatibility      | Version Check      | On Change    | High          | No           |
-| VAL-13    | Consistency        | Cross-Reference    | On Change    | Medium        | Yes          |
-| VAL-14    | Regression         | Test Suite         | On Change    | Critical      | No           |
-| VAL-15    | Policy             | Governance Check   | On Commit    | Critical      | No           |
-
-Column Definitions:
-- Entity ID: Unique identifier
-- Validation Type: Classification of the validation
-- Check Method: How the validation is performed
-- Frequency: When the validation runs
-- Severity: Impact level if validation fails
-- Auto-Fix: Whether the system can automatically fix issues
-
-VALIDATION RULES:
------------------
-1. Critical severity validations must pass before any change is accepted.
-
-2. Auto-fix validations (VAL-05, VAL-06, VAL-11, VAL-13) require approval
-   before fixes are applied.
-
-3. All validation failures are logged (GOV-06).
-
-4. Validation frequency is configurable per entity.
-
-5. Custom validations can be added following the VAL-{NN} convention (GOV-15).
-
-6. Validation results are stored in MEM-11 (Error Store).
-
-7. Performance validations (VAL-09) use historical baselines.
-
-8. Security validations (VAL-08) are run by EXE-09 (Pipeline Engine).
-
-5.10 EXECUTION Matrix
-================================================================================
-
-The EXECUTION matrix defines all execution workflows and their behavior. It
-answers the question: "How does the system execute tasks, and what happens
-when things go wrong?"
-
-| Entity ID | Execution Type     | Trigger          | Steps          | Timeout    | Rollback     |
-|-----------|--------------------|------------------|----------------|------------|--------------|
-| EXE-01    | Boot               | Startup          | 5              | 60s        | Abort        |
-| EXE-02    | Task               | Request          | Variable       | 300s       | Compensate   |
-| EXE-03    | Workflow           | Event            | Variable       | 3600s      | Compensate   |
-| EXE-04    | Change             | Commit           | 3              | 120s       | Revert       |
-| EXE-05    | Event              | Event            | Variable       | 30s        | Log+Continue |
-| EXE-06    | Schedule           | Cron             | Variable       | 600s       | Compensate   |
-| EXE-07    | Request            | HTTP Request     | Variable       | 30s        | Error Response|
-| EXE-08    | Batch              | API Call         | Variable       | 3600s      | Partial      |
-| EXE-09    | Pipeline           | CI/CD Trigger    | Variable       | 1800s      | Full         |
-| EXE-10    | Deployment         | Approval         | 4              | 600s       | Rollback     |
-| EXE-11    | Rollback           | Failure          | 3              | 300s       | N/A          |
-| EXE-12    | Migration          | Schema Change    | Variable       | 1800s      | Backup+Restore|
-| EXE-13    | Notification       | Event            | 2              | 10s        | Retry        |
-| EXE-14    | Reporting          | Schedule         | Variable       | 300s       | Log+Continue |
-| EXE-15    | Maintenance        | Schedule         | Variable       | 3600s      | Log+Continue |
-
-Column Definitions:
-- Entity ID: Unique identifier
-- Execution Type: Classification of the execution
-- Trigger: What starts the execution
-- Steps: Number of steps (Variable = depends on task)
-- Timeout: Maximum execution time
-- Rollback: Strategy if execution fails
-
-EXECUTION RULES:
-----------------
-1. All executions have a timeout. No execution runs indefinitely.
-
-2. Rollback strategies must be defined before execution starts.
-
-3. Execution steps are logged in real-time (GOV-06).
-
-4. Failed executions trigger EXE-05 (Event Processor).
-
-5. Pipeline executions (EXE-09) include all validations (VAL-*).
-
-6. Deployment executions (EXE-10) require explicit approval.
-
-7. Maintenance executions (EXE-15) run during low-traffic windows.
-
-8. All executions can be monitored via INT-07 (Query Interface).
-
-================================================================================
-SECTION 6: CROSS-MATRIX RELATIONSHIPS
-================================================================================
-
-6.1 Relationship Types
-================================================================================
-
-Cross-matrix relationships connect entities across different matrices.
-These relationships are the "glue" that makes the RMM a cohesive model
-rather than 10 isolated tables.
-
-PRIMARY RELATIONSHIP TYPES:
----------------------------
-
-1. GOVERNANCE → ALL
-   The GOVERNANCE matrix defines rules that apply to all other matrices.
-   Every entity in every matrix is subject to GOV-02 (Access Control),
-   GOV-06 (Audit), and GOV-07 (Security).
-
-2. DATA → ALL
-   The DATA matrix defines storage for all other matrices. Every matrix
-   has a corresponding storage format defined in DAT-03 (Schema Registry).
-
-3. PROMPT → FUNCTION
-   Prompt entities (PRM-*) reference function entities (FNC-*) to define
-   what functions are available to AI agents.
-
-4. INTERFACE → FUNCTION
-   Interface entities (INT-*) expose function entities (FNC-*) to the
-   outside world.
-
-5. CONTEXT → MEMORY
-   Context entities (CTX-*) reference memory entities (MEM-*) to define
-   where context state is stored.
-
-6. FUNCTION → DEPENDENCY
-   Function entities (FNC-*) reference dependency entities (DEP-*) to
-   declare what they depend on.
-
-7. VALIDATION → ALL
-   Validation entities (VAL-*) apply to all other matrices. Every entity
-   must pass the relevant validations.
-
-8. EXECUTION → ALL
-   Execution entities (EXE-*) orchestrate operations across all matrices.
-
-6.2 Entity-to-Entity Mapping
-================================================================================
-
-The following table shows key entity-to-entity mappings across matrices:
-
-Source Entity → Target Entity | Relationship | Purpose
-------------------------------|--------------|--------------------------------
-GOV-01 → All Entities         | GOVERNS      | Constitution applies to all
-GOV-04 → All Entity IDs       | DEFINES      | Naming convention for IDs
-DAT-01 → All Entities         | REGISTERS    | Master registry
-DAT-03 → All Data             | SCHEMAS      | Schema for all data
-PRM-01 → FNC-03               | DEPENDS_ON   | Prompt needs builder
-PRM-15 → All PRM-*            | FALLBACK     | Fallback for all prompts
-INT-01 → FNC-09               | EXPOSES      | API exposes execution engine
-INT-04 → FNC-14               | EXPOSES      | CLI exposes search
-CTX-01 → MEM-01               | STORES_IN    | Session stores in session memory
-CTX-03 → MEM-03               | STORES_IN    | Repository state in repo memory
-FNC-01 → DAT-01               | READS        | Resolver reads registry
-FNC-02 → VAL-*                | USES         | Validator uses all validations
-FNC-03 → PRM-*                | READS        | Builder reads all prompts
-DEP-01 → All Entities         | TRACKS       | Tracks all dependencies
-DEP-02 → All Entities         | ANALYZES     | Impact analysis for all
-MEM-05 → GOV-06               | SUPPORTS     | Decision log supports audit
-VAL-01 → DAT-01               | VALIDATES    | Uniqueness checks registry
-VAL-02 → All Matrices         | VALIDATES    | Completeness for all matrices
-EXE-01 → DAT-01               | READS        | Boot reads registry
-EXE-02 → FNC-09               | USES         | Task runner uses engine
-EXE-09 → VAL-*                | RUNS         | Pipeline runs all validations
-
-These mappings form a dense network. Every entity is connected to at least
-3 other entities through direct relationships.
-
-6.3 Matrix-to-Matrix Dependencies
-================================================================================
-
-Matrices themselves have dependencies. The following diagram shows the
-dependency flow between matrices:
-
-                    +-------------------+
-                    | GOVERNANCE_MATRIX |
-                    +---------+---------+
-                              |
-                              v
-                    +-------------------+
-                    |   DATA_MATRIX     |
-                    +---------+---------+
-                              |
-              +---------------+---------------+
-              |               |               |
-              v               v               v
-    +-------------------+ +---------+ +-------------------+
-    |   PROMPT_MATRIX   | |CTX_MATRIX| | INTERFACE_MATRIX |
-    +---------+---------+ +---------+ +---------+---------+
-              |                       |               |
-              +-----------+-----------+               |
-                          |                           |
-                          v                           v
-                +-------------------+     +-------------------+
-                |  FUNCTION_MATRIX  |     |  DEPENDENCY_MATRIX|
-                +---------+---------+     +---------+---------+
-                          |                           |
-                          +-----------+-----------+---+
-                                      |
-                          +-----------v-----------+
-                          |   VALIDATION_MATRIX   |
-                          +-----------+-----------+
-                                      |
-                          +-----------v-----------+
-                          |   EXECUTION_MATRIX    |
-                          +-----------------------+
-
-Dependency Rules:
-- GOVERNANCE is the root — no matrix can be loaded before it
-- DATA is second — all other matrices need data storage
-- PROMPT, CONTEXT, and INTERFACE are parallel — they don't depend on each other
-- FUNCTION depends on PROMPT, CONTEXT, and INTERFACE
-- DEPENDENCY depends on DATA and FUNCTION
-- VALIDATION depends on all matrices above it
-- EXECUTION depends on VALIDATION and all matrices above it
-
-6.4 The Relationship Index
-================================================================================
-
-The Relationship Index is a machine-readable file that contains all
-cross-matrix relationships. It is generated automatically from the matrices
-and is used for:
-- Impact analysis
-- Graph visualization
-- Validation
-- Navigation
-
-FORMAT:
--------
-```json
-{
-  "relationships": [
-    {
-      "source": "GOV-01",
-      "target": "DAT-01",
-      "type": "GOVERNS",
-      "description": "Constitution governs entity registry"
-    },
-    {
-      "source": "FNC-01",
-      "target": "DAT-01",
-      "type": "DEPENDS_ON",
-      "description": "Entity resolver depends on registry"
-    }
-  ]
-}
-```
-
-The Relationship Index is maintained by FNC-07 (Dependency Analyzer) and
-validated by VAL-10 (Dependency Checker).
-
-================================================================================
-SECTION 7: IMPLEMENTATION GUIDE
-================================================================================
-
-7.1 How to Initialize a Kernel
-================================================================================
-
-Initializing a RADIUS1 Kernel means setting up a repository with the RMM
-as its governing specification. Here is the step-by-step process:
-
-STEP 1: Create the Repository Structure
-----------------------------------------
-```
-mkdir -p my-kernel/{GOV,DAT,PRM,INT,CTX,FNC,DEP,MEM,VAL,EXE}
-touch my-kernel/RMM.md
-touch my-kernel/README.md
-```
-
-STEP 2: Write the Kernel Constitution (GOV-01)
------------------------------------------------
-Create GOV/GOV-01.md with:
-- Repository name and purpose
-- Governance model choice (A, B, or C)
-- Authority list
-- Boot sequence reference
-
-STEP 3: Populate the Entity Registry (DAT-01)
-----------------------------------------------
-Create DAT/DAT-01.json with the master entity list.
-Start with the 79 canonical entities, then add custom ones.
-
-STEP 4: Create the Matrices
-----------------------------
-Create a matrix file for each of the 10 categories.
-Use the templates from Section 5 as starting points.
-
-STEP 5: Define Relationships
------------------------------
-Run FNC-07 (Dependency Analyzer) to generate the initial
-Relationship Index.
-
-STEP 6: Validate
------------------
-Run VAL-02 (Completeness Checker) to ensure all entities are defined.
-Run VAL-01 (Uniqueness Checker) to ensure no duplicate IDs.
-Run VAL-03 (Existence Checker) to ensure all files exist.
-
-STEP 7: Commit
----------------
-```
-git init
-git add .
-git commit -m "Initialize RADIUS1 Kernel with RMM v1.1"
-```
-
-STEP 8: Boot
--------------
-Run EXE-01 (Boot Sequence) to load the RMM into memory.
-The kernel is now operational.
-
-7.2 The Boot Sequence
-================================================================================
-
-The boot sequence (EXE-01) is the procedure that loads the RMM and prepares
-the kernel for operation. It runs every time the kernel starts.
-
-BOOT STEPS:
------------
-
-STEP 1: Load Constitution (500ms)
-----------------------------------
-Read GOV/GOV-01.md. Extract governance model, authorities, and policies.
-If GOV-01 is missing or invalid, abort with critical error.
-
-STEP 2: Load Entity Registry (200ms)
--------------------------------------
-Read DAT/DAT-01.json. Build in-memory index of all entities.
-If DAT-01 is missing or invalid, abort with critical error.
-
-STEP 3: Validate Uniqueness (300ms)
-------------------------------------
-Run VAL-01. Check that all entity IDs are unique.
-If duplicates found, abort with critical error.
-
-STEP 4: Validate Existence (500ms)
------------------------------------
-Run VAL-03. Check that all entity files exist.
-If files are missing, log warning and continue (files may be optional).
-
-STEP 5: Load Matrices (1000ms)
--------------------------------
-Read all 10 matrix files. Build in-memory representation.
-If any matrix is missing or incomplete, log warning and continue.
-
-STEP 6: Build Dependency Graph (800ms)
----------------------------------------
-Run FNC-07. Build the dependency graph from DEPENDENCY_MATRIX.
-Detect circular dependencies (DEP-06). If found, abort with critical error.
-
-STEP 7: Validate Completeness (600ms)
---------------------------------------
-Run VAL-02. Check that all matrices have all 79 entities.
-If incomplete, log warning and mark kernel as "degraded mode."
-
-STEP 8: Initialize Memory (400ms)
-----------------------------------
-Load MEM-03 (Repository State) and MEM-01 (Session Store).
-If state is corrupted, attempt recovery from MEM-14 (Snapshots).
-
-STEP 9: Register Interfaces (300ms)
-------------------------------------
-Load INT-01 (API Spec) and INT-04 (CLI Spec).
-Register all endpoints and commands.
-
-STEP 10: Start Event Loop (200ms)
-----------------------------------
-Start FNC-10 (Event Handler). Kernel is now ready to process events.
-
-Total Boot Time: ~4.8 seconds (typical)
-
-BOOT MODES:
------------
-- NORMAL: Full boot sequence. All validations run.
-- FAST: Skip non-critical validations. Boot time ~2 seconds.
-- SAFE: Run all validations + additional checks. Boot time ~10 seconds.
-- RECOVERY: Attempt to repair corrupted state before booting.
-
-7.3 Runtime Entity Resolution
-================================================================================
-
-During operation, the kernel frequently needs to resolve entity IDs to
-actual resources. This is handled by FNC-01 (Entity Resolver).
-
-RESOLUTION PROCESS:
--------------------
-
-1. Receive entity ID (e.g., "GOV-01")
-2. Check MEM-07 (Cache) for cached resolution
-3. If cache miss, read DAT-01 (Entity Registry)
-4. Find the entry for the entity ID
-5. Extract the file path and metadata
-6. Load the actual file
-7. Cache the result in MEM-07
-8. Return the entity content
-
-CACHE POLICY:
--------------
-- Cache hits: O(1) resolution time
-- Cache misses: O(log n) resolution time (binary search in registry)
-- Cache TTL: 5 minutes for frequently accessed entities
-- Cache invalidation: On any write to DAT-01
-
-ERROR HANDLING:
----------------
-- Entity not found: Return 404-style error with suggestions
-- Entity corrupted: Return error + trigger recovery
-- Registry unreadable: Return error + boot in degraded mode
-
-7.4 Error Handling
-================================================================================
-
-The RMM defines a structured error handling framework.
-
-ERROR LEVELS:
--------------
-
-CRITICAL: Kernel cannot continue. Requires immediate intervention.
-Examples: GOV-01 missing, DAT-01 corrupted, circular dependency detected.
-Action: Halt kernel, notify all authorities, enter recovery mode.
-
-HIGH: Major functionality impaired. Should be addressed within 1 hour.
-Examples: Validation failures, schema mismatches, dependency conflicts.
-Action: Degrade affected features, notify relevant authorities.
-
-MEDIUM: Minor functionality impaired. Should be addressed within 24 hours.
-Examples: Performance degradation, cache misses, warnings.
-Action: Log issue, schedule repair.
-
-LOW: Informational only. No action required.
-Examples: Optimization suggestions, style warnings.
-Action: Log for review.
-
-ERROR CONTEXT (CTX-06):
-------------------------
-When an error occurs, the kernel creates an error context:
-```json
-{
-  "error_id": "ERR-{timestamp}-{sequence}",
-  "level": "CRITICAL|HIGH|MEDIUM|LOW",
-  "entity": "Entity ID where error occurred",
-  "message": "Human-readable error description",
-  "stack_trace": ["line1", "line2", ...],
-  "recovery_info": {
-    "auto_recoverable": true|false,
-    "recovery_steps": ["step1", "step2"],
-    "estimated_time": "seconds"
-  }
-}
-```
-
-ERROR RECOVERY:
----------------
-1. Auto-recoverable errors: Kernel attempts recovery automatically.
-2. Manual-recovery errors: Kernel halts and notifies authorities.
-3. Fatal errors: Kernel shuts down. Requires full restart.
-
-7.5 Performance Considerations
-================================================================================
-
-The RMM is designed for performance. Here are the key considerations:
-
-MEMORY FOOTPRINT:
------------------
-- Full RMM in memory: ~5 MB
-- Entity registry index: ~100 KB
-- Dependency graph: ~200 KB
-- Matrix cache: ~1 MB
-- Total: ~6.3 MB
-
-SCALABILITY:
-------------
-- Entity limit: 10,000 per category (soft limit)
-- Matrix size: 1,000 rows per matrix (soft limit)
-- Relationship limit: 100,000 (soft limit)
-- Boot time: < 10 seconds for < 1,000 entities
-- Boot time: < 60 seconds for < 10,000 entities
-
-OPTIMIZATION STRATEGIES:
-------------------------
-1. Lazy Loading: Matrices are loaded on-demand, not all at boot.
-2. Incremental Updates: Only changed entities are re-validated.
-3. Caching: Frequently accessed entities are cached (MEM-07).
-4. Indexing: DAT-07 maintains search indexes for fast lookups.
-5. Parallel Validation: Independent validations run in parallel.
-
-================================================================================
-SECTION 8: GOVERNANCE & COMPLIANCE
-================================================================================
-
-8.1 Version Control Policy
-================================================================================
-
-The RMM uses semantic versioning for all entities and the RMM itself.
-
-VERSION FORMAT:
----------------
-```
-{MAJOR}.{MINOR}.{PATCH}
-```
-
-- MAJOR: Incompatible changes (breaks existing integrations)
-- MINOR: New features (backward compatible)
-- PATCH: Bug fixes (backward compatible)
-
-RMM VERSION HISTORY:
---------------------
-- 1.0.0: Initial release (79 entities, 10 matrices)
-- 1.1.0: Added extended relationship types, improved error handling
-- 1.2.0 (planned): Custom matrix extensions, multi-kernel federation
-- 2.0.0 (planned): Breaking changes for next-generation architecture
-
-ENTITY VERSIONING:
-------------------
-Each entity has its own version, independent of the RMM version.
-Version is stored in the entity's metadata.
-
-VERSION RULES:
---------------
-1. Major version changes require approval from all governance authorities.
-2. Minor version changes require approval from at least one authority.
-3. Patch version changes can be made by any authorized contributor.
-4. All version changes are logged (GOV-06).
-5. Backward compatibility must be maintained for minor and patch versions.
-
-8.2 Change Management
-================================================================================
-
-Changes to the RMM follow a structured process.
-
-CHANGE TYPES:
--------------
-
-TYPE 1: Entity Addition
-- Add a new entity to the RMM
-- Requires: Proposal, review, approval
-- Impact: All matrices may need updating
-
-TYPE 2: Entity Modification
-- Modify an existing entity
-- Requires: Proposal, impact analysis, review, approval
-- Impact: Dependent entities may need updating
-
-TYPE 3: Entity Removal
-- Remove an existing entity
-- Requires: Proposal, impact analysis, deprecation notice, review, approval
-- Impact: All references must be updated
-
-TYPE 4: Matrix Addition
-- Add a new matrix
-- Requires: Proposal, review, approval from all authorities
-- Impact: All entities may need new rows
-
-TYPE 5: Governance Change
-- Modify governance policies
-- Requires: Proposal, review, unanimous approval
-- Impact: All processes may be affected
-
-CHANGE WORKFLOW:
-----------------
-```
-[Propose] → [Impact Analysis] → [Review] → [Approve] → [Implement] → [Validate] → [Deploy]
-```
-
-Each step has defined owners, timelines, and acceptance criteria.
-
-8.3 Audit Trail Requirements
-================================================================================
-
-Every change to the RMM must leave an audit trail.
-
-AUDIT LOG FORMAT:
------------------
-```json
-{
-  "audit_id": "AUD-{timestamp}-{sequence}",
-  "timestamp": "ISO-8601 datetime",
-  "actor": "username or system ID",
-  "action": "CREATE|UPDATE|DELETE|REVIEW|APPROVE",
-  "target": "Entity ID or Matrix name",
-  "details": {
-    "before": "previous state (for UPDATE/DELETE)",
-    "after": "new state (for CREATE/UPDATE)",
-    "reason": "human-readable reason for change"
-  },
-  "impact": ["affected entity IDs"],
-  "approvals": ["approver usernames"]
-}
-```
-
-AUDIT RULES:
-------------
-1. All changes are audited, no exceptions.
-2. Audit logs are immutable (append-only, stored in MEM-05).
-3. Audit logs are retained for 7 years (GOV-06).
-4. Audit logs are accessible to all authorities.
-5. Audit log tampering triggers a critical security alert.
-
-8.4 Security Classifications
-================================================================================
-
-Entities are classified by security level.
-
-CLASSIFICATION LEVELS:
-----------------------
-
-PUBLIC (Level 0):
-- No restrictions
-- Accessible to anyone
-- Examples: GOV-04 (Naming Convention), DAT-02 (File Structure)
-
-INTERNAL (Level 1):
-- Repository members only
-- No external access
-- Examples: DAT-04 (Configuration), CTX-02 (User Context)
-
-RESTRICTED (Level 2):
-- Specific authorized individuals only
-- Requires explicit permission
-- Examples: DAT-08 (Backups), CTX-08 (Security Context)
-
-CLASSIFIED (Level 3):
-- Minimal access
-- Requires multi-factor authorization
-- Examples: GOV-01 (Constitution - modification only), MEM-05 (Decision Log)
-
-SECURITY RULES:
----------------
-1. All entities must have a classification level.
-2. Classification is set at entity creation and reviewed annually.
-3. Access is enforced by GOV-02 (Access Control Policy).
-4. Security violations are logged and alerted (GOV-06, GOV-07).
-5. Classification levels can be changed through the change management process.
-
-================================================================================
-SECTION 9: ADVANCED TOPICS
-================================================================================
-
-9.1 Custom Matrix Extensions
-================================================================================
-
-The RMM can be extended with custom matrices for domain-specific needs.
-
-CREATING A CUSTOM MATRIX:
--------------------------
-
-STEP 1: Define the Purpose
-What aspect of the repository does the new matrix cover?
-Example: "TESTING_MATRIX" for test coverage information.
-
-STEP 2: Define the Columns
-What attributes does each entity need?
-Example: Test Type, Coverage %, Last Run, Status.
-
-STEP 3: Create the Matrix File
-```
-TESTING_MATRIX.md
-```
-
-STEP 4: Populate the Matrix
-Add one row per entity (79 rows minimum for completeness).
-
-STEP 5: Register the Matrix
-Add the matrix to DAT-01 (Entity Registry) as a new entity.
-
-STEP 6: Define Cross-References
-Map relationships between the new matrix and existing matrices.
-
-STEP 7: Validate
-Run VAL-02 to ensure the new matrix is complete.
-
-CUSTOM MATRIX NAMING:
----------------------
-Custom matrices use the format:
-```
-{CUSTOM_NAME}_MATRIX
-```
-Name must be unique, descriptive, and use uppercase with underscores.
-
-CUSTOM MATRIX LIMITS:
----------------------
-- Maximum custom matrices: 20
-- Maximum rows per custom matrix: 1,000
-- Maximum columns per custom matrix: 20
-
-9.2 Multi-Kernel Federation
-================================================================================
-
-Multiple RADIUS1 Kernels can be federated to form a distributed system.
-
-FEDERATION MODEL:
------------------
-
-KERNEL A ←→ KERNEL B ←→ KERNEL C
-   ↑           ↑           ↑
-   └-----------+-----------┘
-           RMM SYNC
-
-Federation enables:
-- Cross-kernel entity references
-- Shared governance policies
-- Distributed validation
-- Unified search across kernels
-
-FEDERATION RULES:
------------------
-1. All kernels in a federation must use compatible RMM versions.
-2. Entity IDs must be globally unique across the federation.
-3. Governance policies can be shared or kernel-specific.
-4. Changes propagate according to the federation topology.
-5. Conflicts are resolved using the primary kernel's governance model.
-
-FEDERATION SETUP:
------------------
-1. Designate a primary kernel.
-2. Create federation configuration in each kernel's DAT-04.
-3. Establish sync protocol (INT-05).
-4. Initialize federation (EXE-03).
-5. Validate federation (VAL-12).
-
-9.3 Temporal Versioning
-================================================================================
-
-The RMM supports temporal versioning — tracking how entities change over time.
-
-TEMPORAL MODEL:
----------------
-Every entity has a timeline:
-```
-Time →
-|-------[v1.0]-------[v1.1]-------[v1.2]-------[v2.0]-------|
-```
-
-At any point in time, you can query:
-- What did this entity look like at time T?
-- When did attribute X change?
-- Who changed attribute Y?
-
-TEMPORAL STORAGE:
------------------
-Temporal data is stored in DAT-14 (History Store).
-Format:
-```json
-{
-  "entity_id": "GOV-01",
-  "timeline": [
-    {
-      "version": "1.0.0",
-      "timestamp": "2026-01-01T00:00:00Z",
-      "state": { ... },
-      "author": "admin"
-    },
-    {
-      "version": "1.1.0",
-      "timestamp": "2026-06-01T00:00:00Z",
-      "state": { ... },
-      "author": "admin"
-    }
-  ]
-}
-```
-
-TEMPORAL QUERIES:
------------------
-- GET entity AT time T
-- GET entity changes BETWEEN T1 AND T2
-- GET entity version V
-- COMPARE entity AT T1 AND T2
-
-9.4 Disaster Recovery
-================================================================================
-
-The RMM includes a comprehensive disaster recovery framework.
-
-RECOVERY LEVELS:
-----------------
-
-LEVEL 1: Entity Recovery
-- Recover a single corrupted entity from backup.
-- Source: MEM-14 (Snapshots)
-- Time: < 1 minute
-
-LEVEL 2: Matrix Recovery
-- Recover a corrupted matrix from backup.
-- Source: DAT-08 (Backup Store)
-- Time: < 5 minutes
-
-LEVEL 3: Full Recovery
-- Recover the entire RMM from backup.
-- Source: DAT-08 + DAT-15 (Archive Store)
-- Time: < 30 minutes
-
-LEVEL 4: Kernel Rebuild
-- Rebuild the kernel from scratch using the RMM.
-- Source: RMM.md (this document)
-- Time: < 2 hours
-
-RECOVERY PROCEDURES:
---------------------
-1. Detect failure (VAL-03, automated monitoring).
-2. Assess scope (DEP-02, impact analysis).
-3. Select recovery level based on scope.
-4. Execute recovery (EXE-12, migration engine).
-5. Validate recovery (VAL-02, completeness check).
-6. Log recovery (GOV-06, audit policy).
-7. Notify stakeholders (EXE-13, notification engine).
-
-BACKUP SCHEDULE:
-----------------
-- Entity snapshots: Every hour
-- Matrix backups: Every 6 hours
-- Full backups: Daily
-- Archive: Weekly
-- Offsite copy: Daily
-
-BACKUP RETENTION:
------------------
-- Hourly snapshots: 48 hours
-- 6-hour backups: 7 days
-- Daily backups: 30 days
-- Weekly archives: 1 year
-- Offsite copies: 7 years
-
-================================================================================
-SECTION 10: APPENDICES
-================================================================================
-
-10.1 Appendix A: Quick Reference Cards
-================================================================================
-
-QUICK REFERENCE: ENTITY IDs
-----------------------------
-GOV-01 to GOV-15: Governance
-DAT-01 to DAT-15: Data
-PRM-01 to PRM-15: Prompts
-INT-01 to INT-15: Interfaces
-CTX-01 to CTX-15: Context
-FNC-01 to FNC-15: Functions
-DEP-01 to DEP-15: Dependencies
-MEM-01 to MEM-15: Memory
-VAL-01 to VAL-15: Validation
-EXE-01 to EXE-15: Execution
-
-QUICK REFERENCE: MATRICES
---------------------------
-GOVERNANCE_MATRIX: Who can do what
-DATA_MATRIX: What data exists
-PROMPT_MATRIX: How to talk to AI
-INTERFACE_MATRIX: How to talk to systems
-CONTEXT_MATRIX: What state is tracked
-FUNCTION_MATRIX: What functions exist
-DEPENDENCY_MATRIX: What depends on what
-MEMORY_MATRIX: What is remembered
-VALIDATION_MATRIX: How quality is ensured
-EXECUTION_MATRIX: How tasks are run
-
-QUICK REFERENCE: GOVERNANCE MODELS
------------------------------------
-Model A: Centralized — One authority, fast, simple
-Model B: Distributed — Multiple authorities, balanced, scalable
-Model C: Autonomous — Kernel decides, fastest, most consistent
-
-QUICK REFERENCE: ERROR LEVELS
-------------------------------
-CRITICAL: Halt kernel, immediate intervention
-HIGH: Degrade features, fix within 1 hour
-MEDIUM: Log and schedule, fix within 24 hours
-LOW: Informational, no action needed
-
-QUICK REFERENCE: BOOT SEQUENCE
--------------------------------
-1. Load Constitution
-2. Load Entity Registry
-3. Validate Uniqueness
-4. Validate Existence
-5. Load Matrices
-6. Build Dependency Graph
-7. Validate Completeness
-8. Initialize Memory
-9. Register Interfaces
-10. Start Event Loop
-
-10.2 Appendix B: Glossary of Terms
-================================================================================
-
-AGENT: An autonomous entity (human or AI) that interacts with the kernel.
-
-AUDIT TRAIL: A record of all changes made to the RMM or repository.
-
-BOOT SEQUENCE: The procedure that initializes the kernel at startup.
-
-CANONICAL: The official, authoritative version of something.
-
-CATEGORY: A grouping of entities by function (e.g., Governance, Data).
-
-CONSTITUTION: The root governance document (GOV-01) that defines the kernel's
- fundamental rules.
-
-CONTEXT: State information that provides background for operations.
-
-DECISION LOG: A record of decisions made by the kernel or its authorities.
-
-DEGRADED MODE: A state where the kernel operates with reduced functionality
-due to validation failures.
-
-ENTITY: A discrete, named component of the repository with a unique ID.
-
-FEDERATION: A network of multiple kernels that share governance and data.
-
-GOVERNANCE: The system of rules, policies, and authorities that control
-the repository.
-
-IMPACT ANALYSIS: The process of determining what will be affected by a
-proposed change.
-
-KERNEL: The core system that manages the repository using the RMM.
-
-LAYER: A conceptual level in the repository architecture.
-
-MATRIX: A tabular representation of a specific aspect of the RMM.
-
-ONTOLOGY: A formal definition of the types, properties, and relationships
-of entities.
-
-REGISTRY: A master list or catalog of entities.
-
-RELATIONSHIP: A connection between two entities with a defined type.
-
-REPOSITORY: The collection of files, data, and metadata managed by the kernel.
-
-RMM: Repository Meta Model — this document.
-
-SCHEMA: A formal definition of the structure of data.
-
-SEMANTIC DRIFT: The gradual divergence of meaning between different agents'
-interpretations of repository structure.
-
-SYSTEM PROMPT: The initial instructions given to an AI agent.
-
-TEMPORAL VERSIONING: Tracking entity changes over time.
-
-TRACEABILITY: The ability to follow the history of any change.
-
-VALIDATION: The process of checking that entities comply with the RMM.
-
-10.3 Appendix C: Cheat Sheet
-================================================================================
-
-CHEAT SHEET: CREATING A NEW ENTITY
------------------------------------
-1. Choose a category prefix (GOV, DAT, PRM, etc.)
-2. Assign the next sequence number
-3. Create the entity file: {prefix}/{Entity-ID}.{ext}
-4. Add the entity to DAT-01 (Entity Registry)
-5. Add a row to the relevant matrix
-6. Define relationships in DEPENDENCY_MATRIX
-7. Run VAL-01 (Uniqueness Checker)
-8. Run VAL-02 (Completeness Checker)
-9. Commit with audit log entry
-
-CHEAT SHEET: MODIFYING AN ENTITY
----------------------------------
-1. Run DEP-02 (Impact Analysis)
-2. Check affected entities
-3. Update the entity file
-4. Update matrix rows if needed
-5. Update relationships if needed
-6. Run relevant validations
-7. Commit with audit log entry
-
-CHEAT SHEET: ADDING A CUSTOM MATRIX
-------------------------------------
-1. Define matrix purpose and columns
-2. Create {NAME}_MATRIX.md file
-3. Add one row per entity (79 minimum)
-4. Register in DAT-01
-5. Define cross-references
-6. Run VAL-02
-7. Commit with audit log entry
-
-CHEAT SHEET: TROUBLESHOOTING
------------------------------
-Problem: Kernel won't boot
-Solution: Check GOV-01 and DAT-01. Run VAL-01 and VAL-03.
-
-Problem: Validation failures
-Solution: Check VAL-* logs. Run the specific failing checker.
-
-Problem: Performance issues
-Solution: Check CTX-07. Review cache hit rates (MEM-07).
-
-Problem: Missing entities
-Solution: Run VAL-02. Check DAT-01 completeness.
-
-Problem: Circular dependencies
-Solution: Run DEP-06. Review DEPENDENCY_MATRIX.
-
-10.4 Appendix D: Migration Guide
-================================================================================
-
-This guide explains how to migrate between RMM versions.
-
-MIGRATING FROM 1.0 TO 1.1:
----------------------------
-
-STEP 1: Backup
-- Create full backup of current RMM (DAT-08)
-- Export all matrices
-- Save Relationship Index
-
-STEP 2: Update Constitution
-- Modify GOV-01 to reference RMM v1.1
-- Add new entities if needed
-
-STEP 3: Update Matrices
-- Add new columns to existing matrices
-- Update column definitions
-- Fill in new cells with appropriate values
-
-STEP 4: Validate
-- Run VAL-02 (Completeness Checker)
-- Run VAL-12 (Compatibility Checker)
-- Fix any issues
-
-STEP 5: Update Relationships
-- Regenerate Relationship Index
-- Validate cross-references
-
-STEP 6: Test
-- Run full boot sequence (EXE-01)
-- Run all validations (VAL-*)
-- Test all interfaces (INT-*)
-
-STEP 7: Deploy
-- Commit changes
-- Update audit log
-- Notify stakeholders
-
-MIGRATING GOVERNANCE MODELS:
------------------------------
-Changing governance models (A → B, B → C, etc.) is a major operation.
-
-STEP 1: Unanimous approval from all current authorities
-STEP 2: Design new governance structure
-STEP 3: Update GOV-01 with new model
-STEP 4: Reassign authorities
-STEP 5: Update all governance-related entities
-STEP 6: Validate (VAL-15)
-STEP 7: Test boot sequence
-STEP 8: Deploy with full audit trail
-
-WARNING: Governance model changes cannot be rolled back without a full
-kernel rebuild. Proceed with extreme caution.
-
-================================================================================
-DOCUMENT METADATA
-================================================================================
-
-Document ID: RMM-v1.1-CANONICAL
-Version: 1.1.0
-Last Updated: 2026-06-26
-Classification: CANONICAL
-Author: RADIUS1 Kernel Team
-Maintainer: Kernel Architecture Committee
-
-CHANGE LOG:
------------
-v1.0.0 (2026-01-01): Initial release
-  - 79 entities across 10 categories
-  - 10 core matrices
-  - 3 governance models
-  - Complete implementation guide
-
-v1.1.0 (2026-06-26): Enhanced release
-  - Added extended relationship types (Section 3.4)
-  - Improved error handling framework (Section 7.4)
-  - Added temporal versioning (Section 9.3)
-  - Enhanced disaster recovery (Section 9.4)
-  - Added migration guide (Appendix D)
-  - Updated all matrices to version 1.1
-
-NEXT STEPS:
------------
-- v1.2.0: Custom matrix extensions, multi-kernel federation enhancements
-- v2.0.0: Next-generation architecture (breaking changes)
-
-================================================================================
-END OF REPOSITORY META MODEL
-================================================================================
+PART I:  ENTITY CATALOG
+PART II: RELATIONSHIP GRAPH
+PART III: MATRICES
+  - Matrix 1:  Ownership Matrix
+  - Matrix 2:  Lifecycle Matrix
+  - Matrix 3:  Stability Classification
+  - Matrix 4:  Versionability Matrix
+  - Matrix 5:  Freeze Matrix
+  - Matrix 6:  Source-of-Truth Matrix
+  - Matrix 7:  Creation & Modification Permissions
+  - Matrix 8:  Cardinality Matrix
+  - Matrix 9:  Dependency Matrix
+  - Matrix 10: Glossary
+
+================================================================================
+PART I: ENTITY CATALOG (79 Entities)
+================================================================================
+
+================================================================================
+RADIUS1 KERNEL — REPOSITORY META MODEL (RMM)
+CANONICAL ENTITY CATALOG
+================================================================================
+
+A unified, deduplicated ontology synthesized from four domain perspectives:
+- System & Structure (40 entities)
+- Process & Execution (128 entities)
+- Artifact & Evidence (60 entities)
+- Governance & Lifecycle (107 entities)
+
+Raw entities discovered: ~335 | Canonical entities: 79
+
+Elimination rules applied:
+- Implementation-specific entities (Mutex, Deadlock, RaceCondition, etc.)
+- Control flow primitives (Fork, Join, Sequence, Iteration, DecisionPoint)
+- Derived/secondary concepts (DependencyGraph, ExecutionTrace, etc.)
+- Temporal primitives (Duration, Timeout, Pause, ResumePoint)
+- Quality gate constructs (DefinitionOfDone)
+- Internal process mechanics (Compensation, SideEffect, Backpressure, etc.)
+- Actor/session subtypes (HumanActor, AISession, etc.)
+- Process subtypes (Saga, Choreography, Batch, Subprocess, Pipeline, etc.)
+- Overly granular governance mechanics (Motion, Quorum, Bylaw, etc.)
+
+================================================================================
+TIER 1: SYSTEM FOUNDATION
+================================================================================
+
+### KERNEL
+1. Name: Kernel
+2. Purpose: To serve as the root container and identity of the entire Radius1 engineering system.
+3. Responsibility: Owning the complete structural composition, lifecycle, and integrity of all entities within its boundary.
+4. Owner: Constitution
+5. Lifecycle: Conceived → Bootstrapped → Active → Maintenance → Sunset → Archive
+6. Allowed Relationships: Contains Domain, Subsystem, Module, Component, Primitive, Layer, Slice, Boundary, View.
+7. Forbidden Relationships: May not be contained by another Kernel; may not depend on any external entity.
+8. Cardinality: 1:1
+9. Stability: Static
+10. Versionable: Yes
+11. Freezable: Yes
+12. AI Creatable: No
+13. AI Modifiable: With Approval
+14. Human Modifiable: Yes
+15. Source of Truth: 00-CONSTITUTION/
+
+---
+
+### DOMAIN
+1. Name: Domain
+2. Purpose: To bound a coherent area of knowledge, responsibility, and language within the Kernel.
+3. Responsibility: Encapsulating a distinct problem space and defining the ubiquitous language, entities, and rules governing that space.
+4. Owner: GovernanceBody
+5. Lifecycle: Identified → Defined → Active → Consolidated → Retired
+6. Allowed Relationships: Contains Subsystem, Module, Component, Primitive; bounded by Boundary; exposes Interface.
+7. Forbidden Relationships: May not directly contain another Domain; may not cross Boundary without explicit crossing mechanism.
+8. Cardinality: 1:N
+9. Stability: Slow
+10. Versionable: Yes
+11. Freezable: Yes
+12. AI Creatable: With Approval
+13. AI Modifiable: With Approval
+14. Human Modifiable: Yes
+15. Source of Truth: 01-META-MODEL/Domain/
+
+---
+
+### SUBSYSTEM
+1. Name: Subsystem
+2. Purpose: To group modules and components that share a cohesive functional purpose within a Domain.
+3. Responsibility: Delivering a major functional area of the Kernel, including all capabilities, interfaces, and resources assigned to it.
+4. Owner: Module Lead (assigned by GovernanceBody)
+5. Lifecycle: Proposed → Approved → Forming → Active → Merging → Retired
+6. Allowed Relationships: Belongs to Domain; contains Module, Component, Primitive; exposes Interface; defines Boundary; owns Resource.
+7. Forbidden Relationships: May not belong to multiple Domains; may not contain Kernel or Domain.
+8. Cardinality: 1:N
+9. Stability: Slow
+10. Versionable: Yes
+11. Freezable: Yes
+12. AI Creatable: With Approval
+13. AI Modifiable: With Approval
+14. Human Modifiable: Yes
+15. Source of Truth: 01-META-MODEL/Subsystem/
+
+---
+
+### MODULE
+1. Name: Module
+2. Purpose: To serve as the primary unit of development, deployment, and ownership within a Subsystem.
+3. Responsibility: Implementing a bounded set of capabilities, exposing defined interfaces, and managing its internal composition.
+4. Owner: Module Lead
+5. Lifecycle: Proposed → Specified → Developing → Active → Stable → Deprecated → Retired
+6. Allowed Relationships: Belongs to Subsystem; contains Component, Primitive; exposes Interface.
+7. Forbidden Relationships: May not directly belong to Domain; may not contain Subsystem or Domain.
+8. Cardinality: 1:N
+9. Stability: Moderate
+10. Versionable: Yes
+11. Freezable: Yes
+12. AI Creatable: With Approval
+13. AI Modifiable: With Approval
+14. Human Modifiable: Yes
+15. Source of Truth: 01-META-MODEL/Module/
+
+---
+
+### COMPONENT
+1. Name: Component
+2. Purpose: To provide a reusable, composable structural unit that encapsulates specific behavior or state.
+3. Responsibility: Delivering a focused, reusable capability through well-defined interfaces while hiding internal implementation details.
+4. Owner: Module Lead
+5. Lifecycle: Proposed → Designed → Implementing → Active → Reusable → Deprecated → Retired
+6. Allowed Relationships: Belongs to Module; used by Component, Module; exposes Interface; declares Dependency; participates in Assembly.
+7. Forbidden Relationships: May not own a Module; may not contain a Subsystem; may not form circular dependency.
+8. Cardinality: 1:N
+9. Stability: Moderate
+10. Versionable: Yes
+11. Freezable: Yes
+12. AI Creatable: Yes
+13. AI Modifiable: Yes
+14. Human Modifiable: Yes
+15. Source of Truth: Owning Module's META/Component/
+
+---
+
+### PRIMITIVE
+1. Name: Primitive
+2. Purpose: To serve as the fundamental, indivisible building block from which all higher-order entities are composed.
+3. Responsibility: Providing atomic concepts, values, and operations that cannot be decomposed further within the Kernel's ontology.
+4. Owner: GovernanceBody
+5. Lifecycle: Identified → Ratified → Active → Universal → Immutable
+6. Allowed Relationships: Used by Component, Module, Subsystem; defined within Domain; referenced by Interface.
+7. Forbidden Relationships: May not contain Component, Module, or Subsystem; may not depend on non-Primitive; may not be deprecated once ratified.
+8. Cardinality: N:M
+9. Stability: Static
+10. Versionable: No
+11. Freezable: Yes
+12. AI Creatable: No
+13. AI Modifiable: No
+14. Human Modifiable: No
+15. Source of Truth: 01-META-MODEL/Primitive/
+
+---
+
+### RESOURCE
+1. Name: Resource
+2. Purpose: To represent any consumable, allocable, or manageable asset that entities within the Kernel require to operate.
+3. Responsibility: Defining a named, typed, measurable asset that can be allocated to and consumed by entities.
+4. Owner: GovernanceBody
+5. Lifecycle: Identified → Classified → Available → Allocated → Constrained → Depleted → Reclaimed
+6. Allowed Relationships: Allocated to Module, Subsystem, Component, Feature; constrained by Constraint; hosted on Tier.
+7. Forbidden Relationships: May not be owned by an Interface; may not exist without a classification.
+8. Cardinality: N:M
+9. Stability: Moderate
+10. Versionable: Yes
+11. Freezable: Yes
+12. AI Creatable: With Approval
+13. AI Modifiable: With Approval
+14. Human Modifiable: Yes
+15. Source of Truth: 01-META-MODEL/Resource/
+
+================================================================================
+TIER 2: STRUCTURE & ARCHITECTURE
+================================================================================
+
+### LAYER
+1. Name: Layer
+2. Purpose: To define a horizontal architectural stratum that separates concerns by abstraction level within the Kernel.
+3. Responsibility: Providing a level of abstraction that groups entities by their architectural role and enforces directional rules between strata.
+4. Owner: GovernanceBody
+5. Lifecycle: Proposed → Ratified → Active → Stable → Superseded → Retired
+6. Allowed Relationships: Contains Module, Component, Primitive; stacked above/below Layer; intersected by Slice; entities in upper layers depend on lower layers.
+7. Forbidden Relationships: May not contain Domain or Subsystem; may not form circular stack dependencies.
+8. Cardinality: 1:N
+9. Stability: Slow
+10. Versionable: Yes
+11. Freezable: Yes
+12. AI Creatable: No
+13. AI Modifiable: No
+14. Human Modifiable: Yes
+15. Source of Truth: 01-META-MODEL/Layer/
+
+---
+
+### TIER
+1. Name: Tier
+2. Purpose: To distinguish physical or logical deployment levels that govern runtime behavior, availability, and access patterns.
+3. Responsibility: Separating the system into runtime execution levels and defining the rules for communication and dependency across those levels.
+4. Owner: GovernanceBody
+5. Lifecycle: Defined → Ratified → Active → Stable → Retired
+6. Allowed Relationships: Contains Subsystem, Module; communicates with Tier; separated from Tier by Boundary; hosts Resource.
+7. Forbidden Relationships: May not contain Slice; may not form circular hosting dependencies.
+8. Cardinality: 1:N
+9. Stability: Static
+10. Versionable: Yes
+11. Freezable: Yes
+12. AI Creatable: No
+13. AI Modifiable: No
+14. Human Modifiable: Yes
+15. Source of Truth: 01-META-MODEL/Tier/
+
+---
+
+### SLICE
+1. Name: Slice
+2. Purpose: To represent a vertical, cross-cutting decomposition that spans multiple layers and modules to deliver an end-to-end capability.
+3. Responsibility: Defining a complete user- or system-facing capability by connecting all structural elements required across all affected layers and modules.
+4. Owner: GovernanceBody
+5. Lifecycle: Identified → Mapped → Active → Evolving → Consolidated → Retired
+6. Allowed Relationships: Crosses Layer; spans Module, Component; delivers Capability, Feature; intersects with Slice.
+7. Forbidden Relationships: May not be contained within a single Layer; may not be owned by a single Module.
+8. Cardinality: N:M
+9. Stability: Moderate
+10. Versionable: Yes
+11. Freezable: Yes
+12. AI Creatable: With Approval
+13. AI Modifiable: With Approval
+14. Human Modifiable: Yes
+15. Source of Truth: 01-META-MODEL/Slice/
+
+---
+
+### ASSEMBLY
+1. Name: Assembly
+2. Purpose: To compose multiple entities into a deliberately organized unit that serves a specific structural or functional purpose.
+3. Responsibility: Aggregating Components, Modules, or other entities into a cohesive, nameable unit with shared interfaces and lifecycle.
+4. Owner: Module Lead
+5. Lifecycle: Defined → Composed → Active → Reconfiguring → Decomposed
+6. Allowed Relationships: Contains Component, Module, Primitive; exposes Interface; declares Dependency; belongs to Subsystem.
+7. Forbidden Relationships: May not contain Kernel or Domain; may not be empty.
+8. Cardinality: 1:N
+9. Stability: Moderate
+10. Versionable: Yes
+11. Freezable: Yes
+12. AI Creatable: Yes
+13. AI Modifiable: Yes
+14. Human Modifiable: Yes
+15. Source of Truth: Owning Module's META/Assembly/
+
+---
+
+### TOPOLOGY
+1. Name: Topology
+2. Purpose: To describe the arrangement, shape, and connectivity pattern of entities within a defined scope of the Kernel.
+3. Responsibility: Capturing the structural arrangement of entities, including their spatial relationships, communication paths, and dependency flows.
+4. Owner: GovernanceBody
+5. Lifecycle: Observed → Documented → Active → Evolving → Superseded → Archived
+6. Allowed Relationships: Describes Kernel, Domain, Subsystem, Layer, Slice.
+7. Forbidden Relationships: May not prescribe implementation; may not be confused with governance or workflow models.
+8. Cardinality: 1:N
+9. Stability: Moderate
+10. Versionable: Yes
+11. Freezable: Yes
+12. AI Creatable: Yes
+13. AI Modifiable: Yes
+14. Human Modifiable: Yes
+15. Source of Truth: 01-META-MODEL/Topology/
+
+================================================================================
+TIER 3: COMMUNICATION & CONTRACTS
+================================================================================
+
+### INTERFACE
+1. Name: Interface
+2. Purpose: To define the contract surface through which an entity exposes capabilities to other entities.
+3. Responsibility: Specifying the operations, events, data structures, and protocols that consumers can rely upon, independent of internal implementation.
+4. Owner: Module
+5. Lifecycle: Draft → Reviewed → Ratified → Active → Evolving → Deprecated → Retired
+6. Allowed Relationships: Exposed by Component, Module, Subsystem; consumed by Component, Module; constrained by Contract.
+7. Forbidden Relationships: May not be owned independently; may not contain implementation logic.
+8. Cardinality: 1:N
+9. Stability: Slow
+10. Versionable: Yes
+11. Freezable: Yes
+12. AI Creatable: With Approval
+13. AI Modifiable: With Approval
+14. Human Modifiable: Yes
+15. Source of Truth: Owning entity's META/Interface/
+
+---
+
+### BOUNDARY
+1. Name: Boundary
+2. Purpose: To delineate the limit of a Domain, Subsystem, or Context, enforcing encapsulation and controlling cross-boundary interaction.
+3. Responsibility: Defining the perimeter of an entity's authority, determining what is internal vs. external, and governing what may cross in either direction.
+4. Owner: GovernanceBody
+5. Lifecycle: Defined → Ratified → Active → Adjusted → Dissolved
+6. Allowed Relationships: Surrounds Domain, Subsystem, Context; crossed by explicit crossing mechanism.
+7. Forbidden Relationships: May not exist without a bounded entity; may not be crossed without an explicit crossing mechanism.
+8. Cardinality: 1:1
+9. Stability: Slow
+10. Versionable: Yes
+11. Freezable: Yes
+12. AI Creatable: No
+13. AI Modifiable: No
+14. Human Modifiable: Yes
+15. Source of Truth: 01-META-MODEL/Boundary/
+
+---
+
+### CHANNEL
+1. Name: Channel
+2. Purpose: To establish a directed communication pathway between two or more entities for data, control, or event flow.
+3. Responsibility: Carrying typed messages or signals from source entities to destination entities with defined reliability, ordering, and protocol guarantees.
+4. Owner: Module Lead
+5. Lifecycle: Defined → Connected → Active → Throttled → Disconnected → Removed
+6. Allowed Relationships: Connects Interface; carries data between Component, Module, Subsystem.
+7. Forbidden Relationships: May not connect entities in different Kernels; may not bypass Boundary without going through Port.
+8. Cardinality: N:M
+9. Stability: Moderate
+10. Versionable: Yes
+11. Freezable: Yes
+12. AI Creatable: Yes
+13. AI Modifiable: Yes
+14. Human Modifiable: Yes
+15. Source of Truth: Owning Module's META/Channel/
+
+---
+
+### CONTRACT
+1. Name: Contract
+2. Purpose: To formalize the agreement between two or more entities regarding their mutual obligations, interfaces, and behaviors.
+3. Responsibility: Binding provider and consumer entities to explicit terms of interaction, including preconditions, postconditions, invariants, and versioning rules.
+4. Owner: GovernanceBody
+5. Lifecycle: Draft → Negotiated → Ratified → Active → Amending → Superseded → Expired
+6. Allowed Relationships: Binds Interface to Interface; spans Boundary; enforced by Constraint; consumed by Module, Component.
+7. Forbidden Relationships: May not be unilateral; may not contradict Invariant; may not span Kernel boundary.
+8. Cardinality: N:M
+9. Stability: Slow
+10. Versionable: Yes
+11. Freezable: Yes
+12. AI Creatable: With Approval
+13. AI Modifiable: With Approval
+14. Human Modifiable: Yes
+15. Source of Truth: 06-CONTRACTS/
+
+================================================================================
+TIER 4: CAPABILITY & FUNCTION
+================================================================================
+
+### CAPABILITY
+1. Name: Capability
+2. Purpose: To declare what the Kernel or a constituent entity can do, independent of how it is implemented.
+3. Responsibility: Defining a distinct, testable ability of the system that delivers value to stakeholders, described in implementation-neutral terms.
+4. Owner: GovernanceBody
+5. Lifecycle: Identified → Specified → Delivered → Evolving → Deprecated → Retired
+6. Allowed Relationships: Delivered by Module, Subsystem, Component; composed of Feature; referenced by Slice; tested by Evidence; exposed via Interface.
+7. Forbidden Relationships: May not specify implementation; may not be owned by Interface or Primitive directly.
+8. Cardinality: N:M
+9. Stability: Moderate
+10. Versionable: Yes
+11. Freezable: Yes
+12. AI Creatable: With Approval
+13. AI Modifiable: With Approval
+14. Human Modifiable: Yes
+15. Source of Truth: 01-META-MODEL/Capability/
+
+---
+
+### FEATURE
+1. Name: Feature
+2. Purpose: To represent a user-visible, deliverable unit of functionality that realizes one or more Capabilities.
+3. Responsibility: Providing a concrete, observable, and deliverable piece of functionality that stakeholders can interact with or depend upon.
+4. Owner: Module Lead
+5. Lifecycle: Requested → Specified → Implementing → Delivered → Active → Enhancing → Deprecated → Removed
+6. Allowed Relationships: Realizes Capability; spans Module, Component; intersects Slice; exposed via Interface; tested by Evidence.
+7. Forbidden Relationships: May not exist without realizing at least one Capability; may not bypass Interface exposure.
+8. Cardinality: N:M
+9. Stability: Fast
+10. Versionable: Yes
+11. Freezable: Yes
+12. AI Creatable: With Approval
+13. AI Modifiable: With Approval
+14. Human Modifiable: Yes
+15. Source of Truth: 07-WORKFLOW/
+
+================================================================================
+TIER 5: WORK & PROCESS
+================================================================================
+
+### PROCESS
+1. Name: Process
+2. Purpose: To represent a defined sequence of operations and decisions that transforms inputs into outputs according to specified rules.
+3. Responsibility: Defining how work is done—specifying the sequence, the rules, the inputs/outputs, and the quality criteria.
+4. Owner: GovernanceBody
+5. Lifecycle: Defined → Documented → Approved → Operational → Under-Review → Updated → Retired
+6. Allowed Relationships: Has Task, Action; has Input, Output; has QualityGate; produces Artifact.
+7. Forbidden Relationships: May not have circular step dependencies; may not lack defined output.
+8. Cardinality: N
+9. Stability: Slow
+10. Versionable: Yes
+11. Freezable: Yes
+12. AI Creatable: No
+13. AI Modifiable: With Approval
+14. Human Modifiable: Yes
+15. Source of Truth: 07-WORKFLOW/
+
+---
+
+### WORKFLOW
+1. Name: Workflow
+2. Purpose: To define a structured, repeatable pattern of activities, decisions, and transitions for accomplishing a specific type of work.
+3. Responsibility: Providing the blueprint of work execution—defining what happens, in what order, under what conditions, and by whom.
+4. Owner: GovernanceBody
+5. Lifecycle: Designed → Reviewed → Approved → Active → Evolving → Deprecated → Retired
+6. Allowed Relationships: Has Activity, DecisionPoint, Transition, EntryPoint, ExitPoint, ParticipantRole.
+7. Forbidden Relationships: May not have unreachable activities; may not have deadlock; may not lack ExitPoint.
+8. Cardinality: N
+9. Stability: Slow
+10. Versionable: Yes
+11. Freezable: Yes
+12. AI Creatable: No
+13. AI Modifiable: With Approval
+14. Human Modifiable: Yes
+15. Source of Truth: 07-WORKFLOW/
+
+---
+
+### TASK
+1. Name: Task
+2. Purpose: To represent a unit of work to be performed by an actor within a session toward a defined objective.
+3. Responsibility: Encapsulating work definition, assignment, tracking, and completion validation.
+4. Owner: Session
+5. Lifecycle: Created → Assigned → Ready → In-Progress → Blocked | Awaiting-Review → Completing → Completed | Cancelled
+6. Allowed Relationships: Has SubTask, Assignee, Dependency; belongs to Phase; produces Output; has Constraint.
+7. Forbidden Relationships: May not exist without Objective; may not have no Assignee.
+8. Cardinality: N
+9. Stability: Moderate
+10. Versionable: Yes
+11. Freezable: Yes
+12. AI Creatable: With Approval
+13. AI Modifiable: With Approval
+14. Human Modifiable: Yes
+15. Source of Truth: 99-STATE/
+
+---
+
+### MILESTONE
+1. Name: Milestone
+2. Purpose: To mark a significant achievement point or checkpoint within a lifecycle, plan, or project.
+3. Responsibility: Signaling progress; triggering reviews; enabling progress measurement and accountability.
+4. Owner: Module Lead
+5. Lifecycle: Defined → Pending → Approaching → Reached → Verified → Celebrated → Archived
+6. Allowed Relationships: Marks Lifecycle, Plan; reached by Entity; triggers Review; measured by Metric.
+7. Forbidden Relationships: May not be retroactively claimed; may not be undefined; may not be deleted after verification.
+8. Cardinality: N:M
+9. Stability: Fast
+10. Versionable: Yes
+11. Freezable: Yes
+12. AI Creatable: With Approval
+13. AI Modifiable: With Approval
+14. Human Modifiable: Yes
+15. Source of Truth: 07-WORKFLOW/
+
+---
+
+### PLAN
+1. Name: Plan
+2. Purpose: To prescribe the intended course of action, including objectives, scope, sequence, resources, and criteria for a body of work.
+3. Responsibility: Providing the authoritative blueprint for executing work, establishing expectations, and enabling progress tracking.
+4. Owner: GovernanceBody
+5. Lifecycle: Drafted → Reviewed → Approved → Active → In Progress → Adjusted → Completed → Closed → Archived
+6. Allowed Relationships: References Specifications; defines Deliverables; traced to DecisionRecord; contains Schedules.
+7. Forbidden Relationships: May not be Active without Approval; may not contradict Constitution; may not omit exit criteria.
+8. Cardinality: N:1 per Scope
+9. Stability: Moderate
+10. Versionable: Yes
+11. Freezable: Yes
+12. AI Creatable: With Approval
+13. AI Modifiable: With Approval
+14. Human Modifiable: Yes
+15. Source of Truth: Governance Ledger
+
+================================================================================
+TIER 6: GOVERNANCE FOUNDATION
+================================================================================
+
+### CONSTITUTION
+1. Name: Constitution
+2. Purpose: To serve as the supreme governance instrument that establishes the kernel's fundamental principles, authority structures, and amendment procedures.
+3. Responsibility: Providing the ultimate source of legitimacy for all governance actions; overriding all other instruments in case of conflict.
+4. Owner: Constitution
+5. Lifecycle: Draft → Ratified → Active → AmendmentInProgress → Ratified
+6. Allowed Relationships: Empowers GovernanceBody; Establishes Charter; Defines Rule; Supersedes AllGovernanceEntities.
+7. Forbidden Relationships: May not be overridden by any entity except by its own amendment procedure.
+8. Cardinality: 1:1
+9. Stability: Slow
+10. Versionable: Yes
+11. Freezable: Yes
+12. AI Creatable: No
+13. AI Modifiable: No
+14. Human Modifiable: With Approval
+15. Source of Truth: 00-CONSTITUTION/Constitution.md
+
+---
+
+### CHARTER
+1. Name: Charter
+2. Purpose: To establish the existence, authority, and operating parameters of a governance body, project, or module within the kernel.
+3. Responsibility: Defining scope of authority, decision rights, membership, and dissolution conditions.
+4. Owner: Constitution
+5. Lifecycle: Draft → Proposed → Ratified → Active → Suspended → Dissolved
+6. Allowed Relationships: Governs GovernanceBody; Delegates Authority; References Constitution.
+7. Forbidden Relationships: May not be deleted (only Dissolved); may not bypass Constitution; may not self-amend.
+8. Cardinality: 1:N
+9. Stability: Slow
+10. Versionable: Yes
+11. Freezable: Yes
+12. AI Creatable: With Approval
+13. AI Modifiable: With Approval
+14. Human Modifiable: With Approval
+15. Source of Truth: 00-CONSTITUTION/Charters/
+
+---
+
+### GOVERNANCE_BODY
+1. Name: GovernanceBody
+2. Purpose: To constitute an organized group of stakeholders with defined authority to make decisions, set policy, and oversee governance within a scope.
+3. Responsibility: Exercising chartered authority; making binding decisions; delegating responsibilities; ensuring accountability.
+4. Owner: Constitution
+5. Lifecycle: Chartered → Forming → Active → UnderReview → Rechartered → Suspended → Dissolved
+6. Allowed Relationships: CharteredBy Charter; ComposedOf Role; Creates Policy; Oversees Jurisdiction.
+7. Forbidden Relationships: May not exceed chartered authority; may not dissolve itself without ratification.
+8. Cardinality: N:M
+9. Stability: Slow
+10. Versionable: Yes
+11. Freezable: No
+12. AI Creatable: No
+13. AI Modifiable: No
+14. Human Modifiable: With Approval
+15. Source of Truth: 02-GOVERNANCE/Bodies/
+
+---
+
+### ROLE
+1. Name: Role
+2. Purpose: To define a named set of responsibilities, permissions, and authority boundaries that can be assigned to actors.
+3. Responsibility: Making explicit what an actor may do, must do, and cannot do within the repository.
+4. Owner: GovernanceBody
+5. Lifecycle: Proposed → Reviewed → Approved → Active → Deprecated → Retired
+6. Allowed Relationships: Has Responsibility, Permission; assigned to Actor; may delegate to Role.
+7. Forbidden Relationships: May not contradict Constitution; may not have circular delegation.
+8. Cardinality: N
+9. Stability: Slow
+10. Versionable: Yes
+11. Freezable: Yes
+12. AI Creatable: No
+13. AI Modifiable: No
+14. Human Modifiable: Yes
+15. Source of Truth: 00-CONSTITUTION/
+
+---
+
+### POLICY
+1. Name: Policy
+2. Purpose: To establish a governing principle that guides decision-making and sets boundaries for organizational behavior.
+3. Responsibility: Providing the "why" and "what" of governance; authorizing Rules and delegating implementation.
+4. Owner: GovernanceBody
+5. Lifecycle: Draft → Consulted → Approved → Communicated → Active → UnderReview → Amended/Withdrawn
+6. Allowed Relationships: Authorizes Rule; EnforcedBy Audit; ExceptedBy Exception.
+7. Forbidden Relationships: May not be self-contradictory; may not be ignored by lower governance tiers.
+8. Cardinality: 1:N
+9. Stability: Slow
+10. Versionable: Yes
+11. Freezable: Yes
+12. AI Creatable: With Approval
+13. AI Modifiable: No
+14. Human Modifiable: With Approval
+15. Source of Truth: 02-GOVERNANCE/Policies/
+
+---
+
+### RULE
+1. Name: Rule
+2. Purpose: To state a binding constraint on behavior, structure, or process that must be observed by all entities within its jurisdiction.
+3. Responsibility: Defining clear, enforceable boundaries; supporting automated and manual compliance checking.
+4. Owner: GovernanceBody
+5. Lifecycle: Draft → Proposed → Approved → Active → Suspended → Amended → Repealed
+6. Allowed Relationships: DerivedFrom Standard; EnforcedBy Sanction; GovernedBy Policy.
+7. Forbidden Relationships: May not contradict Constitution; may not be applied retroactively; may not have unstated exceptions.
+8. Cardinality: N:M
+9. Stability: Moderate
+10. Versionable: Yes
+11. Freezable: Yes
+12. AI Creatable: With Approval
+13. AI Modifiable: With Approval
+14. Human Modifiable: With Approval
+15. Source of Truth: 02-GOVERNANCE/Rules/
+
+================================================================================
+TIER 7: STANDARDS & CONSTRAINTS
+================================================================================
+
+### STANDARD
+1. Name: Standard
+2. Purpose: To define mandatory requirements, specifications, or criteria that entities must meet to ensure consistency, interoperability, and quality.
+3. Responsibility: Prescribing unambiguous, testable, and enforceable requirements within its scope.
+4. Owner: GovernanceBody
+5. Lifecycle: Draft → Proposed → UnderReview → Approved → Active → UnderRevision → Superseded/Retired
+6. Allowed Relationships: Mandates ComplianceBaseline; ReferencedBy Contract; EnforcedBy Audit.
+7. Forbidden Relationships: May not conflict with Constitution; may not be enforced while in Draft.
+8. Cardinality: 1:N
+9. Stability: Slow
+10. Versionable: Yes
+11. Freezable: Yes
+12. AI Creatable: With Approval
+13. AI Modifiable: With Approval
+14. Human Modifiable: With Approval
+15. Source of Truth: 03-STANDARDS/
+
+---
+
+### GUIDELINE
+1. Name: Guideline
+2. Purpose: To provide recommended practices and advisory guidance that encourage consistency without mandating specific approaches.
+3. Responsibility: Offering best-practice direction, explaining rationale, and suggesting implementation patterns.
+4. Owner: GovernanceBody
+5. Lifecycle: Draft → Published → Active → Updated → Deprecated/Withdrawn
+6. Allowed Relationships: Supports Standard; InformedBy Precedent; ReferencedBy Contract.
+7. Forbidden Relationships: May not be enforced by Sanction; may not override Standard; may not create Obligation.
+8. Cardinality: 1:N
+9. Stability: Moderate
+10. Versionable: Yes
+11. Freezable: No
+12. AI Creatable: Yes
+13. AI Modifiable: With Approval
+14. Human Modifiable: Yes
+15. Source of Truth: 03-STANDARDS/Guidelines/
+
+---
+
+### CONSTRAINT
+1. Name: Constraint
+2. Purpose: To impose a structural or behavioral limitation on entities to ensure architectural integrity.
+3. Responsibility: Defining a rule that restricts how entities may be composed, connected, named, or evolved, and enforcing compliance.
+4. Owner: GovernanceBody
+5. Lifecycle: Identified → Specified → Ratified → Active → Amending → Superseded → Retired
+6. Allowed Relationships: Applies to Module, Component, Interface, Boundary, Layer; referenced by Invariant.
+7. Forbidden Relationships: May not contradict Invariant; may not be advisory only (must be enforceable).
+8. Cardinality: N:M
+9. Stability: Slow
+10. Versionable: Yes
+11. Freezable: Yes
+12. AI Creatable: With Approval
+13. AI Modifiable: With Approval
+14. Human Modifiable: Yes
+15. Source of Truth: 01-META-MODEL/Constraint/
+
+---
+
+### INVARIANT
+1. Name: Invariant
+2. Purpose: To declare a condition that must always hold true across all states and transitions of the Kernel's structure.
+3. Responsibility: Defining an unviolable structural truth that governs the architecture regardless of implementation, technology, or evolution.
+4. Owner: Constitution
+5. Lifecycle: Proposed → Ratified → Active → Eternal
+6. Allowed Relationships: Governs Kernel, Domain, Layer, Boundary, Dependency; referenced by Constraint, Contract; validated by Evidence.
+7. Forbidden Relationships: May not be scoped to a single Module; may not be temporary; may not be created without Constitution-level ratification.
+8. Cardinality: N:1
+9. Stability: Static
+10. Versionable: No
+11. Freezable: Yes
+12. AI Creatable: No
+13. AI Modifiable: No
+14. Human Modifiable: No
+15. Source of Truth: 00-CONSTITUTION/
+
+================================================================================
+TIER 8: SESSION & PARTICIPATION
+================================================================================
+
+### SESSION
+1. Name: Session
+2. Purpose: To represent a bounded period of engagement during which actors perform work toward defined objectives within the repository.
+3. Responsibility: Maintaining continuity of context, tracking participation, and ensuring all actions within its boundary are attributable.
+4. Owner: GovernanceBody
+5. Lifecycle: Initiated → Active → Suspended → Completing → Completed → Archived | Terminated
+6. Allowed Relationships: Has Actor, Context, Task; produces Decision; emits Event; belongs to Workflow.
+7. Forbidden Relationships: May not own Repository (only Constitution does); may not mutate state without emitting Event.
+8. Cardinality: N
+9. Stability: Fast
+10. Versionable: Yes
+11. Freezable: Yes
+12. AI Creatable: With Approval
+13. AI Modifiable: With Approval
+14. Human Modifiable: Yes
+15. Source of Truth: 99-STATE/
+
+---
+
+### ACTOR
+1. Name: Actor
+2. Purpose: To represent any entity—human, automated, or hybrid—that can perform actions, make decisions, or assume responsibilities within a session.
+3. Responsibility: Being accountable for the actions it initiates, the decisions it makes, and the obligations it accepts.
+4. Owner: Constitution
+5. Lifecycle: Registered → Active → Inactive → Decommissioned
+6. Allowed Relationships: Has Role; performs Action; participates in Session; makes Decision; owns Task.
+7. Forbidden Relationships: May not have no Role; may not modify Constitution.
+8. Cardinality: N
+9. Stability: Moderate
+10. Versionable: Yes
+11. Freezable: No
+12. AI Creatable: No
+13. AI Modifiable: No
+14. Human Modifiable: Yes
+15. Source of Truth: 00-CONSTITUTION/
+
+---
+
+### PARTICIPANT
+1. Name: Participant
+2. Purpose: To represent the binding of an Actor to a Session with specific role assignments and permissions for that session's duration.
+3. Responsibility: Adhering to session-specific rules, contributing within assigned role boundaries, and maintaining session context coherence.
+4. Owner: Session
+5. Lifecycle: Invited → Accepted → Active → Paused → Departed | Removed
+6. Allowed Relationships: Binds Actor; binds Session; assumes Role; contributes to Task.
+7. Forbidden Relationships: May not exist outside Session; may not have Role not in Session.
+8. Cardinality: N:M
+9. Stability: Fast
+10. Versionable: No
+11. Freezable: Yes
+12. AI Creatable: With Approval
+13. AI Modifiable: With Approval
+14. Human Modifiable: Yes
+15. Source of Truth: 99-STATE/
+
+================================================================================
+TIER 9: CONTEXT & ENVIRONMENT
+================================================================================
+
+### CONTEXT
+1. Name: Context
+2. Purpose: To represent the situational frame within which an entity is interpreted, executed, or accessed.
+3. Responsibility: Providing the environmental, temporal, and authority conditions that determine how entities behave and how decisions are made.
+4. Owner: Session
+5. Lifecycle: Created → Active → Modified → Saved → Discarded
+6. Allowed Relationships: Contains Scope, Namespace; references Module, Component; governs AI and Human permissions.
+7. Forbidden Relationships: May not persist beyond the situation it represents; may not override frozen Invariant.
+8. Cardinality: N:M
+9. Stability: Fast
+10. Versionable: No
+11. Freezable: No
+12. AI Creatable: Yes
+13. AI Modifiable: Yes
+14. Human Modifiable: Yes
+15. Source of Truth: 99-STATE/Context/
+
+---
+
+### ENVIRONMENT
+1. Name: Environment
+2. Purpose: To represent the complete operational surroundings in which processes execute, including available capabilities, constraints, and external interfaces.
+3. Responsibility: Providing the substrate on which execution occurs, including resource availability, external dependencies, and environmental invariants.
+4. Owner: Module
+5. Lifecycle: Defined → Provisioned → Active → Degraded → Restored | Retired
+6. Allowed Relationships: Provides Resource; has Constraint; hosts Session; has Invariant.
+7. Forbidden Relationships: May not change without notification; may not hide Dependencies.
+8. Cardinality: N
+9. Stability: Moderate
+10. Versionable: Yes
+11. Freezable: Yes
+12. AI Creatable: No
+13. AI Modifiable: With Approval
+14. Human Modifiable: Yes
+15. Source of Truth: 99-STATE/
+
+================================================================================
+TIER 10: DECISION & REASONING
+================================================================================
+
+### DECISION
+1. Name: Decision
+2. Purpose: To represent a choice made among alternatives that commits the repository to a specific course of action, design, or policy.
+3. Responsibility: Capturing the choice, the rationale, the alternatives considered, and the consequences accepted.
+4. Owner: Actor (the decision-maker)
+5. Lifecycle: Identified → Proposed → Deliberated → Made → Recorded → Implemented → Reviewed
+6. Allowed Relationships: Made by Actor; has Context, Rationale, Alternative, Consequence; recorded in DecisionRecord.
+7. Forbidden Relationships: May not exist without Rationale; may not be reversible without process.
+8. Cardinality: N
+9. Stability: Slow
+10. Versionable: Yes
+11. Freezable: Yes
+12. AI Creatable: With Approval
+13. AI Modifiable: With Approval
+14. Human Modifiable: Yes
+15. Source of Truth: 05-EVIDENCE/
+
+---
+
+### DECISION_RECORD
+1. Name: DecisionRecord
+2. Purpose: To capture a significant decision, including its context, options considered, rationale, and consequences, for future reference.
+3. Responsibility: Preserving the reasoning behind important decisions so that future stakeholders can understand why a choice was made.
+4. Owner: GovernanceBody
+5. Lifecycle: Proposed → Options Identified → Evaluated → Decided → Recorded → Communicated → Revisited/Affirmed → Archived
+6. Allowed Relationships: References Findings; signed by deciders; traced to Conclusion; may trigger Plan.
+7. Forbidden Relationships: May not be Recorded without Options and Rationale; may not be Revisited without new Evidence; may not contradict its own Rationale.
+8. Cardinality: 1:N
+9. Stability: Slow
+10. Versionable: Yes
+11. Freezable: Yes
+12. AI Creatable: With Approval
+13. AI Modifiable: With Approval
+14. Human Modifiable: With Approval
+15. Source of Truth: Governance Ledger
+
+---
+
+### EVIDENCE
+1. Name: Evidence
+2. Purpose: To provide factual support for a claim, assertion, finding, or conclusion through verifiable data, observation, or documentation.
+3. Responsibility: Grounding claims in observable, verifiable reality and enabling rational assessment of their validity.
+4. Owner: Process
+5. Lifecycle: Gathered → Validated → Linked → Referenced → Challenged → Reaffirmed/Withdrawn → Archived
+6. Allowed Relationships: Supports Claim, Finding; traced to Assertion; signed; contradicted by Counter-Evidence.
+7. Forbidden Relationships: May not be fabricated; may not support contradictory Claims without documented conflict.
+8. Cardinality: N:M
+9. Stability: Static after Validation
+10. Versionable: No
+11. Freezable: Yes
+12. AI Creatable: Yes
+13. AI Modifiable: No
+14. Human Modifiable: No
+15. Source of Truth: Evidence Vault
+
+---
+
+### FINDING
+1. Name: Finding
+2. Purpose: To document a discovered fact, observation, or result that emerged from investigation, analysis, or assessment.
+3. Responsibility: Communicating what was discovered, including its nature, significance, and supporting evidence.
+4. Owner: Process
+5. Lifecycle: Observed → Documented → Reviewed → Validated → Published → Challenged → Reaffirmed/Corrected → Archived
+6. Allowed Relationships: References Evidence; summarized in Report; traced to Assessment; triggers Conclusion.
+7. Forbidden Relationships: May not be published without Review; may not contradict its own Evidence.
+8. Cardinality: N:M
+9. Stability: Moderate
+10. Versionable: Yes
+11. Freezable: Yes
+12. AI Creatable: Yes
+13. AI Modifiable: With Approval
+14. Human Modifiable: Yes
+15. Source of Truth: Evidence Vault
+
+---
+
+### CONCLUSION
+1. Name: Conclusion
+2. Purpose: To synthesize Findings, Evidence, and reasoning into a final judgment, determination, or decision about a matter.
+3. Responsibility: Representing the endpoint of reasoning, providing a definitive statement derived from evidence and analysis.
+4. Owner: GovernanceBody
+5. Lifecycle: Drafted → Supported by Findings → Reviewed → Approved → Published → Challenged → Reaffirmed/Replaced → Archived
+6. Allowed Relationships: References Findings; traced to Evidence; triggers DecisionRecord; signed.
+7. Forbidden Relationships: May not be Approved without supporting Findings; may not contradict referenced Evidence.
+8. Cardinality: 1:N
+9. Stability: Slow
+10. Versionable: Yes
+11. Freezable: Yes
+12. AI Creatable: With Approval
+13. AI Modifiable: No
+14. Human Modifiable: With Approval
+15. Source of Truth: Governance Ledger
+
+================================================================================
+TIER 11: ARTIFACTS
+================================================================================
+
+### ARTIFACT
+1. Name: Artifact
+2. Purpose: To serve as the root ontological category for any item produced, consumed, transformed, or referenced within the kernel.
+3. Responsibility: Representing the universal supertype from which all artifact subtypes derive their identity and behavior.
+4. Owner: Process
+5. Lifecycle: Defined → Created → Active → Archived → Destroyed
+6. Allowed Relationships: Consumed by Process; produced by Process; composed of other Artifacts; traced via TraceabilityLink; versioned as Revision; baselined via Baseline.
+7. Forbidden Relationships: May not directly own a Module; may not modify a Governance Rule; may not be directly self-referential (recursive composition of distinct artifacts is permitted).
+8. Cardinality: N:M
+9. Stability: Slow
+10. Versionable: Yes
+11. Freezable: Yes
+12. AI Creatable: Yes
+13. AI Modifiable: With Approval
+14. Human Modifiable: Yes
+15. Source of Truth: Artifact Repository
+
+---
+
+### DOCUMENT
+1. Name: Document
+2. Purpose: To carry structured human-readable and machine-processable information in a coherent, navigable form.
+3. Responsibility: Communicating, prescribing, describing, or recording information with defined structure, scope, and audience.
+4. Owner: Module
+5. Lifecycle: Draft → Review → Approved → Published → Superseded → Archived
+6. Allowed Relationships: Traced to Specification; versioned; baselined; signed.
+7. Forbidden Relationships: May not directly execute a Process; may not be self-approving; may not be both Draft and Published.
+8. Cardinality: 1:N
+9. Stability: Moderate
+10. Versionable: Yes
+11. Freezable: Yes
+12. AI Creatable: Yes
+13. AI Modifiable: With Approval
+14. Human Modifiable: Yes
+15. Source of Truth: Artifact Repository
+
+---
+
+### SPECIFICATION
+1. Name: Specification
+2. Purpose: To prescribe in precise, unambiguous terms what shall be, shall do, or shall conform to.
+3. Responsibility: Defining requirements, interfaces, behaviors, formats, or constraints that other entities must satisfy.
+4. Owner: GovernanceBody
+5. Lifecycle: Proposed → Drafted → Reviewed → Approved → Baseline → Amendment → Superseded
+6. Allowed Relationships: Traced to Implementation; verified by Verification Result; validated by Validation Result; signed; baselined.
+7. Forbidden Relationships: May not be created by AI without approval; may not be modified after baseline without formal amendment.
+8. Cardinality: 1:N
+9. Stability: Static
+10. Versionable: Yes
+11. Freezable: Yes
+12. AI Creatable: With Approval
+13. AI Modifiable: No
+14. Human Modifiable: With Approval
+15. Source of Truth: Governance Ledger
+
+---
+
+### RECORD
+1. Name: Record
+2. Purpose: To capture a fact, event, observation, or state at a specific point in time as an immutable account of what occurred.
+3. Responsibility: Providing an authoritative, timestamped, non-repudiable account of something that happened or existed.
+4. Owner: Process
+5. Lifecycle: Created → Validated → Committed → Retained → Expired → Destroyed
+6. Allowed Relationships: Linked to Log; traced to Event; signed; referenced by Audit Record.
+7. Forbidden Relationships: May not be modified after Commit; may not be deleted before Retention period expires.
+8. Cardinality: N:M
+9. Stability: Static after Commit
+10. Versionable: No
+11. Freezable: Yes
+12. AI Creatable: Yes
+13. AI Modifiable: No
+14. Human Modifiable: No
+15. Source of Truth: Evidence Vault
+
+---
+
+### LOG
+1. Name: Log
+2. Purpose: To maintain a strictly chronological, append-only sequence of entries documenting events, actions, or state changes.
+3. Responsibility: Providing an ordered, tamper-evident trail of all significant occurrences for monitoring and auditing.
+4. Owner: Kernel
+5. Lifecycle: Opened → Appending → Closed → Archived → Expired
+6. Allowed Relationships: Contains Record entries; traced to AuditTrail; referenced by Report; signed.
+7. Forbidden Relationships: May not be modified after Close; may not skip entries; may not contain entries out of order.
+8. Cardinality: 1:N
+9. Stability: Fast during Appending, Static after Close
+10. Versionable: No
+11. Freezable: Yes
+12. AI Creatable: Yes
+13. AI Modifiable: No
+14. Human Modifiable: No
+15. Source of Truth: Audit Log
+
+---
+
+### REPORT
+1. Name: Report
+2. Purpose: To communicate findings, analysis, status, or assessment results to stakeholders in a structured, interpretable format.
+3. Responsibility: Synthesizing evidence, measurements, and observations into actionable information for decision support.
+4. Owner: Process
+5. Lifecycle: Commissioned → Drafted → Reviewed → Approved → Published → Superseded
+6. Allowed Relationships: References Evidence; contains Findings, Measurements; traced to Metrics; signed.
+7. Forbidden Relationships: May not modify the evidence it references; may not be self-approving.
+8. Cardinality: N:M
+9. Stability: Moderate
+10. Versionable: Yes
+11. Freezable: Yes
+12. AI Creatable: Yes
+13. AI Modifiable: With Approval
+14. Human Modifiable: Yes
+15. Source of Truth: Artifact Repository
+
+================================================================================
+TIER 12: AUTHORIZATION
+================================================================================
+
+### APPROVAL
+1. Name: Approval
+2. Purpose: To formally record that an authorized party has reviewed and accepted an artifact, decision, or state as satisfactory.
+3. Responsibility: Providing documented consent that transforms an entity from a proposed state to an authorized state.
+4. Owner: Role
+5. Lifecycle: Requested → Reviewed → Granted | Denied → Conditional → Final → Withdrawn
+6. Allowed Relationships: Must bear Signature; traced to approved Artifact; referenced by Audit Record; includes Conditions.
+7. Forbidden Relationships: May not be granted without Review; may not be both Granted and Denied; may not be withdrawn without cause.
+8. Cardinality: N:M
+9. Stability: Static after Final
+10. Versionable: Yes
+11. Freezable: Yes
+12. AI Creatable: No
+13. AI Modifiable: No
+14. Human Modifiable: With Approval
+15. Source of Truth: Governance Ledger
+
+---
+
+### AUTHORIZATION
+1. Name: Authorization
+2. Purpose: To grant specific permission to perform an action or access a capability that is not universally available.
+3. Responsibility: Defining the scope, duration, and conditions of permitted action; enabling accountability for authorized acts.
+4. Owner: GovernanceBody
+5. Lifecycle: Requested → Evaluated → Granted → Active → Renewed → Revoked → Expired
+6. Allowed Relationships: Authorizes Action; GrantedTo Role; ScopedBy Constraint; RevokedBy Authorizer.
+7. Forbidden Relationships: May not exceed granter's authority; may not be permanent without renewal; may not be transferred without delegation.
+8. Cardinality: N:M
+9. Stability: Moderate
+10. Versionable: Yes
+11. Freezable: No
+12. AI Creatable: No
+13. AI Modifiable: No
+14. Human Modifiable: With Approval
+15. Source of Truth: 02-GOVERNANCE/Authorizations/
+
+---
+
+### CERTIFICATION
+1. Name: Certification
+2. Purpose: To formally attest that an entity meets specified standards or requirements after independent verification.
+3. Responsibility: Providing independently verified assurance of compliance; enabling trust and interoperability.
+4. Owner: GovernanceBody
+5. Lifecycle: Requested → Evaluated → Verified → Granted → Active → UnderRenewal → Renewed/Revoked/Expired
+6. Allowed Relationships: Certifies Entity; IssuedBy Authority; ValidatedBy Audit; ReferencedBy Contract.
+7. Forbidden Relationships: May not be self-certified; may not be issued while non-compliance findings are open; may not be forged.
+8. Cardinality: 1:N
+9. Stability: Slow
+10. Versionable: Yes
+11. Freezable: Yes
+12. AI Creatable: No
+13. AI Modifiable: No
+14. Human Modifiable: With Approval
+15. Source of Truth: 05-EVIDENCE/Certifications/
+
+---
+
+### CREDENTIAL
+1. Name: Credential
+2. Purpose: To provide a token or proof of identity, authorization, or entitlement that an entity may present to establish trust.
+3. Responsibility: Enabling authentication and authorization by carrying verifiable proof of the bearer's claimed attributes or rights.
+4. Owner: Actor
+5. Lifecycle: Issued → Active → Renewed → Suspended → Reactivated/Expired → Revoked → Destroyed
+6. Allowed Relationships: Bound to Identity; presented for Access Control; referenced by Signature.
+7. Forbidden Relationships: May not be transferred; may not be used after Revocation; may not be forged.
+8. Cardinality: N:M
+9. Stability: Moderate
+10. Versionable: No
+11. Freezable: No
+12. AI Creatable: No
+13. AI Modifiable: No
+14. Human Modifiable: With Approval
+15. Source of Truth: Evidence Vault
+
+---
+
+### SIGNATURE
+1. Name: Signature
+2. Purpose: To mark an artifact with the authenticated identity of a party who has reviewed, approved, or authored it.
+3. Responsibility: Providing non-repudiable evidence that a specific party has affixed their mark to an artifact at a specific time.
+4. Owner: Actor
+5. Lifecycle: Prepared → Affixed → Validated → Active → Revoked → Expired
+6. Allowed Relationships: Affixed to Artifact; traced to Credential; referenced by Audit Record.
+7. Forbidden Relationships: May not be forged; may not be affixed by unauthorized party; may not be retroactively dated.
+8. Cardinality: N:M
+9. Stability: Static after Validated
+10. Versionable: No
+11. Freezable: Yes
+12. AI Creatable: No
+13. AI Modifiable: No
+14. Human Modifiable: No
+15. Source of Truth: Evidence Vault
+
+================================================================================
+TIER 13: TRACEABILITY & BASELINES
+================================================================================
+
+### BASELINE
+1. Name: Baseline
+2. Purpose: To establish a frozen, authoritative reference point against which future changes, progress, or deviations can be measured.
+3. Responsibility: Providing an immutable reference that enables comparison, change tracking, and accountability across time.
+4. Owner: GovernanceBody
+5. Lifecycle: Proposed → Reviewed → Approved → Frozen → Referenced → Amended → Superseded → Archived
+6. Allowed Relationships: References Artifacts; traced to Snapshots; signed; compared to subsequent states.
+7. Forbidden Relationships: May not be modified after Frozen without formal Amendment; may not baseline entities outside scope.
+8. Cardinality: 1:N
+9. Stability: Static when Frozen
+10. Versionable: Yes
+11. Freezable: Yes
+12. AI Creatable: With Approval
+13. AI Modifiable: No
+14. Human Modifiable: With Approval
+15. Source of Truth: Governance Ledger
+
+---
+
+### SNAPSHOT
+1. Name: Snapshot
+2. Purpose: To capture the complete state of a system, module, process, or artifact at a precise point in time.
+3. Responsibility: Providing an exact, point-in-time representation that can be compared, audited, or used as a reference baseline.
+4. Owner: Kernel
+5. Lifecycle: Triggered → Capturing → Validated → Committed → Referenced → Expired
+6. Allowed Relationships: Compared to another Snapshot; used as Baseline; traced to entity captured; signed.
+7. Forbidden Relationships: May not be modified after Commit; may not capture entities outside authorized scope.
+8. Cardinality: N:M
+9. Stability: Static after Commit
+10. Versionable: No
+11. Freezable: Yes
+12. AI Creatable: Yes
+13. AI Modifiable: No
+14. Human Modifiable: No
+15. Source of Truth: Evidence Vault
+
+---
+
+### TRACEABILITY_LINK
+1. Name: TraceabilityLink
+2. Purpose: To provide a typed, directional, semantically meaningful connection between entities that carries specific traceability semantics.
+3. Responsibility: Enabling precise impact analysis, coverage tracking, and dependency management through semantically rich connections.
+4. Owner: Process
+5. Lifecycle: Defined → Created → Verified → Active → Impacted → Updated/Broken → Removed → Archived
+6. Allowed Relationships: Connects source Artifact to target Artifact with typed semantics; signed.
+7. Forbidden Relationships: May not be bidirectional without explicit reverse link; may not be semantically empty.
+8. Cardinality: N:M
+9. Stability: Moderate
+10. Versionable: Yes
+11. Freezable: Yes
+12. AI Creatable: Yes
+13. AI Modifiable: With Approval
+14. Human Modifiable: Yes
+15. Source of Truth: Registry Service
+
+---
+
+### CHECKPOINT
+1. Name: Checkpoint
+2. Purpose: To capture and verify the state of work at a defined milestone, enabling assessment of progress, quality, and readiness.
+3. Responsibility: Providing a verified milestone record that demonstrates the system has met defined criteria at a specific point.
+4. Owner: Process
+5. Lifecycle: Defined → Triggered → Capturing → Validated → Verified → Committed → Referenced → Superseded
+6. Allowed Relationships: References state captured; traced to Baseline; signed; carries Verification Result.
+7. Forbidden Relationships: May not be Verified without passing all criteria; may not be modified after Commit.
+8. Cardinality: N:M
+9. Stability: Static after Commit
+10. Versionable: No
+11. Freezable: Yes
+12. AI Creatable: Yes
+13. AI Modifiable: No
+14. Human Modifiable: No
+15. Source of Truth: Evidence Vault
+
+================================================================================
+TIER 14: MEASUREMENT
+================================================================================
+
+### METRIC
+1. Name: Metric
+2. Purpose: To define a standard of measurement that prescribes what shall be measured, how, and against what thresholds.
+3. Responsibility: Establishing the definitional framework for consistent, comparable measurement across the kernel.
+4. Owner: GovernanceBody
+5. Lifecycle: Proposed → Defined → Reviewed → Approved → Active → Measured → Evaluated → Revised/Retired
+6. Allowed Relationships: Generates Measurements; references Benchmark; traced to Specification.
+7. Forbidden Relationships: May not be ambiguous; may not be Active without Approval.
+8. Cardinality: 1:N
+9. Stability: Slow
+10. Versionable: Yes
+11. Freezable: Yes
+12. AI Creatable: With Approval
+13. AI Modifiable: With Approval
+14. Human Modifiable: With Approval
+15. Source of Truth: Governance Ledger
+
+---
+
+### MEASUREMENT
+1. Name: Measurement
+2. Purpose: To capture a quantified observation of a property, performance characteristic, or state at a specific time.
+3. Responsibility: Providing objective, quantified data that enables comparison against thresholds, benchmarks, and trends.
+4. Owner: Process
+5. Lifecycle: Triggered → Captured → Validated → Recorded → Analyzed → Referenced → Archived
+6. Allowed Relationships: Traced to Metric; referenced by Report; compared to Benchmark; signed.
+7. Forbidden Relationships: May not be fabricated; may not be modified after Recorded.
+8. Cardinality: N:M
+9. Stability: Static after Recorded
+10. Versionable: No
+11. Freezable: Yes
+12. AI Creatable: Yes
+13. AI Modifiable: No
+14. Human Modifiable: No
+15. Source of Truth: Evidence Vault
+
+---
+
+### ASSESSMENT
+1. Name: Assessment
+2. Purpose: To systematically evaluate an entity against defined criteria to determine its quality, conformance, risk, or readiness.
+3. Responsibility: Providing a structured judgment based on evidence, measurements, and defined criteria.
+4. Owner: Process
+5. Lifecycle: Commissioned → Planned → Executed → Analyzed → Drafted → Reviewed → Published → Appealed → Final → Archived
+6. Allowed Relationships: Contains Findings; references Measurements; traced to Criteria; signed; triggers DecisionRecord.
+7. Forbidden Relationships: May not be Published without Review; may not omit material Findings.
+8. Cardinality: N:M
+9. Stability: Moderate
+10. Versionable: Yes
+11. Freezable: Yes
+12. AI Creatable: With Approval
+13. AI Modifiable: With Approval
+14. Human Modifiable: Yes
+15. Source of Truth: Artifact Repository
+
+================================================================================
+TIER 15: AUDIT & REVIEW
+================================================================================
+
+### AUDIT
+1. Name: Audit
+2. Purpose: To perform an independent, systematic inspection to verify compliance with Standards, Rules, Policies, and Regulations.
+3. Responsibility: Gathering evidence, testing controls, identifying violations, and certifying compliance or documenting deficiencies.
+4. Owner: GovernanceBody
+5. Lifecycle: Planned → Chartered → Executed → EvidenceAnalyzed → ReportDrafted → Reviewed → Published → RemediationTracked → Closed
+6. Allowed Relationships: Audits Entity; MeasuresAgainst Standard; Produces Finding; Triggers Remediation.
+7. Forbidden Relationships: May not be conducted by the entity being audited; may not have scope reduced by auditee; may not be suppressed.
+8. Cardinality: N:M
+9. Stability: Moderate
+10. Versionable: Yes
+11. Freezable: Yes
+12. AI Creatable: With Approval
+13. AI Modifiable: With Approval
+14. Human Modifiable: With Approval
+15. Source of Truth: 05-EVIDENCE/Audits/
+
+---
+
+### REVIEW
+1. Name: Review
+2. Purpose: To conduct a formal examination of an entity, process, or decision to assess compliance, quality, correctness, and alignment.
+3. Responsibility: Producing an evaluation with findings, recommendations, and determinations of compliance or non-compliance.
+4. Owner: GovernanceBody
+5. Lifecycle: Scheduled → Initiated → InProgress → FindingsDrafted → Reviewed → Published → Accepted/Contested → Closed
+6. Allowed Relationships: Examines Entity; Produces Finding; Recommends Action; Triggers Directive.
+7. Forbidden Relationships: May not examine its own author; may not be deleted after publication.
+8. Cardinality: N:M
+9. Stability: Fast
+10. Versionable: Yes
+11. Freezable: Yes
+12. AI Creatable: With Approval
+13. AI Modifiable: With Approval
+14. Human Modifiable: With Approval
+15. Source of Truth: 05-EVIDENCE/Reviews/
+
+---
+
+### AUDIT_TRAIL
+1. Name: AuditTrail
+2. Purpose: To maintain a complete, chronological, tamper-evident record of all significant actions, changes, and decisions affecting an entity or scope.
+3. Responsibility: Providing comprehensive accountability and reconstructability of everything that happened to an entity.
+4. Owner: Kernel
+5. Lifecycle: Initiated → Recording → Active → Reviewed → Sealed → Archived → Expired
+6. Allowed Relationships: Contains Audit Records; traced to auditable entity; signed at Seal; queried for investigations.
+7. Forbidden Relationships: May not be modified after Seal; may not omit required events; may not be destroyed before Expiry.
+8. Cardinality: 1:1 per Auditable Scope
+9. Stability: Fast during Recording, Static after Seal
+10. Versionable: No
+11. Freezable: Yes
+12. AI Creatable: Yes
+13. AI Modifiable: No
+14. Human Modifiable: No
+15. Source of Truth: Audit Log
+
+================================================================================
+TIER 16: LIFECYCLE & STATE
+================================================================================
+
+### LIFECYCLE
+1. Name: Lifecycle
+2. Purpose: To define the complete set of states and permitted transitions that an entity type passes through from inception to retirement.
+3. Responsibility: Governing the birth-to-death trajectory of entities; enforcing stage-gate discipline; enabling predictable progression.
+4. Owner: GovernanceBody
+5. Lifecycle: Defined → Approved → Active → UnderReview → Updated → Superseded
+6. Allowed Relationships: Has Stage, Gate; AppliesTo Entity.
+7. Forbidden Relationships: May not have unreachable stages; may not have ambiguous transitions; may not skip required gates.
+8. Cardinality: 1:N
+9. Stability: Slow
+10. Versionable: Yes
+11. Freezable: Yes
+12. AI Creatable: With Approval
+13. AI Modifiable: With Approval
+14. Human Modifiable: With Approval
+15. Source of Truth: 01-META-MODEL/Lifecycles/
+
+---
+
+### STATE
+1. Name: State
+2. Purpose: To represent a distinguishable condition or mode that an entity can occupy at a point in time.
+3. Responsibility: Being the atomic unit of lifecycle modeling—well-defined, mutually exclusive, and observable.
+4. Owner: GovernanceBody
+5. Lifecycle: Defined → Validated → Active → Deprecated → Retired
+6. Allowed Relationships: Belongs to Lifecycle; has EntryAction, ExitAction, Invariant; transitions to State.
+7. Forbidden Relationships: May not exist without definition; may not be ambiguous with another State.
+8. Cardinality: N
+9. Stability: Slow
+10. Versionable: Yes
+11. Freezable: Yes
+12. AI Creatable: With Approval
+13. AI Modifiable: With Approval
+14. Human Modifiable: Yes
+15. Source of Truth: 01-META-MODEL/
+
+================================================================================
+TIER 17: EXCEPTIONS & WAIVERS
+================================================================================
+
+### EXCEPTION
+1. Name: Exception
+2. Purpose: To document a permitted deviation from a Rule, Standard, or Policy under specific circumstances with defined scope and duration.
+3. Responsibility: Enabling flexibility without undermining governance; ensuring deviations are visible, justified, and temporary.
+4. Owner: GovernanceBody
+5. Lifecycle: Requested → Justified → Reviewed → Granted → Active → Monitored → Expired/Renewed/Revoked
+6. Allowed Relationships: DeviatesFrom Rule; GrantedBy Authority; ScopedTo Entity.
+7. Forbidden Relationships: May not be granted for Constitutional requirements; may not be permanent; may not be silently granted.
+8. Cardinality: N:M
+9. Stability: Fast
+10. Versionable: Yes
+11. Freezable: Yes
+12. AI Creatable: No
+13. AI Modifiable: No
+14. Human Modifiable: With Approval
+15. Source of Truth: 02-GOVERNANCE/Exceptions/
+
+---
+
+### WAIVER
+1. Name: Waiver
+2. Purpose: To formally grant exception from a requirement, rule, standard, or obligation that would otherwise be mandatory.
+3. Responsibility: Documenting authorized deviation from prescribed norms, including rationale, scope, duration, and conditions.
+4. Owner: GovernanceBody
+5. Lifecycle: Requested → Justified → Reviewed → Granted | Denied → Active → Expired → Renewed | Revoked
+6. Allowed Relationships: References waived requirement; bears Signature; traced to Risk Register; time-bounded.
+7. Forbidden Relationships: May not waive Constitutional provisions; may not be granted without documented justification.
+8. Cardinality: 1:N
+9. Stability: Slow
+10. Versionable: Yes
+11. Freezable: Yes
+12. AI Creatable: No
+13. AI Modifiable: No
+14. Human Modifiable: With Approval
+15. Source of Truth: Governance Ledger
+
+================================================================================
+TIER 18: GOVERNANCE MECHANICS
+================================================================================
+
+### AMENDMENT
+1. Name: Amendment
+2. Purpose: To propose and record a formal change to an existing governance instrument that alters its substance.
+3. Responsibility: Documenting the proposed change, rationale, impact assessment, and required approval path.
+4. Owner: Actor
+5. Lifecycle: Drafted → Submitted → Reviewed → Approved → Ratified → Applied → Recorded
+6. Allowed Relationships: Amends Entity; ProposedBy Role; ReviewedBy Review; ApprovedBy GovernanceBody.
+7. Forbidden Relationships: May not be applied without approval; may not alter entities outside proposer's jurisdiction.
+8. Cardinality: N:M
+9. Stability: Fast
+10. Versionable: Yes
+11. Freezable: Yes
+12. AI Creatable: With Approval
+13. AI Modifiable: With Approval
+14. Human Modifiable: With Approval
+15. Source of Truth: 02-GOVERNANCE/Amendments/
+
+---
+
+### SANCTION
+1. Name: Sanction
+2. Purpose: To impose a punitive or corrective measure in response to violation of Rules, Policies, Obligations, or Contracts.
+3. Responsibility: Deterring violations; correcting non-compliance; maintaining integrity of governance framework.
+4. Owner: GovernanceBody
+5. Lifecycle: Triggered → Investigated → Proposed → Reviewed → Imposed → Appealed → Upheld/Overturned → Executed → Lifted
+6. Allowed Relationships: RespondsTo Violation; ImposedBy Authority; On Stakeholder; RecordedIn GovernanceLog.
+7. Forbidden Relationships: May not be imposed without due process; may not be disproportionate to violation.
+8. Cardinality: N:M
+9. Stability: Moderate
+10. Versionable: Yes
+11. Freezable: Yes
+12. AI Creatable: No
+13. AI Modifiable: No
+14. Human Modifiable: With Approval
+15. Source of Truth: 02-GOVERNANCE/Sanctions/
+
+---
+
+### PRECEDENT
+1. Name: Precedent
+2. Purpose: To record a prior decision, interpretation, or ruling that guides future similar cases.
+3. Responsibility: Promoting consistency in governance; reducing re-deliberation; building institutional memory.
+4. Owner: GovernanceBody
+5. Lifecycle: Established → Active → Distinguished → Overruled → Archived
+6. Allowed Relationships: Guides Decision; EstablishedBy Ruling; MayBeOverruledBy Ruling; CitedIn Appeal.
+7. Forbidden Relationships: May not bind Constitution-level decisions; may not prevent amendment of the rule it interprets.
+8. Cardinality: N:M
+9. Stability: Slow
+10. Versionable: Yes
+11. Freezable: No
+12. AI Creatable: No
+13. AI Modifiable: No
+14. Human Modifiable: With Approval
+15. Source of Truth: 02-GOVERNANCE/Precedents/
+
+---
+
+### APPEAL
+1. Name: Appeal
+2. Purpose: To request formal reconsideration of a decision, ruling, or sanction by a higher authority.
+3. Responsibility: Providing due process; enabling correction of errors; preventing abuse of power.
+4. Owner: Actor
+5. Lifecycle: Filed → Accepted → Scheduled → Heard → Deliberated → Upheld/Overturned/Remanded → Final → Recorded
+6. Allowed Relationships: Challenges Decision/Sanction/Ruling; FiledBy Stakeholder; HeardBy Authority.
+7. Forbidden Relationships: May not be filed without grounds; may not be heard by original decision-maker.
+8. Cardinality: N:1 per decision
+9. Stability: Fast
+10. Versionable: Yes
+11. Freezable: Yes
+12. AI Creatable: No
+13. AI Modifiable: No
+14. Human Modifiable: With Approval
+15. Source of Truth: 02-GOVERNANCE/Appeals/
+
+---
+
+### VETO
+1. Name: Veto
+2. Purpose: To empower a designated authority to reject a decision, action, or proposal, halting its progression.
+3. Responsibility: Preventing harmful or improper decisions; providing a final check on collective decisions; requiring justification.
+4. Owner: Role
+5. Lifecycle: Triggered → Justified → Exercised → Reviewed → Sustained/Overridden → Recorded
+6. Allowed Relationships: Rejects Decision; ExercisedBy Role; MayBeOverriddenBy Override; RecordedIn GovernanceLog.
+7. Forbidden Relationships: May not be exercised without justification; may not be overridden by the vetoed party.
+8. Cardinality: 1:N
+9. Stability: Fast
+10. Versionable: Yes
+11. Freezable: Yes
+12. AI Creatable: No
+13. AI Modifiable: No
+14. Human Modifiable: With Approval
+15. Source of Truth: 02-GOVERNANCE/Vetoes/
+
+================================================================================
+TIER 19: DISPUTE & ACCOUNTABILITY
+================================================================================
+
+### DISPUTE
+1. Name: Dispute
+2. Purpose: To document and manage a conflict between stakeholders or entities that requires formal resolution.
+3. Responsibility: Surfacing conflict; enabling structured resolution; preventing escalation; documenting outcomes.
+4. Owner: Actor
+5. Lifecycle: Raised → Acknowledged → Scoped → Mediated → Arbitrated → Resolved → Appealed → Final → Archived
+6. Allowed Relationships: Between Stakeholders; MediatedBy Role; MayResultIn Ruling; EscalatedVia EscalationPath.
+7. Forbidden Relationships: May not be ignored; may not be resolved without party participation; may not be deleted.
+8. Cardinality: N:M
+9. Stability: Fast
+10. Versionable: Yes
+11. Freezable: Yes
+12. AI Creatable: No
+13. AI Modifiable: No
+14. Human Modifiable: With Approval
+15. Source of Truth: 02-GOVERNANCE/Disputes/
+
+---
+
+### RECUSAL
+1. Name: Recusal
+2. Purpose: To document the voluntary or required withdrawal of a stakeholder from participation in a matter due to conflict or bias.
+3. Responsibility: Preserving impartiality; preventing appearance of impropriety; documenting withdrawal.
+4. Owner: Actor
+5. Lifecycle: Identified → Declared → Accepted → Executed → Verified → Lifted → Recorded
+6. Allowed Relationships: Withdraws Stakeholder; From Decision/Matter; RequiredBy ConflictOfInterest.
+7. Forbidden Relationships: May not be partial; may not be ignored; may not be coerced without cause.
+8. Cardinality: N:M
+9. Stability: Fast
+10. Versionable: Yes
+11. Freezable: Yes
+12. AI Creatable: No
+13. AI Modifiable: No
+14. Human Modifiable: With Approval
+15. Source of Truth: 02-GOVERNANCE/Recusals/
+
+---
+
+### TRANSPARENCY_REPORT
+1. Name: TransparencyReport
+2. Purpose: To publish a periodic public disclosure of governance activities, decisions, metrics, and compliance status.
+3. Responsibility: Enabling stakeholder oversight; demonstrating governance integrity; building trust.
+4. Owner: GovernanceBody
+5. Lifecycle: Planned → Compiled → Reviewed → Published → Acknowledged → Archived
+6. Allowed Relationships: PublishedBy Authority; Covers GovernanceDomain; Includes Metric, Decision.
+7. Forbidden Relationships: May not omit required disclosures; may not be classified without justification.
+8. Cardinality: N:M
+9. Stability: Moderate
+10. Versionable: Yes
+11. Freezable: Yes
+12. AI Creatable: With Approval
+13. AI Modifiable: With Approval
+14. Human Modifiable: With Approval
+15. Source of Truth: 05-EVIDENCE/TransparencyReports/
+
+================================================================================
+TIER 20: CROSS-CUTTING
+================================================================================
+
+### CONCERN
+1. Name: Concern
+2. Purpose: To identify a cross-cutting area of interest that affects multiple entities across the Kernel's structure.
+3. Responsibility: Defining a systemic interest (e.g., security, performance, observability) that must be addressed across Domains, Layers, or Slices.
+4. Owner: GovernanceBody
+5. Lifecycle: Identified → Scoped → Addressed → Monitoring → Resolved → Ongoing
+6. Allowed Relationships: Crosses Slice, Layer, Domain; constrains Component, Module, Interface; tracked by Evidence.
+7. Forbidden Relationships: May not be contained within a single Module; may not be resolved by a single Component.
+8. Cardinality: N:M
+9. Stability: Slow
+10. Versionable: Yes
+11. Freezable: Yes
+12. AI Creatable: With Approval
+13. AI Modifiable: With Approval
+14. Human Modifiable: Yes
+15. Source of Truth: 01-META-MODEL/Concern/
+
+---
+
+### ESCALATION
+1. Name: Escalation
+2. Purpose: To represent the elevation of a decision, issue, or authority to a higher level when the current level cannot or should not resolve it.
+3. Responsibility: Ensuring issues reach appropriate authority, preventing stalemate, and maintaining escalation chain integrity.
+4. Owner: Actor
+5. Lifecycle: Triggered → Documented → Routed → Received → Under-Review → Resolved | Redirected → Closed
+6. Allowed Relationships: EscalatesFrom Actor; EscalatesTo Actor; Has Justification; Has Urgency.
+7. Forbidden Relationships: May not bypass intermediate levels without justification; may not be circular.
+8. Cardinality: N
+9. Stability: Fast
+10. Versionable: Yes
+11. Freezable: Yes
+12. AI Creatable: With Approval
+13. AI Modifiable: With Approval
+14. Human Modifiable: Yes
+15. Source of Truth: 02-GOVERNANCE/Escalations/
+
+---
+
+### VIEW
+1. Name: View
+2. Purpose: To provide a perspective-specific representation of the Kernel's structure that emphasizes certain entities and relationships while suppressing others.
+3. Responsibility: Rendering a selective, purpose-driven depiction of the system's structure for a specific audience, concern, or decision.
+4. Owner: GovernanceBody (for canonical views); Session (for session views)
+5. Lifecycle: Defined → Generated → Active → Stale → Refreshed → Archived
+6. Allowed Relationships: Represents Kernel, Domain, Subsystem, Layer, Slice; filters Dependency, Component.
+7. Forbidden Relationships: May not modify the entities it represents; may not present information not derivable from meta-model.
+8. Cardinality: N:M
+9. Stability: Fast
+10. Versionable: Yes
+11. Freezable: Yes
+12. AI Creatable: Yes
+13. AI Modifiable: Yes
+14. Human Modifiable: Yes
+15. Source of Truth: 99-STATE/View/
+
+================================================================================
+SUMMARY: 79 CANONICAL ENTITIES ACROSS 20 TIERS
+================================================================================
+
+Tier 1:  System Foundation        — 7 entities (Kernel, Domain, Subsystem, Module, Component, Primitive, Resource)
+Tier 2:  Structure & Architecture — 5 entities (Layer, Tier, Slice, Assembly, Topology)
+Tier 3:  Communication & Contracts— 4 entities (Interface, Boundary, Channel, Contract)
+Tier 4:  Capability & Function    — 2 entities (Capability, Feature)
+Tier 5:  Work & Process           — 5 entities (Process, Workflow, Task, Milestone, Plan)
+Tier 6:  Governance Foundation    — 6 entities (Constitution, Charter, GovernanceBody, Role, Policy, Rule)
+Tier 7:  Standards & Constraints  — 4 entities (Standard, Guideline, Constraint, Invariant)
+Tier 8:  Session & Participation  — 3 entities (Session, Actor, Participant)
+Tier 9:  Context & Environment    — 2 entities (Context, Environment)
+Tier 10: Decision & Reasoning     — 5 entities (Decision, DecisionRecord, Evidence, Finding, Conclusion)
+Tier 11: Artifacts                — 6 entities (Artifact, Document, Specification, Record, Log, Report)
+Tier 12: Authorization            — 5 entities (Approval, Authorization, Certification, Credential, Signature)
+Tier 13: Traceability & Baselines — 4 entities (Baseline, Snapshot, TraceabilityLink, Checkpoint)
+Tier 14: Measurement              — 3 entities (Metric, Measurement, Assessment)
+Tier 15: Audit & Review           — 3 entities (Audit, Review, AuditTrail)
+Tier 16: Lifecycle & State        — 2 entities (Lifecycle, State)
+Tier 17: Exceptions & Waivers     — 2 entities (Exception, Waiver)
+Tier 18: Governance Mechanics     — 5 entities (Amendment, Sanction, Precedent, Appeal, Veto)
+Tier 19: Dispute & Accountability — 3 entities (Dispute, Recusal, TransparencyReport)
+Tier 20: Cross-Cutting            — 3 entities (Concern, Escalation, View)
+
+Total: 79 entities, each with all 15 properties defined.
+Total property definitions: 1,185
+
+================================================================================
+DEDUPLICATION LOG: KEY MERGES PERFORMED
+================================================================================
+
+Merged across domains (same concept, different names):
+- Session (Process + Governance proceedings) → Session
+- Context (System + Process) → Context
+- Scope (System + Process) → subsumed into Context
+- Boundary (System + Process) → Boundary
+- Constraint (System + Process + Governance) → Constraint
+- Invariant (System + Process) → Invariant
+- Dependency (System + Process) → Dependency
+- Role (Process + Governance) → Role
+- Authority (Process + Governance) → Authority
+- Delegation (Process + Governance) → subsumed into Role relationships
+- Decision (Process + Governance) → Decision
+- DecisionRecord (Process + Artifact) → DecisionRecord
+- Lifecycle (Process + Governance) → Lifecycle
+- Phase (Process multiple groups + Governance) → subsumed into Lifecycle
+- Stage (Process multiple groups + Governance) → subsumed into Lifecycle
+- Approval (Artifact + Governance) → Approval
+- Waiver (Artifact + Process + Governance) → Waiver
+- Baseline (Artifact + Governance) → Baseline
+- Snapshot (Artifact + Governance) → Snapshot
+- Checkpoint (Artifact + Process) → Checkpoint
+- Assessment (Artifact + Governance) → Assessment
+- Metric (Artifact + Governance) → Metric
+- Registry (System + Artifact) → subsumed (derived concept)
+- AuditTrail (Artifact + Process) → AuditTrail
+- Revision (Artifact + Governance) → Revision
+- Deliverable (Artifact + Process) → subsumed into Task/Artifact
+- Milestone (Process + Governance) → Milestone
+- Finding (Artifact + Governance) → Finding
+- Exception (Process + Governance + Artifact ExceptionRecord) → Exception
+- Contract (System + Governance) → Contract
+- Certification (Artifact Certificate + Governance) → Certification
+- Plan (Artifact + Governance) → Plan
+- Escalation (Process + Governance) → Escalation
+- Audit (Governance) → Audit
+- Review (Governance) → Review
+- Policy (Governance) → Policy
+- Rule (Governance) → Rule
+- Standard (Governance) → Standard
+- GovernanceBody (Governance) → GovernanceBody
+- Charter (Governance) → Charter
+- Bylaw (Governance) → subsumed into Charter
+- Amendment (Governance) → Amendment
+- Sanction (Governance) → Sanction
+- Precedent (Governance) → Precedent
+- Appeal (Governance) → Appeal
+- Dispute (Governance + Grievance) → Dispute
+- Recusal (Governance) → Recusal
+- Minutes (Governance) → subsumed into TransparencyReport
+- Vote/Resolution/Motion (Governance) → Resolution subsumed, Vote/Motion eliminated
+- Stakeholder (Governance) → subsumed into Actor
+- Right/Entitlement/Privilege (Governance) → subsumed into Role/Authorization
+- Obligation/Duty/Commitment (Governance) → subsumed into Role
+- EmergencyPower/Stay (Governance) → EmergencyPower kept
+- Disclosure (Governance) → subsumed into TransparencyReport
+- Safeguard/Oversight/Check (Governance) → Safeguard kept
+
+Eliminated as non-ontological (~257 entities removed):
+- Actor subtypes: HumanActor, AutomatedActor, HybridActor
+- Session subtypes: AISession, HumanSession
+- Control flow: Fork, Join, Sequence, Iteration, DecisionPoint
+- Concurrency: Mutex, Deadlock, RaceCondition, LockOrdering, CriticalSection, IsolationLevel
+- Process mechanics: Saga, Choreography, Batch, Command, Subprocess, Pipeline, FeedbackLoop
+- Temporal: Duration, Timeout, Pause, ResumePoint
+- Derived: DependencyGraph, ExecutionTrace, ExecutionSummary, ExecutionResult
+- Internal: Compensation, SideEffect, Backpressure, Throttle, WorkQueue, Capacity
+- Granular: WorkUnit, Step, Activity, Operation, ExecutionContext, EntryPoint, ExitPoint
+- Versioning: Version, Edition, Variant, Revision (kept Revision concept)
+- Governance mechanics: Quorum, Bylaw, MOU, Covenant, SLA, StandardLevel, ComplianceBaseline
+- Many others
+
+================================================================================
+END OF CANONICAL ENTITY CATALOG
+================================================================================
+
+
+{'=' * 80}
+PART II: RELATIONSHIP GRAPH (639 Relationships)
+{'=' * 80}
+
+================================================================================
+RADIUS1 KERNEL — REPOSITORY META MODEL (RMM)
+COMPLETE DIRECTED RELATIONSHIP GRAPH
+================================================================================
+
+## Metadata
+
+- **Total Entities:** 79
+- **Total Relationships:** 639
+- **Average Relationships per Entity:** 16.1
+- **Minimum Relationships per Entity:** 10
+- **Maximum Outgoing per Entity:** 14 (GovernanceBody)
+- **Graph Connected:** Yes (all 79 entities reachable from Kernel)
+- **Relationship Types Used:** 201 semantic types
+
+### Relationship Types Used
+
+- **amended-by** — 5 occurrences
+- **amends** — 3 occurrences
+- **applies-to** — 6 occurrences
+- **approved-by** — 4 occurrences
+- **approves** — 1 occurrences
+- **architects** — 0 occurrences (not used)
+- **assumed-by** — 1 occurrences
+- **audited-by** — 1 occurrences
+- **audits** — 1 occurrences
+- **authorizes** — 2 occurrences
+- **bears** — 2 occurrences
+- **belongs-to** — 6 occurrences
+- **between** — 1 occurrences
+- **binds** — 2 occurrences
+- **captures** — 1 occurrences
+- **carries** — 1 occurrences
+- **carries-data-between** — 1 occurrences
+- **certified-by** — 3 occurrences
+- **certifies** — 2 occurrences
+- **challenged-by** — 1 occurrences
+- **challenges** — 2 occurrences
+- **composed-of** — 2 occurrences
+- **composed-into** — 1 occurrences
+- **connects** — 1 occurrences
+- **constrained-by** — 7 occurrences
+- **constrains** — 10 occurrences
+- **contains** — 18 occurrences
+- **contained-in** — 2 occurrences
+- **contributes-to** — 1 occurrences
+- **covers** — 1 occurrences
+- **creates** — 2 occurrences
+- **crossed-by** — 3 occurrences
+- **crosses** — 4 occurrences
+- **declares** — 1 occurrences
+- **defined-by** — 4 occurrences
+- **defines** — 8 occurrences
+- **delivers** — 4 occurrences
+- **derived-from** — 4 occurrences
+- **described-by** — 5 occurrences
+- **deviates-from** — 2 occurrences
+- **documented-in** — 6 occurrences
+- **enables** — 2 occurrences
+- **enforced-by** — 4 occurrences
+- **enforces** — 1 occurrences
+- **escalated-via** — 2 occurrences
+- **escalates-from** — 1 occurrences
+- **escalates-to** — 1 occurrences
+- **established-by** — 1 occurrences
+- **establishes** — 1 occurrences
+- **evaluates** — 3 occurrences
+- **examines** — 2 occurrences
+- **excepted-by** — 2 occurrences
+- **exercised-by** — 1 occurrences
+- **exposes** — 7 occurrences
+- **filed-by** — 1 occurrences
+- **filtered-by** — 2 occurrences
+- **from** — 1 occurrences
+- **generates** — 1 occurrences
+- **governed-by** — 13 occurrences
+- **governs** — 8 occurrences
+- **granted-by** — 2 occurrences
+- **granted-to** — 1 occurrences
+- **grants** — 3 occurrences
+- **has** — 22 occurrences
+- **has-lifecycle** — 0 occurrences (merged into has)
+- **heard-by** — 1 occurrences
+- **held-by** — 1 occurrences
+- **hosted-by** — 0 occurrences (merged into hosted-in, hosted-on)
+- **hosted-in** — 1 occurrences
+- **hosted-on** — 2 occurrences
+- **imposes** — 1 occurrences
+- **implements** — 3 occurrences
+- **included-in** — 1 occurrences
+- **informs** — 2 occurrences
+- **issued-by** — 1 occurrences
+- **mandated-by** — 1 occurrences
+- **mandates** — 1 occurrences
+- **maps** — 1 occurrences
+- **marked-by** — 1 occurrences
+- **measured-by** — 1 occurrences
+- **measures-against** — 1 occurrences
+- **monitored-by** — 7 occurrences
+- **monitors** — 4 occurrences
+- **on** — 1 occurrences
+- **overrides** — 1 occurrences
+- **overruled-by** — 2 occurrences
+- **overrules** — 1 occurrences
+- **owns** — 3 occurrences
+- **participates-in** — 2 occurrences
+- **presented-for** — 1 occurrences
+- **produced-by** — 6 occurrences
+- **produces** — 11 occurrences
+- **proposed-by** — 1 occurrences
+- **published-by** — 2 occurrences
+- **raises** — 1 occurrences
+- **realizes** — 1 occurrences
+- **recommends** — 1 occurrences
+- **recorded-in** — 3 occurrences
+- **referenced-by** — 11 occurrences
+- **references** — 6 occurrences
+- **rejects** — 1 occurrences
+- **requires** — 3 occurrences
+- **responds-to** — 1 occurrences
+- **results-in** — 2 occurrences
+- **reviewed-by** — 3 occurrences
+- **reviews** — 2 occurrences
+- **scopes** — 1 occurrences
+- **separated-by** — 1 occurrences
+- **signed-at** — 1 occurrences
+- **signed-by** — 5 occurrences
+- **signed-with** — 9 occurrences
+- **spans** — 4 occurrences
+- **stacked-above** — 1 occurrences
+- **summarized-in** — 1 occurrences
+- **summarizes** — 1 occurrences
+- **supports** — 1 occurrences
+- **surrounds** — 2 occurrences
+- **tested-by** — 3 occurrences
+- **time-bounded-by** — 1 occurrences
+- **traced-to** — 7 occurrences
+- **traced-via** — 3 occurrences
+- **traces** — 3 occurrences
+- **traces-to** — 4 occurrences
+- **tracked-by** — 1 occurrences
+- **triggered-by** — 1 occurrences
+- **triggers** — 8 occurrences
+- **used-as** — 1 occurrences
+- **used-by** — 1 occurrences
+- **uses** — 1 occurrences
+- **validated-by** — 2 occurrences
+- **validates** — 1 occurrences
+- **verifies** — 1 occurrences
+- **viewed-through** — 1 occurrences
+
+## Relationship Graph
+
+Group by source entity, ordered by tier. Each relationship shows:
+`Source → relationship-type → Target | cardinality | rationale`
+
+### TIER 1: System Foundation
+
+#### Kernel — 8 outgoing, 6 incoming
+
+- **Kernel** → *contains* → **Domain** | `1:N` | Root container for all domains
+- **Kernel** → *contains* → **Layer** | `1:N` | Architecture organized in horizontal layers
+- **Kernel** → *contains* → **Primitive** | `1:N` | Foundational elements of the kernel
+- **Kernel** → *contains* → **Resource** | `1:N` | All resources belong to the kernel
+- **Kernel** → *governed-by* → **Constitution** | `N:1` | Kernel operates under constitutional authority
+- **Kernel** → *described-by* → **Topology** | `1:N` | Topology describes kernel structure
+- **Kernel** → *has* → **Lifecycle** | `1:1` | Kernel has its own lifecycle
+- **Kernel** → *viewed-through* → **View** | `1:N` | Kernel viewed through perspectives
+
+#### Domain — 8 outgoing, 12 incoming
+
+- **Domain** → *contains* → **Subsystem** | `1:N` | Domain groups subsystems
+- **Domain** → *bounded-by* → **Boundary** | `1:1` | Domain has encapsulating boundary
+- **Domain** → *exposes* → **Interface** | `1:N` | Domain exposes interfaces externally
+- **Domain** → *governed-by* → **GovernanceBody** | `N:1` | Domain overseen by governance body
+- **Domain** → *constrained-by* → **Constraint** | `N:M` | Domain subject to structural constraints
+- **Domain** → *crossed-by* → **Concern** | `N:M` | Cross-cutting concerns span domains
+- **Domain** → *has* → **Primitive** | `1:N` | Domain defines primitives in its language
+- **Domain** → *represented-by* → **View** | `N:M` | Domain represented in views
+
+#### Subsystem — 10 outgoing, 18 incoming
+
+- **Subsystem** → *contains* → **Module** | `1:N` | Subsystem contains modules
+- **Subsystem** → *contains* → **Component** | `1:N` | Subsystem contains components directly
+- **Subsystem** → *exposes* → **Interface** | `1:N` | Subsystem exposes interfaces
+- **Subsystem** → *defines* → **Boundary** | `1:1` | Subsystem defines its boundary
+- **Subsystem** → *owns* → **Resource** | `1:N` | Subsystem owns resources
+- **Subsystem** → *belongs-to* → **Domain** | `N:1` | Subsystem belongs to a domain
+- **Subsystem** → *delivers* → **Capability** | `1:N` | Subsystem delivers capabilities
+- **Subsystem** → *hosted-on* → **Tier** | `N:1` | Subsystem hosted on a tier
+- **Subsystem** → *audited-by* → **Audit** | `N:M` | Subsystem subject to audits
+- **Subsystem** → *described-by* → **Topology** | `1:N` | Topology describes subsystem
+- **Subsystem** → *contains* → **Assembly** | `1:N` | Subsystem contains assemblies
+
+#### Module — 10 outgoing, 20 incoming
+
+- **Module** → *contains* → **Component** | `1:N` | Module contains components
+- **Module** → *exposes* → **Interface** | `1:N` | Module exposes interfaces
+- **Module** → *belongs-to* → **Subsystem** | `N:1` | Module belongs to subsystem
+- **Module** → *implements* → **Capability** | `1:N` | Module implements capabilities
+- **Module** → *produces* → **Artifact** | `1:N` | Module produces artifacts
+- **Module** → *consumes* → **Resource** | `N:M` | Module consumes resources
+- **Module** → *constrained-by* → **Constraint** | `N:M` | Module subject to constraints
+- **Module** → *applies-to* → **Lifecycle** | `N:1` | Module governed by lifecycle
+- **Module** → *contained-in* → **Layer** | `N:1` | Module belongs to a layer
+- **Module** → *spanned-by* → **Slice** | `N:M` | Slices span across modules
+- **Module** → *participates-in* → **Assembly** | `N:M` | Modules participate in assemblies
+- **Module** → *traced-via* → **TraceabilityLink** | `N:M` | Modules traced via traceability links
+
+#### Component — 10 outgoing, 20 incoming
+
+- **Component** → *exposes* → **Interface** | `1:N` | Component exposes interfaces
+- **Component** → *uses* → **Primitive** | `N:M` | Components use primitives
+- **Component** → *belongs-to* → **Module** | `N:1` | Component belongs to module
+- **Component** → *participates-in* → **Assembly** | `N:M` | Components participate in assemblies
+- **Component** → *implements* → **Feature** | `1:N` | Component implements features
+- **Component** → *constrained-by* → **Constraint** | `N:M` | Component subject to constraints
+- **Component** → *tested-by* → **Evidence** | `N:M` | Component tested by evidence
+- **Component** → *certified-by* → **Certification** | `N:M` | Component certified
+- **Component** → *described-by* → **Topology** | `1:N` | Topology describes component
+- **Component** → *filtered-by* → **View** | `N:M` | Views filter components
+
+#### Primitive — 7 outgoing, 13 incoming
+
+- **Primitive** → *used-by* → **Component** | `N:M` | Primitives used by components
+- **Primitive** → *defined-within* → **Domain** | `N:M` | Primitives scoped to domains
+- **Primitive** → *referenced-by* → **Interface** | `N:M` | Interfaces reference primitives
+- **Primitive** → *governed-by* → **Constitution** | `N:1` | Primitives ratified at constitutional level
+- **Primitive** → *constrains* → **Module** | `N:M` | Primitives constrain module design
+- **Primitive** → *contained-in* → **Layer** | `N:1` | Primitives exist within layers
+- **Primitive** → *has* → **Lifecycle** | `N:1` | Primitives governed by lifecycle
+
+#### Resource — 7 outgoing, 9 incoming
+
+- **Resource** → *allocated-to* → **Module** | `N:M` | Resources allocated to modules
+- **Resource** → *allocated-to* → **Subsystem** | `N:M` | Resources allocated to subsystems
+- **Resource** → *constrained-by* → **Constraint** | `N:M` | Resources constrained by limits
+- **Resource** → *hosted-on* → **Tier** | `N:M` | Resources hosted on tiers
+- **Resource** → *consumed-by* → **Process** | `N:M` | Resources consumed by processes
+- **Resource** → *monitored-by* → **Metric** | `N:M` | Resources monitored by metrics
+- **Resource** → *provided-by* → **Environment** | `N:M` | Resources provided by environment
+
+### TIER 2: Structure & Architecture
+
+#### Layer — 8 outgoing, 13 incoming
+
+- **Layer** → *contains* → **Module** | `1:N` | Layer contains modules
+- **Layer** → *contains* → **Component** | `1:N` | Layer contains components
+- **Layer** → *contains* → **Primitive** | `1:N` | Layer contains primitives
+- **Layer** → *stacked-above* → **Layer** | `N:M` | Layers depend on layers below
+- **Layer** → *intersected-by* → **Slice** | `N:M` | Slices cross through layers
+- **Layer** → *crossed-by* → **Concern** | `N:M` | Concerns cross layers vertically
+- **Layer** → *governed-by* → **Invariant** | `N:M` | Layers governed by invariants
+- **Layer** → *described-by* → **Topology** | `1:N` | Topology describes layer arrangement
+
+#### Tier — 7 outgoing, 4 incoming
+
+- **Tier** → *contains* → **Subsystem** | `1:N` | Tier contains subsystems
+- **Tier** → *contains* → **Module** | `1:N` | Tier contains modules
+- **Tier** → *hosts* → **Resource** | `1:N` | Tier hosts resources
+- **Tier** → *communicates-with* → **Tier** | `N:M` | Tiers communicate with tiers
+- **Tier** → *separated-by* → **Boundary** | `N:M` | Boundaries separate tiers

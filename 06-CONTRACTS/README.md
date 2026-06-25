@@ -1,28 +1,38 @@
 # 06-CONTRACTS
 
+**Status:** CANONICAL  
+**Stability:** Slow  
+**Owner:** GovernanceBody
+
+---
+
 ## Purpose
 
-This directory contains binding agreements between entities: interfaces, commitments, SLAs, and dependency contracts that formalize mutual obligations within the Radius1 Kernel.
+This directory contains formal contracts, agreements, and binding obligations between entities within the RADIUS1 Kernel. Contracts operationalize the abstract concept of Entity into concrete mutual obligations.
 
-## What Belongs Here
+## Contents
 
-- Interface contracts between modules and components
-- Service level agreements and commitments
-- Dependency contracts and version guarantees
-- Obligation and entitlement definitions
-- Contract lifecycle records (negotiation, ratification, expiration)
+| Document Type | Description |
+|--------------|-------------|
+| **Entity Contracts** | Agreements between specific entities (e.g., Module-to-Module contracts) |
+| **Interface Contracts** | Specifications of interface obligations and guarantees |
+| **Service Contracts** | Runtime behavioral contracts for capabilities and features |
+| **Governance Contracts** | Contracts governing the relationship between governance bodies and entities |
 
-## What Is Forbidden Here
+## Key Entity
 
-- Governance instruments or policy documents
-- Standards or constraints (belong in `03-STANDARDS/`)
-- Evidence or audit artifacts (belong in `05-EVIDENCE/`)
-- Implementation code
-- Unilateral declarations without mutual agreement
+- **Contract** (Tier 3) — Formal agreement between entities regarding mutual obligations, interfaces, and behaviors
 
-## Relation With the Rest of the Repository
+## Contract Properties
 
-- Binds entities defined in `01-META-MODEL/`
-- Enforced by constraints in `03-STANDARDS/`
-- Compliance verified through `05-EVIDENCE/`
-- May be created or modified through `07-WORKFLOW/` processes
+Contracts in the RADIUS1 Kernel:
+- Are bilateral or multilateral (may not be unilateral)
+- May not contradict invariants
+- May not span Kernel boundaries
+- Have explicit preconditions, postconditions, and versioning rules
+- Are enforced by constraints
+- Progress through a defined lifecycle: Draft → Negotiated → Ratified → Active → Amending → Superseded → Expired
+
+---
+
+*Contract changes require negotiation and ratification by all bound parties. No single party may unilaterally modify an active contract.*
