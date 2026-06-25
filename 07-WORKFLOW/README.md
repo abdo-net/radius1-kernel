@@ -8,7 +8,7 @@
 
 ## Purpose
 
-This directory contains processes, workflows, task definitions, and operational procedures that define how work is performed within the RADIUS1 Kernel. It operationalizes the abstract concepts of Process and Workflow into executable procedures.
+This directory contains processes, workflows, task definitions, and operational procedures that define how work is performed within the Kernel. It operationalizes the abstract concepts of Process and Workflow into executable procedures.
 
 ## Contents
 

@@ -8,7 +8,7 @@
 
 ## Purpose
 
-This directory contains runtime state, session management, and operational context for the RADIUS1 Kernel. It captures the dynamic, temporal aspects of the system that change during operation.
+This directory contains runtime state, session management, and operational context for the Kernel. It captures the dynamic, temporal aspects of the system that change during operation.
 
 ## Contents
 

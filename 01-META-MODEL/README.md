@@ -9,7 +9,7 @@
 
 ## Purpose
 
-This directory contains the Repository Meta Model (RMM) — the complete, canonical specification of all entities, relationships, and matrices that define the RADIUS1 Kernel ontology. The RMM is the single source of truth for the structural and semantic foundation of the entire system.
+This directory contains the Repository Meta Model (RMM) — the complete, canonical specification of all entities, relationships, and matrices that define the Kernel ontology. The RMM is the single source of truth for the structural and semantic foundation of the entire system.
 
 ## Contents
 

@@ -8,7 +8,7 @@
 
 ## Purpose
 
-This directory contains the supreme governance instrument of the RADIUS1 Kernel — the Constitution. The Constitution establishes the fundamental principles, authority structures, and amendment procedures that provide legitimacy for all governance actions across the entire system.
+This directory contains the supreme governance instrument of the Engineering Kernel — the Constitution. The Constitution establishes the fundamental principles, authority structures, and amendment procedures that provide legitimacy for all governance actions across the entire system.
 
 ## Contents
 

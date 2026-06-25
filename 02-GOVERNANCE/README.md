@@ -8,7 +8,7 @@
 
 ## Purpose
 
-This directory contains governance bodies, policies, rules, and decision-making frameworks that define how the RADIUS1 Kernel is governed. It operationalizes the constitutional authority established in `00-CONSTITUTION/` into actionable governance mechanisms.
+This directory contains governance bodies, policies, rules, and decision-making frameworks that define how the Kernel is governed. It operationalizes the constitutional authority established in `00-CONSTITUTION/` into actionable governance mechanisms.
 
 ## Contents
 

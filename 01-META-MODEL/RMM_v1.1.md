@@ -1,5 +1,5 @@
 ================================================================================
-RADIUS1 KERNEL — REPOSITORY META MODEL (RMM)
+ENGINEERING KERNEL — REPOSITORY META MODEL (RMM)
 COMPLETE SPECIFICATION
 ================================================================================
 
@@ -613,7 +613,7 @@ TIER 6: GOVERNANCE FOUNDATION
 ### POLICY
 1. Name: Policy
 2. Purpose: To establish a governing principle that guides decision-making and sets boundaries for organizational behavior.
-3. Responsibility: Providing the "why" and "what" of governance; authorizing Rules and delegating implementation.
+3. Responsibility: Providing the "why" and the "what" of governance; authorizing Rules and delegating implementation.
 4. Owner: GovernanceBody
 5. Lifecycle: Draft → Consulted → Approved → Communicated → Active → UnderReview → Amended/Withdrawn
 6. Allowed Relationships: Authorizes Rule; EnforcedBy Audit; ExceptedBy Exception.

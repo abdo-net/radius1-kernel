@@ -8,7 +8,7 @@
 
 ## Purpose
 
-This directory contains tooling, automation scripts, and utility configurations that support the development, validation, and operation of the RADIUS1 Kernel. Tools operationalize governance processes and ensure consistency.
+This directory contains tooling, automation scripts, and utility configurations that support the development, validation, and operation of the Kernel. Tools operationalize governance processes and ensure consistency.
 
 ## Contents
 

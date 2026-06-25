@@ -8,7 +8,7 @@
 
 ## Purpose
 
-This directory serves as the evidence vault for the RADIUS1 Kernel. It contains factual support for claims, assertions, findings, and conclusions — including audit trails, certifications, reviews, transparency reports, and other verifiable artifacts.
+This directory serves as the evidence vault for the Kernel. It contains factual support for claims, assertions, findings, and conclusions — including audit trails, certifications, reviews, transparency reports, and other verifiable artifacts.
 
 ## Contents
 

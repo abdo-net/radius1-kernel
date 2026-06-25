@@ -8,7 +8,7 @@
 
 ## Purpose
 
-This directory contains formal contracts, agreements, and binding obligations between entities within the RADIUS1 Kernel. Contracts operationalize the abstract concept of Entity into concrete mutual obligations.
+This directory contains formal contracts, agreements, and binding obligations between entities within the Kernel. Contracts operationalize the abstract concept of Entity into concrete mutual obligations.
 
 ## Contents
 
@@ -25,7 +25,7 @@ This directory contains formal contracts, agreements, and binding obligations be
 
 ## Contract Properties
 
-Contracts in the RADIUS1 Kernel:
+Contracts in the Kernel:
 - Are bilateral or multilateral (may not be unilateral)
 - May not contradict invariants
 - May not span Kernel boundaries

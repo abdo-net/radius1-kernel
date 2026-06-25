@@ -1,6 +1,6 @@
-# RADIUS1 Kernel
+# Engineering Kernel
 
-The **RADIUS1 Kernel** is the foundational repository meta-model and governance framework for the RADIUS1 engineering system. It defines the canonical ontology, structural organization, and governance principles that govern all entities within the system.
+The **Engineering Kernel** is the foundational repository meta-model and governance framework for the engineering system governed by this Kernel. It defines the canonical ontology, structural organization, and governance principles that govern all entities within the system.
 
 ## Repository Structure
 
@@ -44,4 +44,4 @@ The **RADIUS1 Kernel** is the foundational repository meta-model and governance 
 
 ---
 
-*This repository is governed by the RADIUS1 Constitution. All changes require appropriate authorization per the governance framework.*
+*This repository is governed by the Constitution. All changes require appropriate authorization per the governance framework.*

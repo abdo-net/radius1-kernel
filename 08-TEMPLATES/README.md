@@ -8,7 +8,7 @@
 
 ## Purpose
 
-This directory contains standardized templates for documents, specifications, governance artifacts, and other recurring content types used within the RADIUS1 Kernel. Templates ensure consistency, completeness, and compliance with established standards.
+This directory contains standardized templates for documents, specifications, governance artifacts, and other recurring content types used within the Kernel. Templates ensure consistency, completeness, and compliance with established standards.
 
 ## Contents
 

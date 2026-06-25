@@ -8,7 +8,7 @@
 
 ## Purpose
 
-This directory contains reusable architectural, design, and process patterns that have been validated and approved for use within the RADIUS1 Kernel. Patterns capture proven solutions to recurring problems, enabling consistency and reducing reinvention.
+This directory contains reusable architectural, design, and process patterns that have been validated and approved for use within the Kernel. Patterns capture proven solutions to recurring problems, enabling consistency and reducing reinvention.
 
 ## Contents
 
@@ -28,7 +28,7 @@ Each pattern in this directory should include:
 4. **Solution** — The pattern itself
 5. **Consequences** — Trade-offs and implications
 6. **Related Patterns** — Links to other patterns
-7. **Examples** — Concrete usage within the RADIUS1 Kernel
+7. **Examples** — Concrete usage within the Kernel
 
 ---
 

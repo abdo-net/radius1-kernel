@@ -8,7 +8,7 @@
 
 ## Purpose
 
-This directory contains mandatory standards, guidelines, and compliance baselines that entities within the RADIUS1 Kernel must meet. Standards ensure consistency, interoperability, and quality across all components of the system.
+This directory contains mandatory standards, guidelines, and compliance baselines that entities within the Kernel must meet. Standards ensure consistency, interoperability, and quality across all components of the system.
 
 ## Contents
 
