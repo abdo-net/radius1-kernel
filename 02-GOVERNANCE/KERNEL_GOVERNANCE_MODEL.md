@@ -424,8 +424,8 @@ The GOVERNANCE_BODY entity relates to all 14 canonical Kernel documents:
 | 9 | KERNEL_DEPENDENCY_MODEL.md | 01-META-MODEL/ | GOVERNANCE_BODY dependencies per KAM-GB #12. |
 | 10 | KERNEL_AUTHORITY_MODEL.md | 01-META-MODEL/ | KAM-GB defines authority profile of GOVERNANCE_BODY entity. |
 | 11 | KERNEL_DOCUMENT_REGISTRY.md | 00-CONSTITUTION/ | Registry catalogues this document. |
-| 12 | KERNEL_CHARTER.md | 00-CONSTITUTION/ | GovernanceBody is CharteredBy Charter (RMM GOVERNANCE_BODY #6; RMM CHARTER #6). |
-| 13 | KERNEL_ROLE_MODEL.md | 02-GOVERNANCE/ | GovernanceBody composed of and owns Roles (RMM GOVERNANCE_BODY #6; RMM ROLE #4). |
+| 12 | KERNEL_CHARTER.md | 00-CONSTITUTION/Charters/ | GovernanceBody is CharteredBy Charter (RMM GOVERNANCE_BODY #6; RMM CHARTER #6). |
+| 13 | KERNEL_ROLE_MODEL.md | 00-CONSTITUTION/ | GovernanceBody composed of and owns Roles (RMM GOVERNANCE_BODY #6; RMM ROLE #4). |
 | 14 | KERNEL_GOVERNANCE_MODEL.md (this) | 02-GOVERNANCE/ | This document — defines GOVERNANCE_BODY entity. |
 
 ---

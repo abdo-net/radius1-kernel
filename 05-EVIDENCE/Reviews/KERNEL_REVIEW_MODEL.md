@@ -15,7 +15,7 @@
 | Entity | REVIEW |
 | Classification | CANONICAL |
 | Owner | GovernanceBody (RMM REVIEW #4) |
-| Source of Truth | 02-GOVERNANCE/KERNEL_REVIEW_MODEL.md |
+| Source of Truth | 05-EVIDENCE/Reviews/KERNEL_REVIEW_MODEL.md |
 | Status | Active |
 | Version | 1.0.0 |
 | RMM Entity | REVIEW |
@@ -260,12 +260,12 @@ These invariants hold for all Review instances at all times.
 | 9 | KERNEL_DEPENDENCY_MODEL.md | 01-META-MODEL/ | Dependencies | Active |
 | 10 | KERNEL_AUTHORITY_MODEL.md | 01-META-MODEL/ | Authority | Active |
 | 11 | KERNEL_DOCUMENT_REGISTRY.md | 00-CONSTITUTION/ | Registry | Active |
-| 12 | KERNEL_CHARTER.md | 00-CONSTITUTION/ | Charter | Active |
-| 13 | KERNEL_ROLE_MODEL.md | 02-GOVERNANCE/ | Actor roles | Active |
+| 12 | KERNEL_CHARTER.md | 00-CONSTITUTION/Charters/ | Charter | Active |
+| 13 | KERNEL_ROLE_MODEL.md | 00-CONSTITUTION/ | Actor roles | Active |
 | 14 | KERNEL_GOVERNANCE_MODEL.md | 02-GOVERNANCE/ | GovernanceBody owns Review | Active |
-| 15 | KERNEL_DECISION_MODEL.md | 02-GOVERNANCE/ | Reviews decisions | Active |
+| 15 | KERNEL_DECISION_MODEL.md | 05-EVIDENCE/ | Reviews decisions | Active |
 | 16 | KERNEL_EVIDENCE_MODEL.md | 05-EVIDENCE/ | Defines REVIEW along with evidence family | Active |
-| 17 | KERNEL_REVIEW_MODEL.md (this) | 02-GOVERNANCE/ | This document | Active |
+| 17 | KERNEL_REVIEW_MODEL.md (this) | 05-EVIDENCE/Reviews/ | This document | Active |
 
 ---
 

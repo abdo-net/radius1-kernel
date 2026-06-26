@@ -97,13 +97,13 @@
 
 | Kernel Entity | RMM Source | RMM Tier | AFM Reference |
 |---------------|-----------|----------|---------------|
-| EVIDENCE | RMM EVIDENCE #1-15 | TIER 10 | AFM 3.1, AFM 3.3 |
-| FINDING | RMM FINDING #1-15 | TIER 10 | AFM 3.1, AFM 3.3 |
-| CONCLUSION | RMM CONCLUSION #1-15 | TIER 10 | AFM 3.1, AFM 3.3 |
-| DECISION_RECORD | RMM DECISION_RECORD #1-15 | TIER 10 | [UNSUPPORTED] |
-| AUDIT | RMM AUDIT #1-15 | TIER 10 | [UNSUPPORTED] |
-| REVIEW | RMM REVIEW #1-15 | TIER 10 | [UNSUPPORTED] |
-| TRANSPARENCY_REPORT | RMM TRANSPARENCY_REPORT #1-15 | TIER 10 | [UNSUPPORTED] |
+| EVIDENCE | RMM EVIDENCE #1-15 | TIER 10 | AFM 3.1, AFM 3.3 (Evidence Family) |
+| FINDING | RMM FINDING #1-15 | TIER 10 | AFM 3.1, AFM 3.3 (Evidence Family) |
+| CONCLUSION | RMM CONCLUSION #1-15 | TIER 10 | AFM 3.1, AFM 3.3 (Evidence Family) |
+| DECISION_RECORD | RMM DECISION_RECORD #1-15 | TIER 10 | AFM Section 4 (Decision Family) |
+| AUDIT | RMM AUDIT #1-15 | TIER 10 | AFM Section 9 (Oversight Family) |
+| REVIEW | RMM REVIEW #1-15 | TIER 10 | AFM Section 9 (Oversight Family) |
+| TRANSPARENCY_REPORT | RMM TRANSPARENCY_REPORT #1-15 | TIER 10 | AFM Section 12 (Accountability Family) |
 
 ---
 
@@ -405,10 +405,10 @@ The elevation of Conclusion to GovernanceBody ownership marks the transition fro
 | 9 | `KERNEL_DEPENDENCY_MODEL.md` | `01-META-MODEL/` | Defines dependency relationships between kernel documents; this document depends on normative sources listed in Section G. |
 | 10 | `KERNEL_AUTHORITY_MODEL.md` | `01-META-MODEL/` | Defines the authority model; Owner attributes (Process, GovernanceBody) derive from authority allocation. |
 | 11 | `KERNEL_DOCUMENT_REGISTRY.md` | `00-CONSTITUTION/` | Registry of all canonical kernel documents; this document is listed there per its canonical status. |
-| 12 | `KERNEL_CHARTER.md` | `00-CONSTITUTION/` | Charter defining the Engineering Kernel; evidence entities operate within chartered boundaries. |
-| 13 | `KERNEL_ROLE_MODEL.md` | `02-GOVERNANCE/` | Defines actor roles (Process, GovernanceBody) that own evidence entities. |
+| 12 | `KERNEL_CHARTER.md` | `00-CONSTITUTION/Charters/` | Charter defining the Engineering Kernel; evidence entities operate within chartered boundaries. |
+| 13 | `KERNEL_ROLE_MODEL.md` | `00-CONSTITUTION/` | Defines actor roles (Process, GovernanceBody) that own evidence entities. |
 | 14 | `KERNEL_GOVERNANCE_MODEL.md` | `02-GOVERNANCE/` | Defines GovernanceBody, which owns CONCLUSION, DECISION_RECORD, AUDIT, REVIEW, and TRANSPARENCY_REPORT. |
-| 15 | `KERNEL_DECISION_MODEL.md` | `02-GOVERNANCE/` | Defines Decision entities; DECISION_RECORD traces to Conclusion per RMM DECISION_RECORD #6. |
+| 15 | `KERNEL_DECISION_MODEL.md` | `05-EVIDENCE/` | Defines Decision entities; DECISION_RECORD traces to Conclusion per RMM DECISION_RECORD #6. |
 | 16 | `KERNEL_EVIDENCE_MODEL.md` (this) | `05-EVIDENCE/` | This document. Defines the Evidence family and all member entities. |
 
 ## 14. Normative References

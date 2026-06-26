@@ -4,7 +4,7 @@
 **Entity:** AMENDMENT  
 **Classification:** CANONICAL  
 **Owner:** Actor (RMM AMENDMENT #4)  
-**Source of Truth:** `02-GOVERNANCE/KERNEL_AMENDMENT_MODEL.md`  
+**Source of Truth:** `02-GOVERNANCE/Amendments/KERNEL_AMENDMENT_MODEL.md`  
 **Status:** Active  
 **Version:** 1.0.0  
 **RMM Entity:** AMENDMENT  
@@ -21,7 +21,7 @@
 | Entity | AMENDMENT |
 | Classification | CANONICAL |
 | Owner | Actor (RMM AMENDMENT #4) |
-| Source of Truth | `02-GOVERNANCE/KERNEL_AMENDMENT_MODEL.md` |
+| Source of Truth | `02-GOVERNANCE/Amendments/KERNEL_AMENDMENT_MODEL.md` |
 | Status | Active |
 | Version | 1.0.0 |
 | RMM Entity | AMENDMENT |
@@ -97,8 +97,8 @@
 |----------|----------|---------|
 | RMM_v1.1.md | `01-META-MODEL/` | Defines AMENDMENT entity — FROZEN |
 | CONSTITUTION.md | `00-CONSTITUTION/` | Constitution is amendable; AmendmentInProgress state |
-| KERNEL_ROLE_MODEL.md | `02-GOVERNANCE/` | Role proposes Amendment |
-| KERNEL_REVIEW_MODEL.md | `02-GOVERNANCE/` | Review reviews Amendment |
+| KERNEL_ROLE_MODEL.md | `00-CONSTITUTION/` | Role proposes Amendment |
+| KERNEL_REVIEW_MODEL.md | `05-EVIDENCE/Reviews/` | Review reviews Amendment |
 | KERNEL_GOVERNANCE_MODEL.md | `02-GOVERNANCE/` | GovernanceBody approves Amendment |
 
 ### Forbidden
@@ -319,13 +319,13 @@ The Amendment model maintains the following relationships with Canonical Kernel 
 | 9 | KERNEL_DEPENDENCY_MODEL.md | `01-META-MODEL/` | Dependencies between Amendment and other entities | Normative |
 | 10 | KERNEL_AUTHORITY_MODEL.md | `01-META-MODEL/` | Authority derivation for Amendment | Normative |
 | 11 | KERNEL_DOCUMENT_REGISTRY.md | `00-CONSTITUTION/` | This document is registered | Normative |
-| 12 | KERNEL_CHARTER.md | `00-CONSTITUTION/` | Charter scope includes Amendment | Normative |
-| 13 | KERNEL_ROLE_MODEL.md | `02-GOVERNANCE/` | Role proposes Amendment | Normative |
+| 12 | KERNEL_CHARTER.md | `00-CONSTITUTION/Charters/` | Charter scope includes Amendment | Normative |
+| 13 | KERNEL_ROLE_MODEL.md | `00-CONSTITUTION/` | Role proposes Amendment | Normative |
 | 14 | KERNEL_GOVERNANCE_MODEL.md | `02-GOVERNANCE/` | GovernanceBody approves Amendment | Normative |
-| 15 | KERNEL_DECISION_MODEL.md | `02-GOVERNANCE/` | Decision process may involve Amendment | Normative |
+| 15 | KERNEL_DECISION_MODEL.md | `05-EVIDENCE/` | Decision process may involve Amendment | Normative |
 | 16 | KERNEL_EVIDENCE_MODEL.md | `05-EVIDENCE/` | Evidence may support Amendment | Normative |
-| 17 | KERNEL_REVIEW_MODEL.md | `02-GOVERNANCE/` | Review reviews Amendment | Normative |
-| 18 | KERNEL_AMENDMENT_MODEL.md (this) | `02-GOVERNANCE/` | This document | Self-referential |
+| 17 | KERNEL_REVIEW_MODEL.md | `05-EVIDENCE/Reviews/` | Review reviews Amendment | Normative |
+| 18 | KERNEL_AMENDMENT_MODEL.md (this) | `02-GOVERNANCE/Amendments/` | This document | Self-referential |
 
 ---
 

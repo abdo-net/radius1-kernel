@@ -63,7 +63,7 @@
 |-------------------|----------------------------------------------------------|
 | **Classification**| CANONICAL                                                |
 | **Basis**         | RMM CHARTER #1 (Name = Charter), #4 (Owner = Constitution), #15 (SourceOfTruth = 00-CONSTITUTION/Charters/) |
-| **Scope**         | Meta-charter — defines what any Charter IS within the Kernel. This document instance is stored at `00-CONSTITUTION/KERNEL_CHARTER.md` as the charter-defining Charter; per RMM CHARTER #8 (Cardinality = 1:N), additional Charters shall be stored in `00-CONSTITUTION/Charters/`. |
+| **Scope**         | Meta-charter — defines what any Charter IS within the Kernel. This document instance is stored at `00-CONSTITUTION/Charters/KERNEL_CHARTER.md`, conforming to RMM CHARTER #15 (SourceOfTruth = `00-CONSTITUTION/Charters/`); per RMM CHARTER #8 (Cardinality = 1:N), additional Charters shall also be stored in `00-CONSTITUTION/Charters/`. |
 | **Jurisdiction**  | All Charter entities within the Kernel                   |
 
 ---
@@ -432,6 +432,6 @@ The following documents are normatively referenced by this Charter and are bindi
   Authority:     Constitution
   Version:       1.0.0
   Status:        Active
-  Source:        00-CONSTITUTION/KERNEL_CHARTER.md
+  Source:        00-CONSTITUTION/Charters/KERNEL_CHARTER.md
   ============================================
 -->

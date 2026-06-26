@@ -11,7 +11,7 @@
 | Entity | DECISION |
 | Classification | CANONICAL |
 | Owner | Actor (RMM DECISION #4) |
-| Source of Truth | 02-GOVERNANCE/KERNEL_DECISION_MODEL.md |
+| Source of Truth | 05-EVIDENCE/KERNEL_DECISION_MODEL.md |
 | Status | Active |
 | Version | 1.0.0 |
 | RMM Entity | DECISION |
@@ -296,10 +296,10 @@ A Veto may reject a Decision. When a Veto is applied to a Decision, the Decision
 | 9 | KERNEL_DEPENDENCY_MODEL.md | 01-META-MODEL/ | Dependencies. |
 | 10 | KERNEL_AUTHORITY_MODEL.md | 01-META-MODEL/ | Authority profiles (DECISION not in KAM — not among 10 authority entities). |
 | 11 | KERNEL_DOCUMENT_REGISTRY.md | 00-CONSTITUTION/ | Registry catalogues this document. |
-| 12 | KERNEL_CHARTER.md | 00-CONSTITUTION/ | Charter governs GovernanceBody that oversees decisions. |
-| 13 | KERNEL_ROLE_MODEL.md | 02-GOVERNANCE/ | Actor makes Decision within Role (RMM ACTOR #6, RMM ROLE #6). |
+| 12 | KERNEL_CHARTER.md | 00-CONSTITUTION/Charters/ | Charter governs GovernanceBody that oversees decisions. |
+| 13 | KERNEL_ROLE_MODEL.md | 00-CONSTITUTION/ | Actor makes Decision within Role (RMM ACTOR #6, RMM ROLE #6). |
 | 14 | KERNEL_GOVERNANCE_MODEL.md | 02-GOVERNANCE/ | GovernanceBody oversees jurisdiction including decisions. |
-| 15 | KERNEL_DECISION_MODEL.md | 02-GOVERNANCE/ | This document — defines DECISION entity. |
+| 15 | KERNEL_DECISION_MODEL.md | 05-EVIDENCE/ | This document — defines DECISION entity. |
 
 ---
 

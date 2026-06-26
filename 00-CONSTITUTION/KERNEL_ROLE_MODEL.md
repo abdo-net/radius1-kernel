@@ -40,7 +40,7 @@
 |---|---|
 | **Classification** | CANONICAL |
 | **Basis** | RMM ROLE #1 (Name = Role), RMM ROLE #4 (Owner = GovernanceBody), RMM ROLE #15 (Source of Truth = 00-CONSTITUTION/) |
-| **Scope** | Defines what a Role IS within the Engineering Kernel. This document instance is stored at `02-GOVERNANCE/KERNEL_ROLE_MODEL.md`; per RMM ROLE #15 (SourceOfTruth = 00-CONSTITUTION/), Role definitions reside in 00-CONSTITUTION/. |
+| **Scope** | Defines what a Role IS within the Engineering Kernel. This document instance is stored at `00-CONSTITUTION/KERNEL_ROLE_MODEL.md`, conforming to RMM ROLE #15 (SourceOfTruth = 00-CONSTITUTION/). |
 | **Jurisdiction** | All Role entities within the Engineering Kernel |
 
 ---
@@ -386,7 +386,7 @@ The ownership of Approval and Veto by Role means that a Role is the entity throu
 | 1 | RMM_v1.1.md | 01-META-MODEL/ | Defines ROLE entity (RMM ROLE #1-#15). Status: FROZEN. |
 | 2 | CONSTITUTION.md | 00-CONSTITUTION/ | ROLE may not contradict Constitution (RMM ROLE #7; Constitution P-3, V-12). |
 | 3 | KERNEL_SCOPE_DEFINITION.md | 01-META-MODEL/ | Defines governance domain; ROLE operates within scope boundaries. |
-| 4 | KERNEL_STRUCTURE_SPEC.md | 01-META-MODEL/ | ROLE stored in 02-GOVERNANCE/ per repository structure. |
+| 4 | KERNEL_STRUCTURE_SPEC.md | 01-META-MODEL/ | ROLE stored in 00-CONSTITUTION/ per RMM ROLE #15. |
 | 5 | DOCUMENT_STANDARD_SPEC.md | 01-META-MODEL/ | Defines document format; this document conforms. |
 | 6 | ARTIFACT_META_MODEL.md | 01-META-MODEL/ | Defines what an Artifact IS; ROLE is an Artifact. |
 | 7 | ARTIFACT_FAMILY_MODEL.md | 01-META-MODEL/ | ROLE is in GOVERNANCE family (13 families, 42 entities). |
@@ -394,8 +394,8 @@ The ownership of Approval and Veto by Role means that a Role is the entity throu
 | 9 | KERNEL_DEPENDENCY_MODEL.md | 01-META-MODEL/ | ROLE dependencies per KAM-RL #12. |
 | 10 | KERNEL_AUTHORITY_MODEL.md | 01-META-MODEL/ | KAM-RL defines authority profile of ROLE entity. |
 | 11 | KERNEL_DOCUMENT_REGISTRY.md | 00-CONSTITUTION/ | Registry catalogues this document. |
-| 12 | KERNEL_CHARTER.md | 00-CONSTITUTION/ | ROLE derives authority through Charter → GovernanceBody chain. |
-| 13 | KERNEL_ROLE_MODEL.md (this) | 02-GOVERNANCE/ | This document — defines ROLE entity. |
+| 12 | KERNEL_CHARTER.md | 00-CONSTITUTION/Charters/ | ROLE derives authority through Charter → GovernanceBody chain. |
+| 13 | KERNEL_ROLE_MODEL.md (this) | 00-CONSTITUTION/ | This document — defines ROLE entity. |
 
 ---
 

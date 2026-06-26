@@ -6,7 +6,7 @@
 | **Entity** | LIFECYCLE + STATE |
 | **Classification** | CANONICAL |
 | **Owner** | GovernanceBody |
-| **Source of Truth** | `99-STATE/REPOSITORY_LIFECYCLE_MODEL.md` |
+| **Source of Truth** | `01-META-MODEL/Lifecycles/REPOSITORY_LIFECYCLE_MODEL.md` |
 | **Status** | Active |
 | **Version** | 1.0.0 |
 | **RMM Entities** | LIFECYCLE, STATE |
@@ -22,7 +22,7 @@
 | **Entity** | LIFECYCLE + STATE |
 | **Classification** | CANONICAL |
 | **Owner** | GovernanceBody (RMM LIFECYCLE #4, RMM STATE #4) |
-| **Source of Truth** | `99-STATE/REPOSITORY_LIFECYCLE_MODEL.md` |
+| **Source of Truth** | `01-META-MODEL/Lifecycles/REPOSITORY_LIFECYCLE_MODEL.md` |
 | **Status** | Active |
 | **Version** | 1.0.0 |
 | **RMM Entities** | LIFECYCLE, STATE |
@@ -366,14 +366,14 @@ This document (REPOSITORY_LIFECYCLE_MODEL.md) defines the lifecycle framework us
 | 9 | KERNEL_DEPENDENCY_MODEL.md | `01-META-MODEL/` | Document dependencies. |
 | 10 | KERNEL_AUTHORITY_MODEL.md | `01-META-MODEL/` | Authority delegation. |
 | 11 | KERNEL_DOCUMENT_REGISTRY.md | `00-CONSTITUTION/` | Canonical document registry. |
-| 12 | KERNEL_CHARTER.md | `00-CONSTITUTION/` | Engineering Kernel charter. |
-| 13 | KERNEL_ROLE_MODEL.md | `02-GOVERNANCE/` | Roles within the kernel. |
+| 12 | KERNEL_CHARTER.md | `00-CONSTITUTION/Charters/` | Engineering Kernel charter. |
+| 13 | KERNEL_ROLE_MODEL.md | `00-CONSTITUTION/` | Roles within the kernel. |
 | 14 | KERNEL_GOVERNANCE_MODEL.md | `02-GOVERNANCE/` | GovernanceBody owns LIFECYCLE and STATE. |
-| 15 | KERNEL_DECISION_MODEL.md | `02-GOVERNANCE/` | Decision processes. |
+| 15 | KERNEL_DECISION_MODEL.md | `05-EVIDENCE/` | Decision processes. |
 | 16 | KERNEL_EVIDENCE_MODEL.md | `05-EVIDENCE/` | Evidence collection and retention. |
-| 17 | KERNEL_REVIEW_MODEL.md | `02-GOVERNANCE/` | Review processes. |
-| 18 | KERNEL_AMENDMENT_MODEL.md | `02-GOVERNANCE/` | Amendment procedures. |
-| 19 | REPOSITORY_LIFECYCLE_MODEL.md (this) | `99-STATE/` | This document. |
+| 17 | KERNEL_REVIEW_MODEL.md | `05-EVIDENCE/Reviews/` | Review processes. |
+| 18 | KERNEL_AMENDMENT_MODEL.md | `02-GOVERNANCE/Amendments/` | Amendment procedures. |
+| 19 | REPOSITORY_LIFECYCLE_MODEL.md (this) | `01-META-MODEL/Lifecycles/` | This document. |
 
 ## 13. Normative References
 
