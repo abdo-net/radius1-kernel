@@ -208,11 +208,14 @@ This document is the Boot Index for every future AI session.
 
 ## 2. Registry Scope
 
-The Registry covers exactly **11 canonical documents** stored in the Engineering Kernel repository. It does NOT cover derived artifacts or informational entry points.
+The Registry covers exactly **21 canonical documents** stored in the Engineering Kernel repository. It does NOT cover derived artifacts or informational entry points.
 
 ### 2.1 Included Documents
 
-- **1 document** in `00-CONSTITUTION/`: `CONSTITUTION.md`
+- **3 documents** in `00-CONSTITUTION/`:
+  - `CONSTITUTION.md`
+  - `KERNEL_CHARTER.md`
+  - `KERNEL_DOCUMENT_REGISTRY.md` (this file)
 - **9 documents** in `01-META-MODEL/`:
   - `RMM_v1.1.md`
   - `KERNEL_SCOPE_DEFINITION.md`
@@ -223,7 +226,18 @@ The Registry covers exactly **11 canonical documents** stored in the Engineering
   - `Repository_State_Model.md`
   - `KERNEL_DEPENDENCY_MODEL.md`
   - `KERNEL_AUTHORITY_MODEL.md`
-- **1 document** in `00-CONSTITUTION/`: `KERNEL_DOCUMENT_REGISTRY.md` (this file)
+- **5 documents** in `02-GOVERNANCE/`:
+  - `KERNEL_ROLE_MODEL.md`
+  - `KERNEL_GOVERNANCE_MODEL.md`
+  - `KERNEL_DECISION_MODEL.md`
+  - `KERNEL_REVIEW_MODEL.md`
+  - `KERNEL_AMENDMENT_MODEL.md`
+- **3 documents** in `05-EVIDENCE/`:
+  - `KERNEL_EVIDENCE_MODEL.md`
+  - `CANONICAL_ISSUE_LEDGER.md`
+  - `CANONICAL_ARBITRATION_LEDGER.md`
+- **1 document** in `99-STATE/`:
+  - `REPOSITORY_LIFECYCLE_MODEL.md`
 
 ### 2.2 Excluded Artifacts
 
@@ -256,6 +270,16 @@ The following are **NOT** covered by this Registry:
 | 9 | KERNEL_AUTHORITY_MODEL | KERNEL_AUTHORITY_MODEL.md | DOCUMENT | Constitution | CANONICAL | Active | 1.0 | 01-META-MODEL/ | MISSION-008 |
 | 10 | CONSTITUTION | CONSTITUTION.md | CONSTITUTION | Constitution (self) | CANONICAL | Active | 1.0.0 | 00-CONSTITUTION/Constitution.md | MISSION-009 |
 | 11 | KERNEL_DOCUMENT_REGISTRY | KERNEL_DOCUMENT_REGISTRY.md | DOCUMENT | Constitution | CANONICAL | Active | 1.0.0 | 00-CONSTITUTION/KERNEL_DOCUMENT_REGISTRY.md | MISSION-010 |
+| 12 | KERNEL_CHARTER | KERNEL_CHARTER.md | CHARTER | Constitution | CANONICAL | Active | 1.0.0 | 00-CONSTITUTION/KERNEL_CHARTER.md | MISSION-011 |
+| 13 | KERNEL_ROLE_MODEL | KERNEL_ROLE_MODEL.md | ROLE | GovernanceBody | CANONICAL | Active | 1.0.0 | 02-GOVERNANCE/KERNEL_ROLE_MODEL.md | MISSION-012 |
+| 14 | KERNEL_GOVERNANCE_MODEL | KERNEL_GOVERNANCE_MODEL.md | GOVERNANCE_BODY | Constitution | CANONICAL | Active | 1.0.0 | 02-GOVERNANCE/KERNEL_GOVERNANCE_MODEL.md | MISSION-013 |
+| 15 | KERNEL_DECISION_MODEL | KERNEL_DECISION_MODEL.md | DECISION | Actor | CANONICAL | Active | 1.0.0 | 02-GOVERNANCE/KERNEL_DECISION_MODEL.md | MISSION-014 |
+| 16 | KERNEL_EVIDENCE_MODEL | KERNEL_EVIDENCE_MODEL.md | EVIDENCE | GovernanceBody | CANONICAL | Active | 1.0.0 | 05-EVIDENCE/KERNEL_EVIDENCE_MODEL.md | MISSION-015 |
+| 17 | KERNEL_REVIEW_MODEL | KERNEL_REVIEW_MODEL.md | REVIEW | GovernanceBody | CANONICAL | Active | 1.0.0 | 02-GOVERNANCE/KERNEL_REVIEW_MODEL.md | MISSION-016 |
+| 18 | KERNEL_AMENDMENT_MODEL | KERNEL_AMENDMENT_MODEL.md | AMENDMENT | Actor | CANONICAL | Active | 1.0.0 | 02-GOVERNANCE/KERNEL_AMENDMENT_MODEL.md | MISSION-017 |
+| 19 | REPOSITORY_LIFECYCLE_MODEL | REPOSITORY_LIFECYCLE_MODEL.md | LIFECYCLE | GovernanceBody | CANONICAL | Active | 1.0.0 | 99-STATE/REPOSITORY_LIFECYCLE_MODEL.md | MISSION-018 |
+| 20 | CANONICAL_ISSUE_LEDGER | CANONICAL_ISSUE_LEDGER.md | DOCUMENT | GovernanceBody | CANONICAL | Active | 1.0.0 | 05-EVIDENCE/CANONICAL_ISSUE_LEDGER.md | Post-MISSION-018 |
+| 21 | CANONICAL_ARBITRATION_LEDGER | CANONICAL_ARBITRATION_LEDGER.md | DOCUMENT | GovernanceBody | CANONICAL | Active | 1.0.0 | 05-EVIDENCE/CANONICAL_ARBITRATION_LEDGER.md | Post-MISSION-018 |
 
 ---
 
@@ -265,14 +289,14 @@ Per DOCUMENT_STANDARD_SPEC Section 3.3, the classification values are:
 
 | Classification | Definition | Applicable Documents |
 |----------------|------------|---------------------|
-| CANONICAL | Supreme authority; frozen state | Documents 1-11 (all define the Kernel's ontology, governance, structure, or registry) |
+| CANONICAL | Supreme authority; frozen state | Documents 1-21 (all define the Kernel's ontology, governance, structure, or registry) |
 | NORMATIVE | Mandatory standards; approved | None in the Registry (all canonical documents are CANONICAL-class) |
 | DERIVED | Computed from canonical sources | Excluded: review reports, validation reports |
 | PROCEDURAL | Execution instructions | Excluded: plan files |
 | INFORMATIONAL | Reference material | README.md (excluded, not part of Registry) |
 | DRAFT | Work in progress; pre-approval | Excluded: future proposals |
 
-All 11 canonical documents are classified **CANONICAL**.
+All 21 canonical documents are classified **CANONICAL**.
 
 ---
 
@@ -404,6 +428,16 @@ Historical creation sequence (MISSION order):
 | 9 | KERNEL_AUTHORITY_MODEL.md | MISSION-008 |
 | 10 | CONSTITUTION.md | MISSION-009 |
 | 11 | KERNEL_DOCUMENT_REGISTRY.md | MISSION-010 |
+| 12 | KERNEL_CHARTER.md | MISSION-011 |
+| 13 | KERNEL_ROLE_MODEL.md | MISSION-012 |
+| 14 | KERNEL_GOVERNANCE_MODEL.md | MISSION-013 |
+| 15 | KERNEL_DECISION_MODEL.md | MISSION-014 |
+| 16 | KERNEL_EVIDENCE_MODEL.md | MISSION-015 |
+| 17 | KERNEL_REVIEW_MODEL.md | MISSION-016 |
+| 18 | KERNEL_AMENDMENT_MODEL.md | MISSION-017 |
+| 19 | REPOSITORY_LIFECYCLE_MODEL.md | MISSION-018 |
+| 20 | CANONICAL_ISSUE_LEDGER.md | Post-MISSION-018 |
+| 21 | CANONICAL_ARBITRATION_LEDGER.md | Post-MISSION-018 |
 
 ---
 
@@ -438,6 +472,16 @@ Maps each document to its canonical storage location (RMM #15):
 | KERNEL_DEPENDENCY_MODEL | 01-META-MODEL/ | 01-META-MODEL/ |
 | KERNEL_AUTHORITY_MODEL | 01-META-MODEL/ | 01-META-MODEL/ |
 | KERNEL_DOCUMENT_REGISTRY | 00-CONSTITUTION/ | 00-CONSTITUTION/ |
+| KERNEL_CHARTER | 00-CONSTITUTION/KERNEL_CHARTER.md | 00-CONSTITUTION/ |
+| KERNEL_ROLE_MODEL | 02-GOVERNANCE/KERNEL_ROLE_MODEL.md | 02-GOVERNANCE/ |
+| KERNEL_GOVERNANCE_MODEL | 02-GOVERNANCE/KERNEL_GOVERNANCE_MODEL.md | 02-GOVERNANCE/ |
+| KERNEL_DECISION_MODEL | 02-GOVERNANCE/KERNEL_DECISION_MODEL.md | 02-GOVERNANCE/ |
+| KERNEL_EVIDENCE_MODEL | 05-EVIDENCE/KERNEL_EVIDENCE_MODEL.md | 05-EVIDENCE/ |
+| KERNEL_REVIEW_MODEL | 02-GOVERNANCE/KERNEL_REVIEW_MODEL.md | 02-GOVERNANCE/ |
+| KERNEL_AMENDMENT_MODEL | 02-GOVERNANCE/KERNEL_AMENDMENT_MODEL.md | 02-GOVERNANCE/ |
+| REPOSITORY_LIFECYCLE_MODEL | 99-STATE/REPOSITORY_LIFECYCLE_MODEL.md | 99-STATE/ |
+| CANONICAL_ISSUE_LEDGER | 05-EVIDENCE/CANONICAL_ISSUE_LEDGER.md | 05-EVIDENCE/ |
+| CANONICAL_ARBITRATION_LEDGER | 05-EVIDENCE/CANONICAL_ARBITRATION_LEDGER.md | 05-EVIDENCE/ |
 
 ---
 
@@ -468,7 +512,7 @@ Structural invariants derived from RMM and KDM:
 | RI-02 | Every canonical document has a Source of Truth path. | RMM #15 (SourceOfTruth) |
 | RI-03 | The document dependency graph is acyclic. | KDM CAC-01: DAG verified |
 | RI-04 | FROZEN documents may not be modified without Amendment. | RMM CONSTITUTION #7 |
-| RI-05 | The Registry is complete — every canonical document appears exactly once. | This Registry (11 documents) |
+| RI-05 | The Registry is complete — every canonical document appears exactly once. | This Registry (21 documents) |
 | RI-06 | No canonical document depends on a non-canonical document. | KDM CAC-04 |
 | RI-07 | The Constitution is the sole self-owning document. | RMM CONSTITUTION #4 |
 | RI-08 | Directory numbers are immutable. | KSS 8.1 |
