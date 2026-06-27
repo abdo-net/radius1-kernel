@@ -8,7 +8,7 @@
                     00-CONSTITUTION/)
   Source of Truth:  00-CONSTITUTION/KERNEL_DOCUMENT_REGISTRY.md
   Status:           Active
-  Version:          1.0.0
+  Version:          1.1.0
 
   This document is governed by DOCUMENT_STANDARD_SPEC.md.
   Any deviation from the Document Standard Specification format
@@ -29,9 +29,9 @@
 | **Owner**         | Constitution                                             |
 | **Source of Truth**| `00-CONSTITUTION/KERNEL_DOCUMENT_REGISTRY.md`           |
 | **Status**        | Active                                                   |
-| **Version**       | 1.0.0                                                    |
+| **Version**       | 1.1.0                                                    |
 | **Created**       | 2026-06-26                                               |
-| **Last Updated**  | 2026-06-26                                               |
+| **Last Updated**  | 2026-06-27                                               |
 | **RMM Entity**    | DOCUMENT                                                 |
 | **RMM Properties**| #1 Name, #2 Purpose, #3 Scope, #4 Owner, #5 Lifecycle,  |
 |                   | #6 Empowers, #7 Constraint, #8 Cardinality, #9 Stability,|
@@ -65,8 +65,8 @@
 |-------------------|----------------------------------------------------------|
 | **Classification**| CANONICAL                                                |
 | **Basis**         | DOCUMENT_STANDARD_SPEC Section 3.3; RMM DOCUMENT properties 1-15 |
-| **Scope**         | Single authoritative registry of all canonical Kernel documents |
-| **Jurisdiction**  | All canonical documents within the Kernel                |
+| **Scope**         | Single authoritative registry of all canonical Kernel documents plus Phase 2 normative documents |
+| **Jurisdiction**  | All canonical and normative documents within the Kernel  |
 
 ---
 
@@ -76,7 +76,7 @@
 |-------------------|----------------------------------------------------------|
 | **Current Status**| Active                                                   |
 | **Lifecycle State**| Active (per RMM DOCUMENT #5: Draft → Review → Approved → Published → Superseded → Archived) |
-| **Effective Date**| 2026-06-26                                               |
+| **Effective Date**| 2026-06-27                                               |
 | **Freeze Status** | Unfrozen                                                 |
 | **Next Review**   | [UNSUPPORTED — RMM does not define review schedule for DOCUMENT] |
 
@@ -86,10 +86,10 @@
 
 | Property          | Value                                                    |
 |-------------------|----------------------------------------------------------|
-| **Current Version**| 1.0.0                                                   |
+| **Current Version**| 1.1.0                                                   |
 | **Versioning Scheme**| Semantic versioning (per RMM DOCUMENT #10: Versionable = Yes) |
 | **Version History**| See Section J: Revision History                         |
-| **Baseline**      | v1.0.0 — Initial registry                                |
+| **Baseline**      | v1.1.0 — Phase 2 synchronized registry                   |
 
 ---
 
@@ -145,6 +145,7 @@ This Registry SHALL NOT depend upon, reference, or incorporate the following:
 | Version | Date       | Author      | Action  | Reference   | Description                |
 |---------|------------|-------------|---------|-------------|----------------------------|
 | 1.0.0   | 2026-06-26 | Constitution| Added   | MISSION-010 | Initial document registry  |
+| 1.1.0   | 2026-06-27 | Engineering Kernel Architect | Updated | P2-M07 | Phase 2 synchronization: added 8 Phase 2 documents; inventoried 7 operational-layer documents |
 
 ---
 
@@ -190,7 +191,7 @@ This Registry SHALL NOT depend upon, reference, or incorporate the following:
 
 ## 1. Purpose
 
-This document is the single authoritative registry of all canonical Kernel documents. It answers:
+This document is the single authoritative registry of all canonical Kernel documents and Phase 2 normative documents. It answers:
 
 - What documents exist?
 - Which are Canonical?
@@ -208,9 +209,11 @@ This document is the Boot Index for every future AI session.
 
 ## 2. Registry Scope
 
-The Registry covers exactly **21 canonical documents** stored in the Engineering Kernel repository. It does NOT cover derived artifacts or informational entry points.
+The Registry covers **29 canonical and normative documents** stored in the Engineering Kernel repository (21 pre-Phase 2 canonical + 8 Phase 2 documents). It does NOT cover derived artifacts, informational entry points, or operational-layer documents (which are inventoried separately in `OPERATIONAL_DOCUMENT_INVENTORY.md`).
 
 ### 2.1 Included Documents
+
+**21 Pre-Phase 2 Canonical Documents:**
 
 - **3 documents** in `00-CONSTITUTION/`:
   - `CONSTITUTION.md`
@@ -239,6 +242,21 @@ The Registry covers exactly **21 canonical documents** stored in the Engineering
 - **1 document** in `99-STATE/`:
   - `REPOSITORY_LIFECYCLE_MODEL.md`
 
+**8 Phase 2 Documents (NEW):**
+
+- **1 document** in `03-PLANNING/`:
+  - `PHASE_2_MASTER_PLAN.md`
+- **4 documents** in `03-STANDARDS/`:
+  - `CROSS_DOCUMENT_VALIDATOR.md`
+  - `UNSUPPORTED_MARKER_TRACKER.md`
+  - `SECTION_NAMING_STANDARD.md`
+  - `RMM_v1.2_EXECUTION_PLAN.md`
+- **2 documents** in `05-EVIDENCE/`:
+  - `CONSTITUTIONAL_EXECUTION_REPORT.md` (updated)
+  - `OPERATIONAL_DOCUMENT_INVENTORY.md`
+- **1 document** in `07-WORKFLOW/`:
+  - `KERNEL_PROCESS_MODEL.md`
+
 ### 2.2 Excluded Artifacts
 
 The following are **NOT** covered by this Registry:
@@ -252,10 +270,27 @@ The following are **NOT** covered by this Registry:
 | Changesets | DERIVED | Computed from canonical sources |
 | Future Proposals | DRAFT | Pre-approval; not canonical |
 | Plan Files | PROCEDURAL | Execution instructions |
+| `PHASE_2_COMPLETION_REPORT.md` | REPORT | Created by P2-M08; will be added upon completion |
+
+### 2.3 Operational-Layer Documents
+
+The following 7 operational-layer documents are **acknowledged** per `REPOSITORY_LAYOUT_SPECIFICATION.md` §3 LS-CL-03 but are **not registered** as canonical documents. They are inventoried in `OPERATIONAL_DOCUMENT_INVENTORY.md` (D-08):
+
+| # | Document | Location | MISSION Authority |
+|---|----------|----------|------------------|
+| 1 | `REPOSITORY_INFORMATION_MODEL.md` | `02-GOVERNANCE/` | MISSION-019 |
+| 2 | `REPOSITORY_LAYOUT_SPECIFICATION.md` | `02-GOVERNANCE/` | MISSION-020 |
+| 3 | `KERNEL_BOOT_PROTOCOL.md` | `07-WORKFLOW/` | MISSION-022 |
+| 4 | `AI_EXECUTION_PROTOCOL.md` | `07-WORKFLOW/` | MISSION-021 |
+| 5 | `KNOWLEDGE_INDEX_SPECIFICATION.md` | `09-TOOLS/` | MISSION-024 |
+| 6 | `SKILL_MANIFEST_SPECIFICATION.md` | `09-TOOLS/` | MISSION-023 |
+| 7 | `KERNEL_VALIDATION_PROTOCOL.md` | `09-TOOLS/` | MISSION-025 |
 
 ---
 
 ## 3. Canonical Document Inventory
+
+### 3.1 Pre-Phase 2 Canonical Documents (1–21)
 
 | # | Identifier | Filename | Entity Type | Owner | Classification | Status | Version | Source of Truth | Mission |
 |---|------------|----------|-------------|-------|----------------|--------|---------|-----------------|---------|
@@ -269,7 +304,7 @@ The following are **NOT** covered by this Registry:
 | 8 | KERNEL_DEPENDENCY_MODEL | KERNEL_DEPENDENCY_MODEL.md | DOCUMENT | Constitution | CANONICAL | Active | 1.0.0 | 01-META-MODEL/ | MISSION-007 |
 | 9 | KERNEL_AUTHORITY_MODEL | KERNEL_AUTHORITY_MODEL.md | DOCUMENT | Constitution | CANONICAL | Active | 1.0 | 01-META-MODEL/ | MISSION-008 |
 | 10 | CONSTITUTION | CONSTITUTION.md | CONSTITUTION | Constitution (self) | CANONICAL | Active | 1.0.0 | 00-CONSTITUTION/Constitution.md | MISSION-009 |
-| 11 | KERNEL_DOCUMENT_REGISTRY | KERNEL_DOCUMENT_REGISTRY.md | DOCUMENT | Constitution | CANONICAL | Active | 1.0.0 | 00-CONSTITUTION/KERNEL_DOCUMENT_REGISTRY.md | MISSION-010 |
+| 11 | KERNEL_DOCUMENT_REGISTRY | KERNEL_DOCUMENT_REGISTRY.md | DOCUMENT | Constitution | CANONICAL | Active | 1.1.0 | 00-CONSTITUTION/KERNEL_DOCUMENT_REGISTRY.md | MISSION-010 |
 | 12 | KERNEL_CHARTER | KERNEL_CHARTER.md | CHARTER | Constitution | CANONICAL | Active | 1.0.0 | 00-CONSTITUTION/Charters/ | MISSION-011 |
 | 13 | KERNEL_ROLE_MODEL | KERNEL_ROLE_MODEL.md | ROLE | GovernanceBody | CANONICAL | Active | 1.0.0 | 00-CONSTITUTION/ | MISSION-012 |
 | 14 | KERNEL_GOVERNANCE_MODEL | KERNEL_GOVERNANCE_MODEL.md | GOVERNANCE_BODY | Constitution | CANONICAL | Active | 1.0.0 | 02-GOVERNANCE/KERNEL_GOVERNANCE_MODEL.md | MISSION-013 |
@@ -281,6 +316,19 @@ The following are **NOT** covered by this Registry:
 | 20 | CANONICAL_ISSUE_LEDGER | CANONICAL_ISSUE_LEDGER.md | DOCUMENT | Constitution | CANONICAL | Active | 1.0.0 | 05-EVIDENCE/CANONICAL_ISSUE_LEDGER.md | Post-MISSION-018 |
 | 21 | CANONICAL_ARBITRATION_LEDGER | CANONICAL_ARBITRATION_LEDGER.md | DOCUMENT | GovernanceBody | CANONICAL | Active | 1.0.0 | 05-EVIDENCE/CANONICAL_ARBITRATION_LEDGER.md | Post-MISSION-018 |
 
+### 3.2 Phase 2 Documents (22–29)
+
+| # | Identifier | Filename | Entity Type | Owner | Classification | Status | Version | Source of Truth | Mission |
+|---|------------|----------|-------------|-------|----------------|--------|---------|-----------------|---------|
+| 22 | CONSTITUTIONAL_EXECUTION_REPORT | CONSTITUTIONAL_EXECUTION_REPORT.md | REPORT | Engineering Kernel Architect | NORMATIVE | Active | 1.0.0 | 05-EVIDENCE/CONSTITUTIONAL_EXECUTION_REPORT.md | P2-M01 |
+| 23 | PHASE_2_MASTER_PLAN | PHASE_2_MASTER_PLAN.md | PLAN | Engineering Kernel Architect | NORMATIVE | Active | 1.1.1 | 03-PLANNING/PHASE_2_MASTER_PLAN.md | P2-M06 |
+| 24 | KERNEL_PROCESS_MODEL | KERNEL_PROCESS_MODEL.md | PROCESS | GovernanceBody | CANONICAL | Active | 1.0.0 | 07-WORKFLOW/KERNEL_PROCESS_MODEL.md | P2-M02 |
+| 25 | CROSS_DOCUMENT_VALIDATOR | CROSS_DOCUMENT_VALIDATOR.md | STANDARD | GovernanceBody | NORMATIVE | Active | 1.0.0 | 03-STANDARDS/CROSS_DOCUMENT_VALIDATOR.md | P2-M03 |
+| 26 | UNSUPPORTED_MARKER_TRACKER | UNSUPPORTED_MARKER_TRACKER.md | STANDARD | Engineering Kernel Architect | NORMATIVE | Active | 1.0.0 | 03-STANDARDS/UNSUPPORTED_MARKER_TRACKER.md | P2-M04 |
+| 27 | SECTION_NAMING_STANDARD | SECTION_NAMING_STANDARD.md | STANDARD | GovernanceBody | NORMATIVE | Active | 1.0.0 | 03-STANDARDS/SECTION_NAMING_STANDARD.md | P2-M05 |
+| 28 | RMM_v1.2_EXECUTION_PLAN | RMM_v1.2_EXECUTION_PLAN.md | PLAN | GovernanceBody | NORMATIVE | Active | 1.0.0 | 03-STANDARDS/RMM_v1.2_EXECUTION_PLAN.md | P2-M06 |
+| 29 | OPERATIONAL_DOCUMENT_INVENTORY | OPERATIONAL_DOCUMENT_INVENTORY.md | INVENTORY | Engineering Kernel Architect | NORMATIVE | Active | 1.0.0 | 05-EVIDENCE/OPERATIONAL_DOCUMENT_INVENTORY.md | P2-M07 |
+
 ---
 
 ## 4. Document Classification Matrix
@@ -289,14 +337,12 @@ Per DOCUMENT_STANDARD_SPEC Section 3.3, the classification values are:
 
 | Classification | Definition | Applicable Documents |
 |----------------|------------|---------------------|
-| CANONICAL | Supreme authority; frozen state | Documents 1-21 (all define the Kernel's ontology, governance, structure, or registry) |
-| NORMATIVE | Mandatory standards; approved | None in the Registry (all canonical documents are CANONICAL-class) |
+| CANONICAL | Supreme authority; frozen state | Documents 1-21, 24 (entity-defining documents) |
+| NORMATIVE | Mandatory standards; approved | Documents 22-23, 25-29 (Phase 2 operational documents) |
 | DERIVED | Computed from canonical sources | Excluded: review reports, validation reports |
 | PROCEDURAL | Execution instructions | Excluded: plan files |
 | INFORMATIONAL | Reference material | README.md (excluded, not part of Registry) |
 | DRAFT | Work in progress; pre-approval | Excluded: future proposals |
-
-All 21 canonical documents are classified **CANONICAL**.
 
 ---
 
@@ -317,6 +363,8 @@ Derived from KAM (Kernel Authority Model) and CONSTITUTION.md.
 | KERNEL_DEPENDENCY_MODEL | Constitution | Dependency mapping; DAG verification |
 | KERNEL_AUTHORITY_MODEL | Constitution | Authority extraction; authority chain validation |
 | KERNEL_DOCUMENT_REGISTRY | Constitution | Document registry; read/boot/build/freeze orderings |
+| PHASE_2_MASTER_PLAN | Engineering Kernel Architect | Phase 2 mission execution (planning authority only) |
+| KERNEL_PROCESS_MODEL | GovernanceBody | PROCESS entity definition |
 
 **The Constitution is the sole authorizing instrument** (CONSTITUTION.md Section 2: "supreme governance instrument").
 
@@ -438,6 +486,14 @@ Historical creation sequence (MISSION order):
 | 19 | REPOSITORY_LIFECYCLE_MODEL.md | MISSION-018 |
 | 20 | CANONICAL_ISSUE_LEDGER.md | Post-MISSION-018 |
 | 21 | CANONICAL_ARBITRATION_LEDGER.md | Post-MISSION-018 |
+| 22 | CONSTITUTIONAL_EXECUTION_REPORT.md | P2-M01 |
+| 23 | PHASE_2_MASTER_PLAN.md | P2-M06 |
+| 24 | KERNEL_PROCESS_MODEL.md | P2-M02 |
+| 25 | CROSS_DOCUMENT_VALIDATOR.md | P2-M03 |
+| 26 | UNSUPPORTED_MARKER_TRACKER.md | P2-M04 |
+| 27 | SECTION_NAMING_STANDARD.md | P2-M05 |
+| 28 | RMM_v1.2_EXECUTION_PLAN.md | P2-M06 |
+| 29 | OPERATIONAL_DOCUMENT_INVENTORY.md | P2-M07 |
 
 ---
 
@@ -482,6 +538,16 @@ Maps each document to its canonical storage location (RMM #15):
 | REPOSITORY_LIFECYCLE_MODEL | 01-META-MODEL/Lifecycles/REPOSITORY_LIFECYCLE_MODEL.md | 01-META-MODEL/ |
 | CANONICAL_ISSUE_LEDGER | 05-EVIDENCE/CANONICAL_ISSUE_LEDGER.md | 05-EVIDENCE/ |
 | CANONICAL_ARBITRATION_LEDGER | 05-EVIDENCE/CANONICAL_ARBITRATION_LEDGER.md | 05-EVIDENCE/ |
+| CONSTITUTIONAL_EXECUTION_REPORT | 05-EVIDENCE/CONSTITUTIONAL_EXECUTION_REPORT.md | 05-EVIDENCE/ |
+| PHASE_2_MASTER_PLAN | 03-PLANNING/PHASE_2_MASTER_PLAN.md | 03-PLANNING/ |
+| KERNEL_PROCESS_MODEL | 07-WORKFLOW/KERNEL_PROCESS_MODEL.md | 07-WORKFLOW/ |
+| CROSS_DOCUMENT_VALIDATOR | 03-STANDARDS/CROSS_DOCUMENT_VALIDATOR.md | 03-STANDARDS/ |
+| UNSUPPORTED_MARKER_TRACKER | 03-STANDARDS/UNSUPPORTED_MARKER_TRACKER.md | 03-STANDARDS/ |
+| SECTION_NAMING_STANDARD | 03-STANDARDS/SECTION_NAMING_STANDARD.md | 03-STANDARDS/ |
+| RMM_v1.2_EXECUTION_PLAN | 03-STANDARDS/RMM_v1.2_EXECUTION_PLAN.md | 03-STANDARDS/ |
+| OPERATIONAL_DOCUMENT_INVENTORY | 05-EVIDENCE/OPERATIONAL_DOCUMENT_INVENTORY.md | 05-EVIDENCE/ |
+
+**NOTE:** `03-PLANNING/` is NOT listed in Constitution §10 directory structure. Constitution §10 assigns directory 03 to `03-STANDARDS/`. `PHASE_2_MASTER_PLAN.md` location at `03-PLANNING/` is a known documentation gap documented in the plan header.
 
 ---
 
@@ -512,7 +578,7 @@ Structural invariants derived from RMM and KDM:
 | RI-02 | Every canonical document has a Source of Truth path. | RMM #15 (SourceOfTruth) |
 | RI-03 | The document dependency graph is acyclic. | KDM CAC-01: DAG verified |
 | RI-04 | FROZEN documents may not be modified without Amendment. | RMM CONSTITUTION #7 |
-| RI-05 | The Registry is complete — every canonical document appears exactly once. | This Registry (21 documents) |
+| RI-05 | The Registry is complete — every canonical document appears exactly once. | This Registry (29 documents) |
 | RI-06 | No canonical document depends on a non-canonical document. | KDM CAC-04 |
 | RI-07 | The Constitution is the sole self-owning document. | RMM CONSTITUTION #4 |
 | RI-08 | Directory numbers are immutable. | KSS 8.1 |
