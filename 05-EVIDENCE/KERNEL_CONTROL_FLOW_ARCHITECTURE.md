@@ -26,16 +26,16 @@ This document records, as a permanent repository artifact, the Kernel Control Fl
 
 ## Section C: Architectural Lineage
 
-This document is the fourth and, to date, the only **committed** member of a four-document architectural stack produced across this engineering engagement:
+This document was, at its own creation under PHASE 3.0B, the fourth and only committed member of a four-document architectural stack. Under the subsequent **ARCHITECTURE INTEGRATION MISSION**, the remaining three documents were integrated as repository artifacts, preserved exactly as originally delivered. All four members of the stack are now committed:
 
 | # | Document | Repository Status |
 |---|----------|-------------------|
-| 1 | Phase 3 Execution Architecture | Session-level architectural deliverable. **Not separately committed** as a repository artifact as of this document's creation. |
-| 2 | Phase 3 Execution Control Architecture | Session-level architectural deliverable. **Not separately committed** as a repository artifact as of this document's creation. |
-| 3 | Kernel Runtime Architecture | Session-level architectural deliverable. **Not separately committed** as a repository artifact as of this document's creation. |
+| 1 | Phase 3 Execution Architecture | **Committed** at `05-EVIDENCE/PHASE_3_EXECUTION_ARCHITECTURE.md`, per ARCHITECTURE INTEGRATION MISSION. |
+| 2 | Phase 3 Execution Control Architecture | **Committed** at `05-EVIDENCE/PHASE_3_EXECUTION_CONTROL_ARCHITECTURE.md`, per ARCHITECTURE INTEGRATION MISSION. |
+| 3 | Kernel Runtime Architecture | **Committed** at `05-EVIDENCE/KERNEL_RUNTIME_ARCHITECTURE.md`, per ARCHITECTURE INTEGRATION MISSION. |
 | 4 | Kernel Control Flow Architecture (this document) | **Committed**, per PHASE 3.0B integration mission. |
 
-This table exists so that no reader mistakes documents 1–3 for resolvable repository paths. They are cited in Part II below only as architectural context already accepted in the engineering process, never as canonical references with a file path — because no such path exists. Every substantive claim in Part II is instead grounded directly in actual repository artifacts (`RMM_v1.1.md`, `KERNEL_AUTHORITY_MODEL.md`, `AI_EXECUTION_PROTOCOL.md`, `KERNEL_VALIDATION_PROTOCOL.md`, `99-STATE/README.md`, `FINAL_CONSTITUTIONAL_CLOSURE.md`), each cited by its real path. This avoids the one integration failure mode the task explicitly tests for: a broken reference.
+This table exists so that no reader mistakes any member of the stack for an unresolvable reference. Every substantive claim in Part II is grounded directly in actual repository artifacts (`RMM_v1.1.md`, `KERNEL_AUTHORITY_MODEL.md`, `AI_EXECUTION_PROTOCOL.md`, `KERNEL_VALIDATION_PROTOCOL.md`, `99-STATE/README.md`, `FINAL_CONSTITUTIONAL_CLOSURE.md`), each cited by its real path. This avoids the one integration failure mode the task explicitly tests for: a broken reference.
 
 ---
 
