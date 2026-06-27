@@ -8,7 +8,7 @@
 **Supreme Authority:** `00-CONSTITUTION/CONSTITUTION.md` (SHA `187aaaa1`)  
 **RMM Reference:** `01-META-MODEL/RMM_v1.1.md` (SHA `09bc2239`, FROZEN per Constitution P-10 §14)  
 **Date of Authorship:** 2026-06-27  
-**Version:** 1.1.1  
+**Version:** 1.1.2  
 **SOT Directory:** `03-PLANNING/` (**NOTE:** This directory is NOT listed in Constitution §10. Constitution §10 assigns directory 03 to `03-STANDARDS/` for STANDARD and GUIDELINE entities. The plan document is physically located at `03-PLANNING/` per repository convention for planning documents. This is a known documentation gap — `03-PLANNING/` directory purpose is not formally defined in the Constitution.)
 
 ---
@@ -98,7 +98,7 @@ Five CONFIRMED findings from the Arbitration Ledger describe actual repository c
 
 The `RMM_FUTURE_PROPOSALS.md` (SHA `38aa02a4`) catalogs 56 deferred architectural proposals. Of these, **11 are targeted for v1.2** (Foundation Hardening). Phase 2 must produce a deterministic execution plan for these 11 proposals without executing any RMM changes (RMM remains FROZEN per Constitution P-10 §14).
 
-**Citation:** `RMM_FUTURE_PROPOSALS.md` (SHA `38aa02a4`), v1.2 Target section (11 proposals).
+**Citation:** `RMM_FUTURE_PROPOSALS.md` (SHA `38aa02a4`) v1.2 Target section (11 proposals).
 
 ### 1.3 Phase 2 Success Criteria (Summary)
 
@@ -133,7 +133,7 @@ The following work is explicitly IN SCOPE for Phase 2:
 | 8 | Synchronize `KERNEL_DOCUMENT_REGISTRY.md` with actual repository state | `KERNEL_DOCUMENT_REGISTRY.md` (SHA `213e5038`); 7 operational-layer documents | P2-M07 |
 | 9 | Acknowledge and inventory 7 operational-layer documents | `REPOSITORY_LAYOUT_SPECIFICATION.md` (SHA `9a051c9e`) §3 LS-CL-03 | P2-M07 |
 | 10 | Produce terminal execution report | `CONSTITUTIONAL_EXECUTION_REPORT.md` (SHA `fa86a1c0`) | P2-M08 |
-| 11 | Create this `PHASE_2_MASTER_PLAN.md` document (v1.1.1) | ECR disposition | Current mission |
+| 11 | Create this `PHASE_2_MASTER_PLAN.md` document (v1.1.2) | ECR disposition | Current mission |
 
 ### 2.2 OUT OF SCOPE
 
@@ -223,7 +223,7 @@ Phase 2 produces **8 canonical deliverables**. Each deliverable has a unique ide
 | **Filename** | `KERNEL_PROCESS_MODEL.md` |
 | **Purpose** | Define the PROCESS entity as a derived canonical document, extracting RMM PROCESS #1-15 into standard 10-section document format per DOCUMENT_STANDARD_SPEC.md |
 | **Owner** | GovernanceBody (per RMM PROCESS #4) |
-| **SOT Directory** | `02-GOVERNANCE/` (per Constitution §10; PROCESS is a governance entity) |
+| **SOT Directory** | `07-WORKFLOW/` (per Constitution §10 Section 10; PROCESS is a WORKFLOW entity alongside WORKFLOW, FEATURE, MILESTONE) |
 | **Source RMM Entity** | PROCESS (TIER 5, #1-15 fully defined in RMM v1.1) |
 | **Dependencies** | P2-M02; `RMM_v1.1.md` (SHA `09bc2239`); `DOCUMENT_STANDARD_SPEC.md` |
 | **Completion Criteria** | 10-section document per DSS; all 15 RMM properties extracted; no invented properties; no [UNSUPPORTED] markers where RMM defines the property; Owner field matches RMM PROCESS #4 |
@@ -259,7 +259,7 @@ Phase 2 produces **8 canonical deliverables**. Each deliverable has a unique ide
 | **Identifier** | D-05 |
 | **Filename** | `SECTION_NAMING_STANDARD.md` |
 | **Purpose** | Resolve the section naming inconsistency (numbered vs. lettered vs. DSS hierarchical) by documenting the authoritative standard and identifying which documents need harmonization |
-| **Owner** | Engineering Kernel Architect |
+| **Owner** | GovernanceBody |
 | **SOT Directory** | `03-STANDARDS/` (per Constitution §10) |
 | **Dependencies** | P2-M05; `DOCUMENT_STANDARD_SPEC.md`; all 10 affected Phase 1 documents |
 | **Completion Criteria** | Authoritative naming convention defined; mapping table shows current vs. target naming for each affected document; harmonization sequence specified; no document modified without explicit instruction |
@@ -416,7 +416,7 @@ PROCESS is defined in RMM v1.1 (SHA `09bc2239`) with all 15 properties specified
 5. **Verify** no [UNSUPPORTED] marker appears where RMM defines the property.
 6. **Add** [UNSUPPORTED] markers only where RMM genuinely does not define the property.
 7. **Review** against existing governance models (KRM, KGM) for consistency.
-8. **Commit** to `02-GOVERNANCE/` (per Constitution §10 and RMM PROCESS #15).
+8. **Commit** to `07-WORKFLOW/` (per Constitution §10 Section 10 and RMM PROCESS #15).
 
 #### Output
 
@@ -1040,7 +1040,7 @@ The following missions **MAY execute in parallel**:
 |---|-----------|--------|--------|
 | 5 | All deliverables committed | Deliverable count | 8/8 have commit SHAs |
 | 6 | D-01 updated with verification results | Entry count | 13/13 Resolution Register items have status |
-| 7 | D-02 (KPM) committed | File exists | `02-GOVERNANCE/KERNEL_PROCESS_MODEL.md` exists |
+| 7 | D-02 (KPM) committed | File exists | `07-WORKFLOW/KERNEL_PROCESS_MODEL.md` exists |
 | 8 | D-03 (Validator) committed | File exists | `03-STANDARDS/CROSS_DOCUMENT_VALIDATOR.md` exists |
 | 9 | D-04 (Marker Tracker) committed | File exists | `03-STANDARDS/UNSUPPORTED_MARKER_TRACKER.md` exists |
 | 10 | D-05 (Naming Standard) committed | File exists | `03-STANDARDS/SECTION_NAMING_STANDARD.md` exists |
@@ -1158,7 +1158,7 @@ All evidence was independently read from `abdo-net/radius1-kernel`, branch `main
 
 | SHA | File | Purpose in Plan |
 |-----|------|-----------------|
-| `187aaaa1` | `00-CONSTITUTION/CONSTITUTION.md` | Supreme authority; 10 immutable principles; repository directory structure §10 (directory 03 = `03-STANDARDS/` for STANDARD and GUIDELINE entities; `03-PLANNING/` is NOT listed in Constitution §10) |
+| `187aaaa1` | `00-CONSTITUTION/CONSTITUTION.md` | Supreme authority; 10 immutable principles; repository directory structure §10 (directory 03 = `03-STANDARDS/` for STANDARD and GUIDELINE entities; `03-PLANNING/` is NOT listed in Constitution §10; `04-PATTERNS/` and `08-TEMPLATES/` are RESERVED) |
 | `213e5038` | `00-CONSTITUTION/KERNEL_DOCUMENT_REGISTRY.md` | 21 canonical documents; inventory; SOT map |
 | `aaecf34b` | `00-CONSTITUTION/Charters/KERNEL_CHARTER.md` | CHARTER entity; Owner=Constitution; SOT=`00-CONSTITUTION/Charters/` |
 | `0344367f` | `00-CONSTITUTION/KERNEL_ROLE_MODEL.md` | ROLE entity; Owner=GovernanceBody; SOT=`00-CONSTITUTION/` |
@@ -1258,7 +1258,7 @@ Valid topological orderings exist. One canonical ordering:
 
 ### C.1 Authority Statement
 
-This Phase 2 Master Plan v1.1.1 is issued under the authority of the Engineering Kernel Architect role as defined in `00-CONSTITUTION/KERNEL_ROLE_MODEL.md` (SHA `0344367f`).
+This Phase 2 Master Plan v1.1.2 is issued under the authority of the Engineering Kernel Architect role as defined in `00-CONSTITUTION/KERNEL_ROLE_MODEL.md` (SHA `0344367f`).
 
 The Engineering Kernel Architect derives authority from the Constitution (`00-CONSTITUTION/CONSTITUTION.md`, SHA `187aaaa1`) P-1 §1: "The Kernel is the supreme technical authority."
 
@@ -1296,7 +1296,7 @@ This document has been revised per Engineering Change Request findings:
 
 ### C.4 Formal Authorization Statement
 
-> **The Engineering Kernel Architect, acting under the authority of the Radius1 Engineering Kernel Constitution (`00-CONSTITUTION/CONSTITUTION.md`, SHA `187aaaa1`), Principle 1, hereby authorizes Phase 2 execution as defined in this master plan v1.1.1.**
+> **The Engineering Kernel Architect, acting under the authority of the Radius1 Engineering Kernel Constitution (`00-CONSTITUTION/CONSTITUTION.md`, SHA `187aaaa1`), Principle 1, hereby authorizes Phase 2 execution as defined in this master plan v1.1.2.**
 >
 > **This authorization is conditioned on:**
 > 1. Strict adherence to the 8 missions defined in Section 4.
@@ -1316,11 +1316,11 @@ This document has been revised per Engineering Change Request findings:
 > **Branch:** `main`  
 > **Repository:** `abdo-net/radius1-kernel`  
 > **Date:** 2026-06-27  
-> **Version:** 1.1.1
+> **Version:** 1.1.2
 
 ### C.5 Document Integrity
 
-This plan (`PHASE_2_MASTER_PLAN.md` v1.1.1) is self-contained. All information required to execute Phase 2 is present within this document.
+This plan (`PHASE_2_MASTER_PLAN.md` v1.1.2) is self-contained. All information required to execute Phase 2 is present within this document.
 
 | Check | Status |
 |-------|--------|
@@ -1334,6 +1334,8 @@ This plan (`PHASE_2_MASTER_PLAN.md` v1.1.1) is self-contained. All information r
 | All ECR findings are dispositioned | VERIFIED — Appendix C.3 |
 | No placeholder text | VERIFIED — Full document review |
 | No self-certification on false premise | VERIFIED — SOT directory claim backed by actual file location, not unsupported Constitution citation |
+| D-02 SOT matches actual file location | VERIFIED — `07-WORKFLOW/` matches repository, Registry, and RMM PROCESS #15 |
+| ISSUE-016 reflects constitutional reserved status | VERIFIED — Appendix D documents ISSUE-016 as RESOLVED per Constitution §10 Reserved designation |
 
 ### C.6 Document Registry Entry
 
@@ -1348,7 +1350,7 @@ This document is a Phase 2 artifact and must be registered in `KERNEL_DOCUMENT_R
 | SOT Path | `03-PLANNING/` (actual repository location; **NOTE:** this directory is NOT listed in Constitution §10, which assigns directory 03 to `03-STANDARDS/`. This is a known documentation gap.) |
 | Status | ACTIVE |
 | Base Commit | `94ef6f415c4b0f5d30fe423eaa6378813e38d83b` |
-| Version | 1.1.1 |
+| Version | 1.1.2 |
 
 ---
 
@@ -1373,22 +1375,17 @@ All 20 findings from `CANONICAL_ARBITRATION_LEDGER.md` (SHA `a1a4bd2e`) with the
 | ISSUE-013 | OBSOLETE | N/A (pre-fixed) | N/A | None — OBSOLETE |
 | ISSUE-014 | CONFIRMED | Derived Document Correction | **EXECUTED** (KEM §J corrected) | P2-M01: Verify |
 | ISSUE-015 | CONFIRMED | Future Phase Item | N/A | P2-M05 |
-| ISSUE-016 | CONFIRMED | Repository Correction (R1) | **REQUIRES INDEPENDENT VERIFICATION** | P2-M01: Verify reserved directory gap status |
+| ISSUE-016 | CONFIRMED | Repository Correction (R1) | **RESOLVED** — Constitution §10 designates `04-PATTERNS/` and `08-TEMPLATES/` as Reserved directories; `.gitkeep` and `README.md` presence satisfies reserved directory requirements; emptiness is intentional per Constitutional designation | P2-M01: Verified |
 | ISSUE-017 | CONFIRMED | Future Phase Item | N/A | P2-M02 |
 | ISSUE-018 | **BY_DESIGN** | N/A (not CONFIRMED) | N/A | **None — BY_DESIGN** |
 | ISSUE-019 | CONFIRMED | Future Phase Item | N/A | P2-M03 |
 | ISSUE-020 | CONFIRMED | Future Phase Item (R3, R5) | N/A | P2-M04 (catalog) + P2-M06 (plan resolution) |
 
-### ISSUE-016 Special Note
-
-ISSUE-016 concerns **reserved directory gaps** (directories `04-PATTERNS/`, `08-TEMPLATES/`, and potentially `03-PLANNING/` that exist or are referenced but are not formally defined in Constitution §10). The Execution Report's git mv operations moved **entity files** to their RMM §15 SOT locations — they did **not** create or populate reserved directories. Therefore, the status of ISSUE-016's core concern (reserved directory documentation gaps) **cannot be classified as EXECUTED** based solely on entity file moves. P2-M01 must independently verify whether reserved directory gaps have been addressed.
-
 ### Phase 2 Work Summary
 
 | Category | Count | Items |
 |----------|-------|-------|
-| Verify already executed | 8 | ISSUE-001 through 007, 014 |
-| Verify status unclear | 1 | ISSUE-016 (reserved directory gaps — not resolved by git mv) |
+| Verify already executed | 9 | ISSUE-001 through 007, 014, 016 |
 | No work needed (OBSOLETE) | 6 | ISSUE-008 through 013 |
 | No work needed (BY_DESIGN) | 1 | ISSUE-018 |
 | Phase 2 missions | 4 | ISSUE-015 (P2-M05), 017 (P2-M02), 019 (P2-M03), 020 (P2-M04) |
@@ -1422,14 +1419,22 @@ ISSUE-016 concerns **reserved directory gaps** (directories `04-PATTERNS/`, `08-
 | Correction 3: Unsupported Constitution §10 citations removed | **APPLIED** | Header parenthetical removed false claim "per Constitution §10 directory structure"; Appendix A Constitution entry corrected; Appendix C.2 constraint 10 updated to reflect exception; no claim that Constitution §10 assigns `03-PLANNING/` to this document |
 | Correction 4: Authorization statements recomputed | **APPLIED** | Appendix C.4 condition 6 updated to not depend on false SOT premise; adds explicit language about documenting exceptions for directories not in Constitution §10; Appendix C.5 adds "No self-certification on false premise" check |
 
-### Acceptance: 10 / Rejection: 0
+### Post-Architectural-Reconciliation Corrections Applied (v1.1.2)
 
-All 10 findings (including FINAL ECR corrections) have been accepted and implemented. Zero findings remain open.
+| Correction | Status | Evidence |
+|------------|--------|----------|
+| D-02 SOT: `02-GOVERNANCE/` → `07-WORKFLOW/` | **APPLIED** | Section 3 D-02 corrected; Section 4.3 step 8 corrected; Section 9.2 criterion 7 corrected; Constitution §10 Section 10: PROCESS is a WORKFLOW entity in directory 07 |
+| ISSUE-016: REQUIRES INDEPENDENT VERIFICATION → RESOLVED | **APPLIED** | Appendix D table corrected; ISSUE-016 Special Note removed; Phase 2 Work Summary recategorized; Constitution §10: `04-PATTERNS/` and `08-TEMPLATES/` are Reserved — emptiness is intentional |
+| Identity separation: no governance requirement found | **DOCUMENTED** | Finding 3 disposition: repository governance does not currently require cryptographic or identity separation; no canonical artifact defines this requirement |
+
+### Acceptance: 10 ECR + 3 Reconciliation / Rejection: 0
+
+All 13 findings have been accepted and implemented. Zero findings remain open.
 
 ---
 
-*End of PHASE_2_MASTER_PLAN.md v1.1.1*
-*Document version: 1.1.1*
+*End of PHASE_2_MASTER_PLAN.md v1.1.2*
+*Document version: 1.1.2*
 *Total sections: 10 + 5 appendices*
 *Total missions: 8*
 *Total deliverables: 8*
@@ -1437,5 +1442,6 @@ All 10 findings (including FINAL ECR corrections) have been accepted and impleme
 *Total transition criteria: 8*
 *ECR findings: 10 (10 accepted, 0 rejected)*
 *FINAL ECR corrections: 4 (4 applied, 0 open)*
+*Post-reconciliation corrections: 3 (3 applied, 0 open)*
 *Repository: abdo-net/radius1-kernel*
 *Branch: main*
